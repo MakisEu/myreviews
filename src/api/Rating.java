@@ -2,7 +2,7 @@ package api;
 
 public class Rating {
 
-    private String rating_description,name_of_user;
+    private String rating_description,name_of_user,date;
     private float grade;
 
     public Rating(String description,float grade,String name_of_user)
@@ -11,6 +11,16 @@ public class Rating {
         this.grade=grade;
         this.name_of_user=name_of_user;
     }
+
+    public Rating(String description,float grade,String name_of_user,String date)
+    {
+        rating_description=description;
+        this.grade=grade;
+        this.name_of_user=name_of_user;
+        this.date=date;
+    }
+
+
 
     public String getRatingDescription()
     {
@@ -35,6 +45,12 @@ public class Rating {
 
     }
 
+    public void setDate(String date){
+        this.date=date;
+    }
+    public String getDate(){
+        return date;
+    }
 
 
 }
