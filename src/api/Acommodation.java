@@ -7,6 +7,7 @@ public class Acommodation {
     private ArrayList<Rating> ratings;
     private String name,address,TK,city,description,owner;
     //private Properties properties;
+    public Acommodation(){ratings=new ArrayList<>();}
     public Acommodation(String n,String a, String tk,String c,String desc,String o) {
         name=n;
         address=a;
@@ -21,16 +22,20 @@ public class Acommodation {
         ratings.add(r);
     }
     public void show(){
-        System.out.print(name);
-        System.out.print(address);
-        System.out.print(TK);
-        System.out.print(city);
-        System.out.print(description);
-        System.out.print(owner);
+        System.out.println("Name:  "+name);
+        System.out.println("Address:  "+address);
+        System.out.println("TK:  "+TK);
+        System.out.println("City:  "+city);
+        System.out.println("Description:  "+description);
+        System.out.println("Owner:  "+owner);
+        System.out.println("Ratings:");
         for (Rating t: ratings)
         {
             //t.show();
         }
+    }
+    public void setAddress(String i){
+        address=i;
     }
     public void setTK(String i){
         TK=i;
