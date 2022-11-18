@@ -1,0 +1,83 @@
+package api;
+
+import java.util.ArrayList;
+import java.util.Properties;
+
+public class Acommodation {
+    private ArrayList<Rating> ratings;
+    private String name,address,TK,city,description,owner;
+    //private Properties properties;
+    public Acommodation(String n,String a, String tk,String c,String desc,String o) {
+        name=n;
+        address=a;
+        TK=tk;
+        city=c;
+        description=desc;
+        owner=o;
+        ratings=new ArrayList<>();
+    }
+    public void addRating(String desc,float ra,String user){
+        Rating r=new Rating(desc,ra,user);
+        ratings.add(r);
+    }
+    public void show(){
+        System.out.print(name);
+        System.out.print(address);
+        System.out.print(TK);
+        System.out.print(city);
+        System.out.print(description);
+        System.out.print(owner);
+        for (Rating t: ratings)
+        {
+            //t.show();
+        }
+    }
+    public void setTK(String i){
+        TK=i;
+    }
+    public void setCity(String i){
+        city=i;
+    }
+    public void setDescription(String i){
+        description=i;
+    }
+    public void setOwner(String i){
+        owner=i;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getTK() {
+        return TK;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+    public void editRating(String o,String d,float f){
+        for (Rating s:ratings)
+        {
+            if (s.getRatingDescription()==o){s.setRatingDescription(d);
+                s.setGrade(f);
+            }
+
+        }
+    }
+    public  void setProperties(String[] p){
+        //properties.edit(p);
+    }
+}
