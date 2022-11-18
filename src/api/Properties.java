@@ -7,10 +7,6 @@ public class Properties {
         return view;
     }
 
-    public void setView(){
-        this.view=view;
-    }
-
     public String getBath(){
         return bath;
     }
