@@ -27,7 +27,7 @@ public class RatingTest {
         System.out.println("get grade");
         Rating rating=new Rating("Pretty good!",4,"user1234","19/11/2022");
         float expected=4;
-        assertEquals(expected,rating.getGrade());
+        assertEquals(expected,rating.getGrade(),0.1);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class RatingTest {
         Rating rating=new Rating("Pretty good!",4,"user1234","19/11/2022");
         rating.setGrade(4,"19/11/2022");
         float expected=4;
-        assertEquals(expected,rating.getGrade());
+        assertEquals(expected,rating.getGrade(),0.1);
     }
 
     @Test

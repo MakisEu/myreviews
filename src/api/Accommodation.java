@@ -19,7 +19,7 @@ public class Accommodation {
         ratings=new ArrayList<>();
     }
     public void addRating(String desc,float ra,String user){
-        Rating r=new Rating(desc,ra,user);
+        Rating r=new Rating(desc,ra,user,"19/11/2022");
         ratings.add(r);
     }
     public void show(){
@@ -88,8 +88,8 @@ public class Accommodation {
     public void editRating(String o,String d,float f){
         for (Rating s:ratings)
         {
-            if (s.getRatingDescription()==o){s.setRatingDescription(d);
-                s.setGrade(f);
+            if (s.getRatingDescription()==o){s.setRatingDescription(d,s.getDate());
+                s.setGrade(f,s.getDate());
             }
 
         }
