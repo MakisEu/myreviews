@@ -1,14 +1,15 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.Properties;
-
-public class Acommodation {
+/**
+ *Class Accommodation is a Base class for all types of accommodations with the basic methods and properties of them
+ * */
+public class Accommodation {
     private ArrayList<Rating> ratings;
     private String name,address,TK,city,description,owner;
     //private Properties properties;
-    public Acommodation(){ratings=new ArrayList<>();}
-    public Acommodation(String n,String a, String tk,String c,String desc,String o) {
+    public Accommodation(){ratings=new ArrayList<>();}
+    public Accommodation(String n,String a, String tk,String c,String desc,String o) {
         name=n;
         address=a;
         TK=tk;
@@ -22,12 +23,23 @@ public class Acommodation {
         ratings.add(r);
     }
     public void show(){
-        System.out.println("Name:  "+name);
-        System.out.println("Address:  "+address);
-        System.out.println("TK:  "+TK);
-        System.out.println("City:  "+city);
-        System.out.println("Description:  "+description);
-        System.out.println("Owner:  "+owner);
+        System.out.println("Name:       "+name);
+        System.out.println("Address:    "+address);
+        System.out.println("TK:         "+TK);
+        System.out.println("City:       "+city);
+        System.out.println("Description:"+description);
+        System.out.println("Owner:      "+owner);
+        this.showRatings();
+    }
+    public void showNR(){
+        System.out.println("Name:       "+name);
+        System.out.println("Address:    "+address);
+        System.out.println("TK:         "+TK);
+        System.out.println("City:       "+city);
+        System.out.println("Description:"+description);
+        System.out.println("Owner:      "+owner);
+    }
+    public void showRatings(){
         System.out.println("Ratings:");
         for (Rating t: ratings)
         {
