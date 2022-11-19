@@ -16,7 +16,7 @@ public class AccommodationTest {
     public void addRating() {
             System.out.println("Add Rating:");
             Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-            instance.addRating("Its good!!!",4,"Makis");
+            instance.addRating("Its good!!!",4,"Makis","19/11/2022");
             instance.show();
     }
 
@@ -121,8 +121,24 @@ public class AccommodationTest {
 
     @Test
     public void editRating() {
-    }
+        System.out.println("Edit Rating:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022");
+        instance.showRatings();
+        instance.editRating("Makis","It sucks",1);
+        instance.showRatings();
 
+    }
+    @Test
+    public void deleteRating() {
+        System.out.println("Delete Rating:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022");
+        instance.addRating("Its good5!!!",4,"John","20/11/2022");
+        instance.showRatings();
+        instance.deleteRating("Makis");
+        instance.showRatings();
+    }
     @Test
     public void setProperties() {
     }

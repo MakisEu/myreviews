@@ -45,6 +45,7 @@ public class Rating {
 
     public void Show(){
         System.out.println(date+" "+name_of_user+" "+grade);
-        System.out.println(date);
+        System.out.println(rating_description);
     }
+    public String getUser(){return name_of_user;}
 }

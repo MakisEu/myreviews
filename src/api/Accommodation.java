@@ -18,17 +18,12 @@ public class Accommodation {
         owner=o;
         ratings=new ArrayList<>();
     }
-    public void addRating(String desc,float ra,String user){
-        Rating r=new Rating(desc,ra,user,"19/11/2022");
+    public void addRating(String desc,float ra,String user,String date){
+        Rating r=new Rating(desc,ra,user,date);
         ratings.add(r);
     }
     public void show(){
-        System.out.println("Name:       "+name);
-        System.out.println("Address:    "+address);
-        System.out.println("TK:         "+TK);
-        System.out.println("City:       "+city);
-        System.out.println("Description:"+description);
-        System.out.println("Owner:      "+owner);
+        this.showNR();
         this.showRatings();
     }
     public void showNR(){
@@ -43,7 +38,7 @@ public class Accommodation {
         System.out.println("Ratings:");
         for (Rating t: ratings)
         {
-            //t.show();
+            t.Show();
         }
     }
     public void setAddress(String i){
@@ -88,7 +83,7 @@ public class Accommodation {
     public void editRating(String o,String d,float f){
         for (Rating s:ratings)
         {
-            if (s.getRatingDescription()==o){s.setRatingDescription(d,s.getDate());
+            if (s.getUser()==o){s.setRatingDescription(d,s.getDate());
                 s.setGrade(f,s.getDate());
             }
 
@@ -96,5 +91,15 @@ public class Accommodation {
     }
     public  void setProperties(String[] p){
         //properties.edit(p);
+    }
+    public void deleteRating(String o){
+        {
+            for (Rating s:ratings)
+            {
+                if (s.getUser()==o){ratings.remove(s);
+                }
+
+            }
+        }
     }
 }
