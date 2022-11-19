@@ -1,77 +1,47 @@
 package api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Properties {
-    private String view,bath,laundry,entertainment,heating,internet,kitchen_room,outside,parking;
+    private HashMap<String,String> properties;
 
-    public String getView(){
-        return view;
+    public Properties(){
+        properties=new HashMap<>();
+        properties.put("view","none");
+        properties.put("bath","none");
+        properties.put("laundry","none");
+        properties.put("entertainment","none");
+        properties.put("heating","none");
+        properties.put("internet","none");
+        properties.put("kitchen_room","none");
+        properties.put("outside","none");
+        properties.put("parking","none");
     }
 
-    public String getBath(){
-        return bath;
+    public void add_property(String key,String value){
+        properties.put(key,value);
     }
 
-    public String getLaundry(){
-        return laundry;
+    public String getProperties(String key){
+        return properties.get(key);
     }
 
-    public String getEntertainment(){
-        return entertainment;
+    public void show_properties(){
+        int i;
+        for (Map.Entry<String,String> e:properties.entrySet())
+            {
+                System.out.println(e.getKey()+": "+e.getValue());
+            }
     }
 
-    public String getHeating(){
-        return heating;
-    }
 
-    public String getInternet(){
-        return internet;
-    }
 
-    public String getKitchen_room(){
-        return kitchen_room;
-    }
 
-    public String getOutside(){
-        return outside;
-    }
 
-    public String getParking(){
-        return parking;
-    }
 
-    public void setBath(String bath){
-        this.bath=bath;
-    }
 
-    public void setLaundry(String laundry){
-        this.laundry=laundry;
-    }
 
-    public void setView(String view){
-        this.view=view;
-    }
 
-    public void setHeating(String heating){
-        this.heating=heating;
-    }
 
-    public void setInternet(String internet){
-        this.internet=internet;
-    }
-
-    public void setKitchen_room(String kitchen_room){
-        this.kitchen_room=kitchen_room;
-    }
-
-    public void setOutside(String outside){
-        this.outside=outside;
-    }
-
-    public void setParking(String parking){
-        this.parking=parking;
-    }
-
-    public void setEntertainment(String entertainment) {
-        this.entertainment = entertainment;
-    }
 }
