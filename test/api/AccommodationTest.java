@@ -3,6 +3,9 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class AccommodationTest {
 
     @Before
@@ -27,87 +30,93 @@ public class AccommodationTest {
     public void setAddress() {
         System.out.println("Set Address:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
         instance.setAddress("Center");
-        instance.show();
+        String expected="Center";
+        assertEquals(expected,instance.getAddress());
     }
 
     @Test
     public void setTK() {
         System.out.println("Set TK:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
         instance.setTK("654321");
-        instance.show();
+        String expected="654321";
+        assertEquals(expected,instance.getTK());
     }
 
     @Test
     public void setCity() {
         System.out.println("Set City:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
         instance.setCity("Athens");
-        instance.show();
+        String expected="Athens";
+        assertEquals(expected,instance.getCity());
     }
 
     @Test
     public void setDescription() {
         System.out.println("Set Description:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
-        instance.setDescription("A four strorie building in Thessalonikh");
-        instance.show();
+        instance.setDescription("A four story building in Thessalonikh");
+        String expected="A four story building in Thessalonikh";
+        assertEquals(expected,instance.getDescription());
     }
 
     @Test
     public void setOwner() {
         System.out.println("Set Owner:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
         instance.setOwner("Dimitris");
-        instance.show();
+        String expected="Dimitris";
+        assertEquals(expected,instance.getOwner());
     }
 
     @Test
     public void getAddress() {
         System.out.println("Get Address:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getAddress());
+        String expected="Κέντρο";
+        assertEquals(expected,instance.getAddress());
     }
 
     @Test
     public void getTK() {
         System.out.println("Get TK:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getTK());
+        String expected="123456";
+        assertEquals(expected,instance.getTK());
     }
 
     @Test
     public void getOwner() {
         System.out.println("Get Owner:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getOwner());
+        String expected="someGuy";
+        assertEquals(expected,instance.getOwner());
     }
 
     @Test
     public void getName() {
         System.out.println("Get Name:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getName());
+        String expected="three-story building in Antigonidon";
+        assertEquals(expected,instance.getName());
     }
 
     @Test
     public void getCity() {
         System.out.println("Get City:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getCity());
+        String expected="Thessalonikh";
+        assertEquals(expected,instance.getCity());
     }
 
     @Test
     public void getDescription() {
         System.out.println("Get Description:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        System.out.println(instance.getDescription());
+        String expected="A three story building in Thessalonikh";
+        assertEquals(expected,instance.getDescription());
     }
 
     @Test

@@ -16,30 +16,33 @@ public class HotelTest {
     public void getStars() {
         System.out.println("Get Stars:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.getStars());
+        int expected=4;
+        assertEquals(expected,instance.getStars());
     }
 
     @Test
     public void getFloors() {
         System.out.println("Get Floors:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.getFloors());
+        int expected=6;
+        assertEquals(expected,instance.getFloors());
     }
 
     @Test
     public void isHasSuite() {
         System.out.println("It has Suite:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.isHasSuite());
+        boolean expected=true;
+        assertEquals(expected,instance.isHasSuite());
     }
 
     @Test
     public void setStars() {
         System.out.println("Set Stars:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.getStars());
         instance.setStars(3);
-        System.out.println(instance.getStars());
+        int expected=3;
+        assertEquals(expected,instance.getStars());
 
     }
 
@@ -47,18 +50,18 @@ public class HotelTest {
     public void setFloors() {
         System.out.println("Set Floors:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.getFloors());
         instance.setFloors(9);
-        System.out.println(instance.getFloors());
+        int expected=9;
+        assertEquals(expected,instance.getFloors());
     }
 
     @Test
     public void setHasSuite() {
         System.out.println("Set Suite:");
         Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
-        System.out.println(instance.isHasSuite());
         instance.setHasSuite(false);
-        System.out.println(instance.isHasSuite());
+        boolean expected=false;
+        assertEquals(expected,instance.isHasSuite());
     }
 
     @Test
