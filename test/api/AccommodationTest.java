@@ -16,7 +16,7 @@ public class AccommodationTest {
     public void addRating() {
             System.out.println("Add Rating:");
             Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-            instance.addRating("Its good!!!",4,"Makis","19/11/2022");
+            instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
             instance.show();
     }
 
@@ -123,7 +123,7 @@ public class AccommodationTest {
     public void editRating() {
         System.out.println("Edit Rating:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-        instance.addRating("Its good!!!",4,"Makis","19/11/2022");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
         instance.showRatings();
         instance.editRating("Makis","It sucks",1);
         instance.showRatings();
