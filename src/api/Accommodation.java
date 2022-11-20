@@ -15,12 +15,13 @@ public class Accommodation {
      *  address      The address of the accommodation
      *  name         The name of the accommodation
      *  ratings      An ArrayList of all the rating of the accommodation
+     *  properties   An object that contains the option properties of the accommodation
      *  */
     private ArrayList<Rating> ratings;
     private String name,address,TK,city,description,owner;
-    //private Properties properties;
+    private Properties properties;
     /** Empty Constructor */
-    public Accommodation(){ratings=new ArrayList<>();}
+    public Accommodation(){ratings=new ArrayList<>();properties=new Properties();}
 
     /**
      * Normal Constructor:
@@ -39,6 +40,7 @@ public class Accommodation {
         description=desc;
         owner=o;
         ratings=new ArrayList<>();
+        properties=new Properties();
     }
     /** This method adds a rating to the accommodation
      *  @param desc Description of the rating
@@ -68,6 +70,8 @@ public class Accommodation {
         System.out.println("City:       "+city);
         System.out.println("Description:"+description);
         System.out.println("Owner:      "+owner);
+        System.out.println("Properties:");
+        properties.show_properties();
     }
 
     /**
@@ -80,43 +84,47 @@ public class Accommodation {
             t.Show();
         }
     }
-    /** Getters and Setters for all the variables in the accommodation*/
+    /** Setter for address*/
     public void setAddress(String i){
         address=i;
     }
+    /** Setter for TK*/
     public void setTK(String i){
         TK=i;
     }
+    /** Setter for city*/
     public void setCity(String i){
         city=i;
     }
+    /** Setter for description*/
     public void setDescription(String i){
         description=i;
     }
+    /** Setter for owner*/
     public void setOwner(String i){
         owner=i;
     }
-
+    /** getter for address*/
     public String getAddress() {
         return address;
     }
-
+    /** getter for TK*/
     public String getTK() {
         return TK;
     }
-
+    /** getter for owner*/
     public String getOwner() {
         return owner;
     }
-
+    /** getter for name*/
     public String getName() {
         return name;
     }
-
+    /** getter for city*/
     public String getCity() {
         return city;
     }
-
+    /** getter for description*/
     public String getDescription() {
         return description;
     }
@@ -142,7 +150,7 @@ public class Accommodation {
      * @param value The value that the property will have
      */
     public  void updateProperty(String key,String value){
-        //properties.edit(p);
+        properties.add_property(key,value);
     }
 
     /**

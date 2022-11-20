@@ -140,6 +140,13 @@ public class AccommodationTest {
         instance.showRatings();
     }
     @Test
-    public void setProperties() {
+    public void updateProperty() {
+        System.out.println("Add property:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.updateProperty("view","good");
+        instance.updateProperty("outside","balcony");
+        instance.updateProperty("parking","yes");
+        instance.show();
+
     }
 }

@@ -29,10 +29,12 @@ public class Properties {
 
     public void show_properties(){
         int i;
+        System.out.print("|");
         for (Map.Entry<String,String> e:properties.entrySet())
             {
-                System.out.println(e.getKey()+": "+e.getValue());
+                System.out.print(e.getKey()+": "+e.getValue()+"|");
             }
+        System.out.println();
     }
 
 
