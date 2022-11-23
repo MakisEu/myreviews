@@ -55,7 +55,7 @@ public class Maisonette extends  Accommodation{
     /** Prints all the information and ratings of the maisonette */
     @Override
     public void show() {
-        System.out.println("Accommodation Type: Maisonette");
+        System.out.println("Accommodation Type: Μεζονέτα");
         super.showNR();
         System.out.println("Roommates:      "+String.valueOf(roommates));
         super.showRatings();

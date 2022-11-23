@@ -24,7 +24,7 @@ public class AccommodationManager {
                 return "Ξενοδοχείο";
             }
         }
-        for (Hotel a : hotels) {
+        for (Maisonette a : maisonettes) {
             if (n == a.getName() && o == a.getOwner()) {
                 return "Μεζονέτα";
             }
@@ -177,22 +177,26 @@ public class AccommodationManager {
 
     public void deleteAccommodation(String owner, String name) {
         String type = this.getType(owner, name);
+        System.out.println(type);
         if (type == "Ξενοδοχείο") {
             for (Hotel h : hotels) {
                 if (h.getOwner() == owner && h.getName() == name) {
                     hotels.remove(h);
+                    return;
                 }
             }
         } else if (type == "Διαμέρισμα") {
             for (Apartment h : apartments) {
                 if (h.getOwner() == owner && h.getName() == name) {
                     apartments.remove(h);
+                    return;
                 }
             }
         } else if (type == "Μεζονέτα") {
             for (Maisonette h : maisonettes) {
                 if (h.getOwner() == owner && h.getName() == name) {
                     maisonettes.remove(h);
+                    return;
                 }
             }
         }

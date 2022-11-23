@@ -70,7 +70,7 @@ public class Hotel extends  Accommodation{
      */
     @Override
     public void show() {
-        System.out.println("Accommodation Type: Hotel");
+        System.out.println("Accommodation Type: Ξενοδοχείο");
         super.showNR();
         System.out.println("Stars:      "+String.valueOf(stars));
         System.out.println("floors:     "+String.valueOf(floors));

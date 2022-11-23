@@ -161,5 +161,5 @@ public class Accommodation {
      * Method that deletes a rating from a user
      * @param o The name of the user/owner of the rating that will get deleted
      */
-    public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser()==o){ratings.remove(s);}}}}
+    public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser()==o){ratings.remove(s);return;}}}}
 }

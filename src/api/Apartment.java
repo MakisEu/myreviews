@@ -87,7 +87,7 @@ public class Apartment extends Accommodation{
      */
     @Override
     public void show() {
-        System.out.println("Accommodation Type: Apartment");
+        System.out.println("Accommodation Type: Διαμέρισμα");
         super.showNR();
         System.out.println("Floor:      "+String.valueOf(floor));
         System.out.println("Space:      "+String.valueOf(space));
