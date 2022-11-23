@@ -93,23 +93,6 @@ public class AccommodationManagerTest {
     }
 
     @Test
-    public void editAccommodation() {
-        System.out.println("Edit Accommodation:");
-        AccommodationManager AM = new AccommodationManager();
-        AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.editAccommodation("someGuy3","Ξενοδοχείο","5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A 5-story building in Thessaloniki");
-        AM.getHotel("someGuy3","5-story building in Antigonidon(Hotel)").show();
-    }
-
-    @Test
     public void deleteAccommodation() {
     }
 
@@ -147,5 +130,29 @@ public class AccommodationManagerTest {
 
     @Test
     public void getMaisonette() {
+    }
+
+    @Test
+    public void getType() {
+    }
+
+    @Test
+    public void setDescription() {
+    }
+
+    @Test
+    public void setName() {
+    }
+
+    @Test
+    public void setTK() {
+    }
+
+    @Test
+    public void setCity() {
+    }
+
+    @Test
+    public void setAddress() {
     }
 }

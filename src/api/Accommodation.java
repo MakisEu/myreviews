@@ -85,6 +85,10 @@ public class Accommodation {
         }
     }
     /** Setter for address*/
+    public void setName(String i){
+        name=i;
+    }
+
     public void setAddress(String i){
         address=i;
     }
