@@ -58,7 +58,7 @@ public class AccommodationManager {
             }
         }
     }
-    public void editAccommodation(String o, String type,String n,String a, String tk,String c,String desc,String key,String value){
+    public void editAccommodation(String o, String type,String n,String a, String tk,String c,String desc){
         if (type=="Ξενοδοχείο"){
             for (Hotel h:hotels){
                 if (h.getOwner()==o && h.getName()==n){
@@ -66,7 +66,6 @@ public class AccommodationManager {
                     h.setTK(tk);
                     h.setCity(c);
                     h.setDescription(desc);
-                    h.updateProperty(key,value);
                 }
             }
     }
@@ -77,7 +76,6 @@ public class AccommodationManager {
                     h.setTK(tk);
                     h.setCity(c);
                     h.setDescription(desc);
-                    h.updateProperty(key,value);
 
                 }
             }
@@ -90,11 +88,98 @@ public class AccommodationManager {
                     h.setTK(tk);
                     h.setCity(c);
                     h.setDescription(desc);
-                    h.updateProperty(key,value);
                 }
             }
 
     }
+    }
+    public void updateProperty(String o,String type,String n,String key,String val) {
+        if (type == "Ξενοδοχείο") {
+            for (Hotel h : hotels) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.updateProperty(key, val);
+                }
+            }
+        } else if (type == "Διαμέρισμα") {
+            for (Apartment h : apartments) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.updateProperty(key, val);
+                }
+            }
+
+        } else if (type == "Μεζονέτα") {
+            for (Maisonette h : maisonettes) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.updateProperty(key, val);
+                }
+            }
+        }
+    }
+    public void addRating(String o,String type,String n,String desc,float ra,String user,String date){
+        if (type == "Ξενοδοχείο") {
+            for (Hotel h : hotels) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.addRating(desc,ra,user,date);
+                }
+            }
+        } else if (type == "Διαμέρισμα") {
+            for (Apartment h : apartments) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.addRating(desc,ra,user,date);
+                }
+            }
+
+        } else if (type == "Μεζονέτα") {
+            for (Maisonette h : maisonettes) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.addRating(desc,ra,user,date);
+                }
+            }
+        }
+    }
+    public void editRatings(String o,String type,String n,String desc,float ra,String user){
+        if (type == "Ξενοδοχείο") {
+            for (Hotel h : hotels) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.editRating(user,desc,ra);
+                }
+            }
+        } else if (type == "Διαμέρισμα") {
+            for (Apartment h : apartments) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.editRating(user,desc,ra);
+                }
+            }
+
+        } else if (type == "Μεζονέτα") {
+            for (Maisonette h : maisonettes) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.editRating(user,desc,ra);
+                }
+            }
+        }
+    }
+    public void deleteRating(String o,String type,String n,String user){
+        if (type == "Ξενοδοχείο") {
+            for (Hotel h : hotels) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.deleteRating(user);
+                }
+            }
+        } else if (type == "Διαμέρισμα") {
+            for (Apartment h : apartments) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.deleteRating(user);
+                }
+            }
+
+        } else if (type == "Μεζονέτα") {
+            for (Maisonette h : maisonettes) {
+                if (h.getOwner() == o && h.getName() == n) {
+                    h.deleteRating(user);
+                }
+            }
+        }
     }
     public void deleteAccommodation(String owner,String name,String type) {
         if (type == "Ξενοδοχείο") {
@@ -118,5 +203,45 @@ public class AccommodationManager {
                 }
             }
         }
+    }
+    public void showAll(){
+        for (Apartment a:apartments){a.show();}
+        for (Hotel h:hotels){h.show();}
+        for (Maisonette m:maisonettes){m.show();}
+    }
+    public void showOwned(String owner){
+        for (Apartment a:apartments){
+            if(a.getOwner()==owner){
+                a.show();}}
+        for (Hotel h:hotels){
+            if(h.getOwner()==owner){
+                h.show();}}
+        for (Maisonette m:maisonettes)  {
+            if(m.getOwner()==owner){
+                m.show();}}
+    }
+    public Hotel getHotel(String owner,String name){
+        for (Hotel a:hotels){
+            if (a.getOwner()==owner && a.getName()==name){
+                return a;
+            }
+        }
+        return null;
+    }
+    public Apartment getApartment(String owner,String name){
+        for (Apartment a:apartments){
+            if (a.getOwner()==owner && a.getName()==name){
+                return a;
+            }
+        }
+        return null;
+    }
+    public Maisonette getMaisonette(String owner,String name){
+        for (Maisonette a:maisonettes){
+            if (a.getOwner()==owner && a.getName()==name){
+                return a;
+            }
+        }
+        return null;
     }
 }
