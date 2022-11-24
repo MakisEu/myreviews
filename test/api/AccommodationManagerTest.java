@@ -111,6 +111,7 @@ public class AccommodationManagerTest {
         AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Maisonette)");
+
         AM.showAll();
     }
 
