@@ -11,7 +11,8 @@ public class AllRegistered {
         registered_providers=new HashMap<>();
     }
 
-    public void add_registration(Registration reg){
+    public void add_registration(String username,String password,String name,String surname,String type){
+        Registration reg =new Registration(username,password,name,surname,type);
         if (reg.getUserType().equals("User"))
         {
             if (registered_users.containsKey(reg.getUsername()))
