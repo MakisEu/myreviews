@@ -18,7 +18,6 @@ public class Properties {
         properties.put("outside","none");
         properties.put("parking","none");
     }
-
     public void add_property(String key,String value){
         properties.put(key,value);
     }

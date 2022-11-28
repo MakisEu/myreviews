@@ -4,17 +4,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Class AccommodationManager is a master class that controls all accommodations */
 public class AccommodationManager {
-    private HashMap<String,Apartment> apartments;
-    private HashMap<String,Hotel> hotels;
-    private HashMap<String,Maisonette> maisonettes;
+    protected HashMap<String,Apartment> apartments;
+    protected HashMap<String,Hotel> hotels;
+    protected HashMap<String,Maisonette> maisonettes;
 
+    /**
+     * Empty Constructor
+     */
     public AccommodationManager() {
         apartments = new HashMap<>();
         hotels = new HashMap<>();
         maisonettes = new HashMap<>();
+        //read data from binary file
     }
 
+    /**
+     * Returns type
+     * @param o Owner of the apartment
+     * @param n Name of the apartment
+     * @return The type of the accommodation
+     */
     public String getType(String o, String n) {
         if (apartments.get(o+n)!=null) {
             return "Διαμέρισμα";
@@ -27,7 +38,27 @@ public class AccommodationManager {
         }
         return null;
     }
+    public void showAll() {
+        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+            entry.getValue().show();}
+        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+            entry.getValue().show();}
+        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
+            entry.getValue().show();}
+    }
 
+    public Hotel getHotel(String owner, String name) {
+        return hotels.get(owner+name);
+    }
+
+    public Apartment getApartment(String owner, String name) {
+        return apartments.get(owner+name);
+    }
+
+    public Maisonette getMaisonette(String owner, String name) {
+        return maisonettes.get(owner+name);
+    }
+    //ALL methods below(Except the destructor) are here temporarily to run tests until the constructor reads from files
     public String addAccommodation(String type, String n, String a, String tk, String c, String desc, String o) {
         if (type == "Ξενοδοχείο") {
             Hotel h = new Hotel(n, a, tk, c, desc, o);
@@ -45,7 +76,6 @@ public class AccommodationManager {
             return "Incorrect type. Addition failed.";
         }
     }
-
     public void editHotel(String owner, String name, int star, int floor, boolean suite) {
         if (hotels.get(owner + name) != null) {
             hotels.get(owner + name).setFloors(floor);
@@ -78,44 +108,6 @@ public class AccommodationManager {
             if (maisonettes.get(o + n) != null) {
                 maisonettes.get(o + n).updateProperty(key, val);}}
     }
-    public void addRating(String o, String n, String desc, float ra, String user, String date) {
-        String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).addRating(desc, ra, user, date);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).addRating(desc, ra, user, date);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).addRating(desc, ra, user, date);}}
-    }
-
-    public void editRatings(String o, String n, String desc, float ra, String user) {
-        String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).editRating(user, desc, ra);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).editRating(user, desc, ra);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).editRating(user, desc, ra);}}
-    }
-
-    public void deleteRating(String o, String n, String user) {
-        String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).deleteRating(user);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).deleteRating(user);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).deleteRating(user);}}
-    }
 
     public void deleteAccommodation(String owner, String name) {
         String type = this.getType(owner, name);
@@ -129,16 +121,6 @@ public class AccommodationManager {
             maisonettes.remove(owner+name);
             return;}
     }
-
-    public void showAll() {
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            entry.getValue().show();}
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            entry.getValue().show();}
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            entry.getValue().show();}
-    }
-
     public void showOwned(String owner) {
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
             Apartment value=entry.getValue();
@@ -153,19 +135,6 @@ public class AccommodationManager {
             if (value.getOwner() == owner) {
                 value.show();}}
     }
-
-    public Hotel getHotel(String owner, String name) {
-        return hotels.get(owner+name);
-    }
-
-    public Apartment getApartment(String owner, String name) {
-        return apartments.get(owner+name);
-    }
-
-    public Maisonette getMaisonette(String owner, String name) {
-        return maisonettes.get(owner+name);
-    }
-
     public void setDescription(String o,String n,String desc) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο")
@@ -226,5 +195,9 @@ public class AccommodationManager {
         else {
             this.getMaisonette(o, n).setAddress(a);
         }
+    }
+
+    public void destructor(){
+        //Write the data in a binary file and close it
     }
 }

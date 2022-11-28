@@ -149,6 +149,14 @@ public class Accommodation {
     }
 
     /**
+     * @param key Name of property
+     * @return value of property
+     */
+    public String getProperty(String key){
+        return (this.properties.getProperties(key));
+    }
+
+    /**
      * Method that updates an optional property(All optional properties are set to "none" by default)
      * @param key   The property that will get updated
      * @param value The value that the property will have
