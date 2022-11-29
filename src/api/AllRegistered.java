@@ -37,6 +37,12 @@ public class AllRegistered {
         }
     }
 
+    public Registration getUserRegistration(String key){
+        return registered_users.get(key);
+    }
+
+
+
 
 
 
