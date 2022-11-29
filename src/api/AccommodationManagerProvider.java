@@ -1,64 +1,12 @@
 package api;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-/** Class AccommodationManager is a master class that controls all accommodations */
-public class AccommodationManager {
-    protected HashMap<String,Apartment> apartments;
-    protected HashMap<String,Hotel> hotels;
-    protected HashMap<String,Maisonette> maisonettes;
-
-    /**
-     * Empty Constructor
-     */
-    public AccommodationManager() {
-        apartments = new HashMap<>();
-        hotels = new HashMap<>();
-        maisonettes = new HashMap<>();
-        //read data from binary file
+public class AccommodationManagerProvider extends AccommodationManager{
+    public AccommodationManagerProvider(){
+        super();
     }
 
-    /**
-     * Returns type
-     * @param o Owner of the apartment
-     * @param n Name of the apartment
-     * @return The type of the accommodation
-     */
-    public String getType(String o, String n) {
-        if (apartments.get(o+n)!=null) {
-            return "Διαμέρισμα";
-        }
-        else if (hotels.get(o+n)!=null) {
-            return "Ξενοδοχείο";
-        }
-        else if (maisonettes.get(o+n)!=null) {
-            return "Μεζονέτα";
-        }
-        return null;
-    }
-    public void showAll() {
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            entry.getValue().show();}
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            entry.getValue().show();}
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            entry.getValue().show();}
-    }
-
-    public Hotel getHotel(String owner, String name) {
-        return hotels.get(owner+name);
-    }
-
-    public Apartment getApartment(String owner, String name) {
-        return apartments.get(owner+name);
-    }
-
-    public Maisonette getMaisonette(String owner, String name) {
-        return maisonettes.get(owner+name);
-    }
-    //ALL methods below(Except the destructor) are here temporarily to run tests until the constructor reads from files
     public String addAccommodation(String type, String n, String a, String tk, String c, String desc, String o) {
         if (type == "Ξενοδοχείο") {
             Hotel h = new Hotel(n, a, tk, c, desc, o);
@@ -76,6 +24,7 @@ public class AccommodationManager {
             return "Incorrect type. Addition failed.";
         }
     }
+
     public void editHotel(String owner, String name, int star, int floor, boolean suite) {
         if (hotels.get(owner + name) != null) {
             hotels.get(owner + name).setFloors(floor);
@@ -195,9 +144,5 @@ public class AccommodationManager {
         else {
             this.getMaisonette(o, n).setAddress(a);
         }
-    }
-
-    public void destructor(){
-        //Write the data in a binary file and close it
     }
 }
