@@ -2,11 +2,26 @@ package api;
 
 import java.util.Map;
 
+/** Class AccommodationManagerProvider is a class that provides all the functionalities of a provider*/
 public class AccommodationManagerProvider extends AccommodationManager{
+    /**
+     * Empty constructor. Calls inherited constructor
+     */
     public AccommodationManagerProvider(){
         super();
     }
 
+    /**
+     * Method that adds accommodation to AccommodationManager
+     * @param type The type of the accommodation
+     * @param n    The name of the accommodation
+     * @param a    The address of the accommodation
+     * @param tk   The postal code of the accommodation
+     * @param c    The city of the accommodation
+     * @param desc The description of the accommodation
+     * @param o    The owner of the accommodation
+     * @return The result of the addition (If accommodation with the same name and owner exists, replaces it)
+     */
     public String addAccommodation(String type, String n, String a, String tk, String c, String desc, String o) {
         if (type == "Ξενοδοχείο") {
             Hotel h = new Hotel(n, a, tk, c, desc, o);
@@ -25,6 +40,14 @@ public class AccommodationManagerProvider extends AccommodationManager{
         }
     }
 
+    /**
+     * Method that edits the unique attributes of a Hotel
+     * @param owner The owner of the Hotel
+     * @param name  The name of the Hotel
+     * @param star  The stars of the Hotel
+     * @param floor The floors of the Hotel
+     * @param suite The Hotel has suite
+     */
     public void editHotel(String owner, String name, int star, int floor, boolean suite) {
         if (hotels.get(owner + name) != null) {
             hotels.get(owner + name).setFloors(floor);
@@ -32,6 +55,16 @@ public class AccommodationManagerProvider extends AccommodationManager{
             hotels.get(owner + name).setHasSuite(suite);
         }
     }
+
+    /**
+     * Method that edits the unique attributes of an Apartment
+     * @param owner The owner of the Apartment
+     * @param name  The name of the Apartment
+     * @param floor The floors of the Apartment
+     * @param space The number of people the Apartment can house
+     * @param guard The Apartment has guards
+     * @param elevator The Apartment has elevator
+     */
     public void editApartment(String owner, String name, int floor, int space, boolean guard, boolean elevator) {
         if (apartments.get(owner + name) != null) {
             apartments.get(owner + name).setSpace(space);
@@ -40,11 +73,26 @@ public class AccommodationManagerProvider extends AccommodationManager{
             apartments.get(owner + name).setGuard(guard);
         }
     }
+
+    /**
+     * Method that edits the unique attributes of a Maisonette
+     * @param owner The owner of the Maisonette
+     * @param name  The name of the Maisonette
+     * @param rm    The number of roommates in the Maisonette
+     */
     public void editMaisonette(String owner, String name, int rm) {
         if (maisonettes.get(owner + name) != null) {
             maisonettes.get(owner + name).setRoommates(rm);
         }
     }
+
+    /**
+     * Method that updates an optional property of a specific accommodation
+     * @param o The owner of the accommodation
+     * @param n The name of the accommodation
+     * @param key The property of the accommodation tha gets updated
+     * @param val the new value of the property
+     */
     public void updateProperty(String o, String n, String key, String val) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο") {
@@ -58,6 +106,11 @@ public class AccommodationManagerProvider extends AccommodationManager{
                 maisonettes.get(o + n).updateProperty(key, val);}}
     }
 
+    /**
+     * Method that deletes a specified accommodation
+     * @param owner The owner of the accommodation
+     * @param name  The name of the accommodation
+     */
     public void deleteAccommodation(String owner, String name) {
         String type = this.getType(owner, name);
         if (type == "Ξενοδοχείο") {
@@ -70,6 +123,11 @@ public class AccommodationManagerProvider extends AccommodationManager{
             maisonettes.remove(owner+name);
             return;}
     }
+
+    /**
+     * Method that shows all accommodation owned by an owner
+     * @param owner The owner
+     */
     public void showOwned(String owner) {
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
             Apartment value=entry.getValue();
@@ -84,6 +142,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
             if (value.getOwner() == owner) {
                 value.show();}}
     }
+
+    /**
+     * Setter for the description of a specified accommodation
+     * @param o The owner of the accommodation
+     * @param n The name of the accommodation
+     * @param desc The new description of the accommodation
+     */
     public void setDescription(String o,String n,String desc) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο")
@@ -93,6 +158,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
         else {
             this.getMaisonette(o, n).setDescription(desc);}
     }
+
+    /**
+     * Setter for the name of a specified accommodation
+     * @param o The owner of the accommodation
+     * @param n The old name of the accommodation
+     * @param name The new name of the accommodation
+     */
     public void setName(String o,String n,String name) {
         String type = this.getType(o, n);
 
@@ -116,6 +188,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
             maisonettes.put(o+name,h);
         }
     }
+
+    /**
+     * Setter for the postal code of a specified accommodation
+     * @param o The owner of the accommodation
+     * @param n The name of the accommodation
+     * @param tk The postal code of the accommodation
+     */
     public void setTK(String o,String n,String tk) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο")
@@ -125,6 +204,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
         else {
             this.getMaisonette(o, n).setTK(tk);}
     }
+
+    /**
+     * Setter for the postal code of a specified accommodation
+     * @param o The owner of the accommodation
+     * @param n The name of the accommodation
+     * @param c The city of the accommodation
+     */
     public void setCity(String o,String n,String c) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο")
@@ -135,6 +221,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
             this.getMaisonette(o, n).setCity(c);
         }
     }
+
+    /**
+     * Setter for the address of a specified accommodation
+     * @param o The owner of the accommodation
+     * @param n The name of the accommodation
+     * @param a The address of the accommodation
+     */
     public void setAddress(String o,String n,String a) {
         String type = this.getType(o, n);
         if (type == "Ξενοδοχείο")

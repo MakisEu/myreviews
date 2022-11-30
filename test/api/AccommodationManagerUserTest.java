@@ -3,7 +3,9 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import static org.junit.Assert.*;
@@ -23,13 +25,53 @@ public class AccommodationManagerUserTest {
         AM.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AM.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AM.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.updateProperty("someGuy2","three-story building in Antigonidon(Apartment)","view","Sea");
+        AM.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","view","Sea");
+        AM.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","internet","fast");
+        AM.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","laundry","yes");
         AM.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AM.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.updateProperty("someGuy3","three-story building in Antigonidon(Maisonette)","view","Sea");
-
+        AM.updateProperty("someGuy3","5-story building in Antigonidon(Maisonette)","view","Sea");
+        AM.updateProperty("someGuy3","5-story building in Antigonidon(Maisonette)","laundry","yes");
+        String[] keys=new String[1],values=new String[1],split;
+        keys[0]="view";
+        values[0]="Sea";
+        String[][] n=AM.findProperties(keys,values);
+        System.out.println(Arrays.deepToString(n));
+        keys=new String[2];
+        values=new String[2];
+        keys[0]="view";
+        keys[1]="laundry";
+        values[0]="Sea";
+        values[1]="yes";
+        n=AM.findProperties(keys,values);
+        System.out.println(Arrays.deepToString(n));
+        keys=new String[3];
+        values=new String[3];
+        keys[0]="view";
+        keys[1]="laundry";
+        values[0]="Sea";
+        values[1]="yes";
+        keys[2]="internet";
+        values[2]="fast";
+        n=AM.findProperties(keys,values);
+        System.out.println(Arrays.deepToString(n));
+        /*for (int j=0;j<n[0].length;j++){
+            if (n[0][j]!=null){
+                split=n[0][j].split("#");
+                AM.getApartment(split[0],split[1]).show();}
+        }
+        for (int j=0;j<n[1].length;j++){
+            if (n[1][j]!=null){
+                split=n[1][j].split("#");
+                AM.getHotel(split[0],split[1]).show();}
+        }
+        for (int j=0;j<n[2].length;j++){
+            if (n[2][j]!=null){
+                split=n[2][j].split("#");
+                AM.getMaisonette(split[0],split[1]).show();}
+        }*/
         //AM.findProperties();
 
 

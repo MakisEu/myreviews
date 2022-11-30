@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Class AccommodationManager is a master class that controls all accommodations */
+/** Class AccommodationManager is a Base class that controls all accommodations */
 public class AccommodationManager {
     protected HashMap<String,Apartment> apartments;
     protected HashMap<String,Hotel> hotels;
@@ -12,6 +12,7 @@ public class AccommodationManager {
 
     /**
      * Empty Constructor
+     * Opens a binary file and reads data from it
      */
     public AccommodationManager() {
         apartments = new HashMap<>();
@@ -21,7 +22,7 @@ public class AccommodationManager {
     }
 
     /**
-     * Returns type
+     * Returns type of accommodation
      * @param o Owner of the apartment
      * @param n Name of the apartment
      * @return The type of the accommodation
@@ -38,6 +39,10 @@ public class AccommodationManager {
         }
         return null;
     }
+
+    /**
+     * Shows all accommodations
+     */
     public void showAll() {
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
             entry.getValue().show();}
@@ -47,14 +52,32 @@ public class AccommodationManager {
             entry.getValue().show();}
     }
 
+    /**
+     * Getter for Hotel with a specific owner and name
+     * @param owner The owner of the Hotel
+     * @param name The name of the Hotel
+     * @return The Hotel with a specific owner and name
+     */
     public Hotel getHotel(String owner, String name) {
         return hotels.get(owner+name);
     }
 
+    /**
+     * Getter for Apartment with a specific owner and name
+     * @param owner The owner of the Apartment
+     * @param name The name of the Apartment
+     * @return The Apartment with a specific owner and name
+     */
     public Apartment getApartment(String owner, String name) {
         return apartments.get(owner+name);
     }
 
+    /**
+     * Getter for Maisonette with a specific owner and name
+     * @param owner The owner of the Maisonette
+     * @param name The name of the Maisonette
+     * @return The Maisonette with a specific owner and name
+     */
     public Maisonette getMaisonette(String owner, String name) {
         return maisonettes.get(owner+name);
     }
@@ -197,6 +220,9 @@ public class AccommodationManager {
         }
     }
 
+    /**
+     * Destructor. Writes data in binary file
+     */
     public void destructor(){
         //Write the data in a binary file and close it
     }
