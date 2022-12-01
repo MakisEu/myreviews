@@ -7,64 +7,26 @@ public class AccommodationManagerUser extends AccommodationManager{
     public AccommodationManagerUser(){
         super();
     }
-
-
-    /*public void findAnd(String[] argv,String[] argv2){
-        String[][] a=this.getAll();
-        String searchTerm,type;
-        for (int i = 0; i < argv.length; i++) {
-            searchTerm=argv[i];
-            type=argv2[i];
-            if (type=="Name"){
-                a=this.findName(a,searchTerm);
-            }
-            else if (type=="Type"){
-                if (searchTerm=="Διαμέρισμα"){
-                    a[1]=null;
-                    a[2]=null;
-                }
-                else if (searchTerm=="Ξενοδοχείο"){
-                    a[0]=null;
-                    a[2]=null;
-                }
-                else{
-                    a[0]=null;
-                    a[1]=null;
-                }
-            }
-            else if (type=="Location"){
-                a=findLocation(a,searchTerm);
-            }
-            else{
-                String[] b=searchTerm.split(" ");
-                a=findProperties(a,b[0],b[1]);
-            }
-
-        }
-    }
-    public String[][] getAll(){
-        String[][] a=new String[6][];
-        return a;
-    }*/
-
     public String[][] findProperties(String[] argv,String[] argv2) {
         int n = argv.length,cnt=0;;
-        String[] a=new String[n],h=new String[n],m=new String[n];
+        String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
         boolean g;
-        for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+        for (Map.Entry<String,Apartment> entry:apartments.entrySet()) {
             Apartment value=entry.getValue();
             g=true;
             for (int i=0;i<n && g==true;i++){
                 g=value.getProperty(argv[i])==argv2[i];
-
             }
             if (g){
                 a[cnt]=value.getOwner()+"#"+value.getName();
-                cnt++;
             }
+            else{
+                a[cnt]=null;
+            }
+            cnt++;
         }
         cnt=0;
-        for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+        for (Map.Entry<String,Hotel> entry:hotels.entrySet()) {
             Hotel value=entry.getValue();
             g=true;
             for (int i=0;i<n && g==true;i++){
@@ -72,20 +34,95 @@ public class AccommodationManagerUser extends AccommodationManager{
             }
             if (g){
                 h[cnt]=value.getOwner()+"#"+value.getName();
-                cnt++;
             }
+            else{
+                h[cnt]=null;
+            }
+            cnt++;
         }
         cnt=0;
-        for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value = entry.getValue();
-            g = true;
-            for (int i = 0; i < n && g == true; i++) {
-                g = value.getProperty(argv[i]) == argv2[i];
+        for (Map.Entry<String,Maisonette> entry:maisonettes.entrySet()) {
+            Maisonette value=entry.getValue();
+            g=true;
+            for (int i=0;i<n && g==true;i++){
+                g=value.getProperty(argv[i])==argv2[i];
             }
-            if (g) {
-                m[cnt] =value.getOwner()+"#"+value.getName();
-                cnt++;
+            if (g){
+                m[cnt]=value.getOwner()+"#"+value.getName();
+            }
+            else{
+                m[cnt]=null;
+            }
+            cnt++;
+        }
+        String[][] b=new String[3][];
+        b[0]=a;
+        b[1]=h;
+        b[2]=m;
+        return b;
+    }
+    public String[][] findName(String name) {
+        int cnt=0;;
+        String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
+        for (Map.Entry<String,Apartment> entry:apartments.entrySet()) {
+            Apartment value=entry.getValue();
+            if (value.getName()==name) {
+                a[cnt] = value.getOwner() + "#" + value.getName();
+            }
+            else{
+                a[cnt]=null;
+            }
+            cnt++;
+        }
+        cnt=0;
+        for (Map.Entry<String,Hotel> entry:hotels.entrySet()) {
+            Hotel value=entry.getValue();
+            if (value.getName()==name){
+                h[cnt]=value.getOwner()+"#"+value.getName();
+            }
+            else {
+                h[cnt] = null;
+            }
+            cnt++;
+        }
+        cnt=0;
+        for (Map.Entry<String,Maisonette> entry:maisonettes.entrySet()) {
+            Maisonette value=entry.getValue();
+            if (value.getName()==name){
+                m[cnt]=value.getOwner()+"#"+value.getName();
+            }
+            else{
+                m[cnt]=null;
+            }
+            cnt++;
+        }
+        String[][] b=new String[3][];
+        b[0]=a;
+        b[1]=h;
+        b[2]=m;
+        return  b;
+    }
 
+    public String[][] findType(String type) {
+        int cnt=0;;
+        String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
+        if (type == "Ξενοδοχείο") {
+            for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+                Hotel value=entry.getValue();
+                h[cnt]=value.getOwner()+"#"+value.getName();
+                cnt++;
+            }
+        } else if (type == "Διαμέρισμα") {
+            for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+                Apartment value=entry.getValue();
+                a[cnt]=value.getOwner()+"#"+value.getName();
+                cnt++;
+            }
+        } else {
+            for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
+                Maisonette value = entry.getValue();
+                m[cnt] = value.getOwner() + "#" + value.getName();
+                cnt++;
             }
         }
         String[][] b=new String[3][];
@@ -94,42 +131,8 @@ public class AccommodationManagerUser extends AccommodationManager{
         b[2]=m;
         return b;
     }
-    public void findName(String name) {
-        for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            Apartment value = entry.getValue();
-            if (name.contains(value.getName())) {
-                value.show();
-            }
-        }
-        for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            Hotel value = entry.getValue();
-            if (name.contains(value.getName())) {
-                value.show();
-            }
-       }
-        for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value = entry.getValue();
-            if (name.contains(value.getName())) {
-                value.show();
-            }
-        }
-    }
-    /*public void findType(String type) {
-        if (type == "Ξενοδοχείο") {
-            for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-                entry.getValue().show();
-            }
-        } else if (type == "Διαμέρισμα") {
-            for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-                entry.getValue().show();
-            }
-        } else if (type == "Μεζονέτα") {
-            for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-                entry.getValue().show();
-            }
-        } else return;
-    }
-    public void findLocation(String location) {
+
+    /*public void findLocation(String location) {
         if (type == "Ξενοδοχείο") {
             for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
                 entry.getValue().show();

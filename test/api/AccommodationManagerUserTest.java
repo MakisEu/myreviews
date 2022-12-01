@@ -37,6 +37,7 @@ public class AccommodationManagerUserTest {
         String[] keys=new String[1],values=new String[1],split;
         keys[0]="view";
         values[0]="Sea";
+
         String[][] n=AM.findProperties(keys,values);
         System.out.println(Arrays.deepToString(n));
         keys=new String[2];
@@ -73,8 +74,6 @@ public class AccommodationManagerUserTest {
                 AM.getMaisonette(split[0],split[1]).show();}
         }*/
         //AM.findProperties();
-
-
     }
     @Test
     public void addRating() {
@@ -108,5 +107,40 @@ public class AccommodationManagerUserTest {
         AM.showAll();
         AM.deleteRating("someGuy2","4-story building in Antigonidon(Hotel)","Makis");
         AM.showAll();
+    }
+    @Test
+    public void findName() {
+        AccommodationManagerUser AM = new AccommodationManagerUser();
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AM.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AM.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        String[][] n=AM.findName("three-story building in Antigonidon");
+        System.out.println(Arrays.deepToString(n));
+        n=AM.findName("5-story building in Antigonidon(Maisonette)");
+        System.out.println(Arrays.deepToString(n));
+
+    }
+
+    @Test
+    public void findType() {
+        AccommodationManagerUser AM = new AccommodationManagerUser();
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AM.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AM.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AM.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        String[][] n=AM.findType("Ξενοδοχείο");
+        System.out.println(Arrays.deepToString(n));
+
     }
 }
