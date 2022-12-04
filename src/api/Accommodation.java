@@ -52,6 +52,20 @@ public class Accommodation {
         ratings.add(r);
     }
 
+
+    public int getRatingNumber(){
+        return ratings.size();
+    }
+
+    public double getRatingsAverage(){
+        double sum=0;
+        for (Rating x:ratings)
+            {
+            sum+= x.getGrade();
+            }
+        return sum/ratings.size();
+    }
+
     /**
      * Prints all the information and ratings of the accommodation
      */

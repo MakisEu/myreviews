@@ -238,4 +238,47 @@ public class AccommodationManagerProvider extends AccommodationManager{
             this.getMaisonette(o, n).setAddress(a);
         }
     }
+
+
+    public float getRatingsNumber(){
+        int sum=0;
+        for (Map.Entry<String,Apartment> e:apartments.entrySet())
+            {
+            sum+=e.getValue().getRatingNumber();
+            }
+        for (Map.Entry<String,Hotel> e:hotels.entrySet())
+            {
+                sum+=e.getValue().getRatingNumber();
+            }
+        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
+            {
+                sum+=e.getValue().getRatingNumber();
+            }
+    return sum; //returns the number of ratings of all accommodations a user has offered
+    }
+
+    public double getRatingAverage(){
+        int sum=0;
+        for (Map.Entry<String,Apartment> e:apartments.entrySet())
+            {
+                sum+=e.getValue().getRatingsAverage();
+            }
+        for (Map.Entry<String,Hotel> e:hotels.entrySet())
+            {
+                sum+=e.getValue().getRatingsAverage();
+            }
+        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
+            {
+                sum+=e.getValue().getRatingsAverage();
+            }
+        return sum/(double)(apartments.size()+hotels.size()+maisonettes.size());
+    }
+
+
+
+
+
+
+
+
 }
