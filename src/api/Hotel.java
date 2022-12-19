@@ -1,6 +1,9 @@
 package api;
+
+import java.io.Serializable;
+
 /** Class Hotel is a class for accommodations with type Hotel*/
-public class Hotel extends  Accommodation{
+public class Hotel extends  Accommodation implements Serializable {
     /** stars    The stars that the hotel has
      *  floors   The number of floors the hotel has
      *  hasSuite The hotel has suite

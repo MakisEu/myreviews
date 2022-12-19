@@ -1,6 +1,8 @@
 package api;
 
-public class Rating {
+import java.io.Serializable;
+
+public class Rating implements Serializable {
 
     private String rating_description,name_of_user,date;
     private float grade;
@@ -44,7 +46,7 @@ public class Rating {
     }
 
     public void Show(){
-        System.out.println(date+" "+name_of_user+" "+grade);
+        System.out.println(date+" | "+name_of_user+" | "+(int)grade+"/5 stars");
         System.out.println(rating_description);
     }
     public String getUser(){return name_of_user;}

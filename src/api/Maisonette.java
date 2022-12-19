@@ -1,6 +1,9 @@
 package api;
+
+import java.io.Serializable;
+
 /** Class Maisonette is a class for accommodations with type Maisonette*/
-public class Maisonette extends  Accommodation{
+public class Maisonette extends  Accommodation {
     /**
      * roommates The number of roommates on the maisonette
      */

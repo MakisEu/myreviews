@@ -1,9 +1,10 @@
 package api;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Properties {
+public class Properties implements Serializable {
     private HashMap<String,String> properties;
 
     public Properties(){

@@ -1,12 +1,13 @@
 package api;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *Class Accommodation is a Base class for all types of accommodations with the basic methods and properties of them */
-public class Accommodation {
+public class Accommodation implements Serializable {
     /** All the variables in accommodation
      *  owner        The owner of the accommodation
      *  description  The description of the accommodation

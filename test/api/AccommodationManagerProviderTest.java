@@ -1,7 +1,11 @@
 package api;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 import static org.junit.Assert.*;
 
@@ -9,9 +13,15 @@ public class AccommodationManagerProviderTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
+    }
+    @After
+    public void tearDown() throws Exception {
+
     }
     @Test
-    public void addAccommodation() {
+    public void addAccommodation() throws FileNotFoundException {
         System.out.println("Add Accommodations:");
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
         AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
