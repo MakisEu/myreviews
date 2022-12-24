@@ -86,13 +86,14 @@ public class Apartment extends Accommodation{
      * Prints all the information and ratings of the apartment
      */
     @Override
-    public void show() {
-        System.out.println("Accommodation Type: Διαμέρισμα");
-        super.showNR();
-        System.out.println("Floor:      "+String.valueOf(floor));
-        System.out.println("Space:      "+String.valueOf(space));
-        System.out.println("Has Guard:  "+String.valueOf(guard));
-        System.out.println("Elevator:   "+String.valueOf(elevator));
-        super.showRatings();
+    public String show() {
+        String x="Accommodation Type: Διαμέρισμα"+"\n";
+        x=x+super.showNR()+"\n";
+        x=x+"Floor:      "+String.valueOf(floor)+"\n";
+        x=x+"Space:      "+String.valueOf(space)+"\n";
+        x=x+"Has Guard:  "+String.valueOf(guard)+"\n";
+        x=x+"Elevator:   "+String.valueOf(elevator)+"\n";
+        x=x+super.showRatings()+"\n";
+        return x;
     }
 }

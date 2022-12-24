@@ -1,6 +1,5 @@
 package api;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class AccommodationManagerUser extends AccommodationManager{
@@ -8,13 +7,13 @@ public class AccommodationManagerUser extends AccommodationManager{
         super();
     }
     public String[][] findProperties(String[] argv,String[] argv2) {
-        int n = argv.length,cnt=0;;
+        int n = argv.length,cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
         boolean g;
         for (Map.Entry<String,Apartment> entry:apartments.entrySet()) {
             Apartment value=entry.getValue();
             g=true;
-            for (int i=0;i<n && g==true;i++){
+            for (int i=0;i<n && g;i++){
                 g=value.getProperty(argv[i]).equals(argv2[i]);
             }
             if (g){
@@ -29,7 +28,7 @@ public class AccommodationManagerUser extends AccommodationManager{
         for (Map.Entry<String,Hotel> entry:hotels.entrySet()) {
             Hotel value=entry.getValue();
             g=true;
-            for (int i=0;i<n && g==true;i++){
+            for (int i=0;i<n && g;i++){
                 g=value.getProperty(argv[i]).equals(argv2[i]);
             }
             if (g){
@@ -44,7 +43,7 @@ public class AccommodationManagerUser extends AccommodationManager{
         for (Map.Entry<String,Maisonette> entry:maisonettes.entrySet()) {
             Maisonette value=entry.getValue();
             g=true;
-            for (int i=0;i<n && g==true;i++){
+            for (int i=0;i<n && g;i++){
                 g=value.getProperty(argv[i]).equals(argv2[i]);
             }
             if (g){
@@ -62,7 +61,7 @@ public class AccommodationManagerUser extends AccommodationManager{
         return b;
     }
     public String[][] findName(String name) {
-        int cnt=0;;
+        int cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
         for (Map.Entry<String,Apartment> entry:apartments.entrySet()) {
             Apartment value=entry.getValue();
@@ -104,15 +103,15 @@ public class AccommodationManagerUser extends AccommodationManager{
     }
 
     public String[][] findType(String type) {
-        int cnt=0;;
+        int cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
-        if (type == "Ξενοδοχείο") {
+        if (type.equals("Ξενοδοχείο")) {
             for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
                 Hotel value=entry.getValue();
                 h[cnt]=value.getOwner()+"#"+value.getName();
                 cnt++;
             }
-        } else if (type == "Διαμέρισμα") {
+        } else if (type.equals("Διαμέρισμα")) {
             for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
                 Apartment value=entry.getValue();
                 a[cnt]=value.getOwner()+"#"+value.getName();
@@ -133,7 +132,7 @@ public class AccommodationManagerUser extends AccommodationManager{
     }
 
     public String[][] findLocation(String city) {
-            int cnt=0;;
+            int cnt=0;
             String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
             for (Map.Entry<String,Apartment> entry:apartments.entrySet()) {
                 Apartment value=entry.getValue();
@@ -175,40 +174,64 @@ public class AccommodationManagerUser extends AccommodationManager{
         }
     public void addRating(String o, String n, String desc, float ra, String user, String date) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).addRating(desc, ra, user, date);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).addRating(desc, ra, user, date);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).addRating(desc, ra, user, date);}}
+        switch (type) {
+            case "Ξενοδοχείο":
+                if (hotels.get(o + n) != null) {
+                    hotels.get(o + n).addRating(desc, ra, user, date);
+                }
+                break;
+            case "Διαμέρισμα":
+                if (apartments.get(o + n) != null) {
+                    apartments.get(o + n).addRating(desc, ra, user, date);
+                }
+                break;
+            case "Μεζονέτα":
+                if (maisonettes.get(o + n) != null) {
+                    maisonettes.get(o + n).addRating(desc, ra, user, date);
+                }
+                break;
+        }
     }
 
     public void editRatings(String o, String n, String desc, float ra, String user) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).editRating(user, desc, ra);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).editRating(user, desc, ra);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).editRating(user, desc, ra);}}
+        switch (type) {
+            case "Ξενοδοχείο":
+                if (hotels.get(o + n) != null) {
+                    hotels.get(o + n).editRating(user, desc, ra);
+                }
+                break;
+            case "Διαμέρισμα":
+                if (apartments.get(o + n) != null) {
+                    apartments.get(o + n).editRating(user, desc, ra);
+                }
+                break;
+            case "Μεζονέτα":
+                if (maisonettes.get(o + n) != null) {
+                    maisonettes.get(o + n).editRating(user, desc, ra);
+                }
+                break;
+        }
     }
 
     public void deleteRating(String o, String n, String user) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).deleteRating(user);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).deleteRating(user);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).deleteRating(user);}}
+        switch (type) {
+            case "Ξενοδοχείο":
+                if (hotels.get(o + n) != null) {
+                    hotels.get(o + n).deleteRating(user);
+                }
+                break;
+            case "Διαμέρισμα":
+                if (apartments.get(o + n) != null) {
+                    apartments.get(o + n).deleteRating(user);
+                }
+                break;
+            case "Μεζονέτα":
+                if (maisonettes.get(o + n) != null) {
+                    maisonettes.get(o + n).deleteRating(user);
+                }
+                break;
+        }
     }
 }

@@ -1,7 +1,6 @@
 package api;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class AccommodationManager implements Serializable{
     public AccommodationManager() {
         apartments = new HashMap<>();
         hotels = new HashMap<>();
-        maisonettes = new HashMap<>();;
+        maisonettes = new HashMap<>();
         try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream("accommodations.dat"))) {
             HashMap<String,Apartment> a =(HashMap<String,Apartment>) oos.readObject();
             HashMap<String,Hotel> h = (HashMap<String,Hotel>) oos.readObject();

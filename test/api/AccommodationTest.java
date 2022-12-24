@@ -24,7 +24,7 @@ public class AccommodationTest {
     public void show() {
         System.out.println("Show:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
-        instance.show();
+        System.out.println (instance.show());
     }
     @Test
     public void setAddress() {

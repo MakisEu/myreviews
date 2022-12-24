@@ -70,34 +70,37 @@ public class Accommodation implements Serializable {
     /**
      * Prints all the information and ratings of the accommodation
      */
-    public void show(){
-        this.showNR();
-        this.showRatings();
+    public String show(){
+        return (this.showNR()+this.showRatings());
+        //this.showNR();
+        //this.showRatings();
     }
 
     /**
      * Prints all the information without the ratings of the accommodation
      */
-    public void showNR(){
-        System.out.println("Name:       "+name);
-        System.out.println("Address:    "+address);
-        System.out.println("TK:         "+TK);
-        System.out.println("City:       "+city);
-        System.out.println("Description:"+description);
-        System.out.println("Owner:      "+owner);
-        System.out.println("Properties:");
-        properties.show_properties();
+    public String showNR(){
+        String x="Name:       "+name+"\n";
+        x=x+"Address:    "+address+"\n";
+        x=x+"TK:         "+TK+"\n";
+        x=x+"City:       "+city+"\n";
+        x=x+"Description:"+description+"\n";
+        x=x+"Owner:      "+owner+"\n";
+        x=x+"Properties:"+"\n";
+        x=x+properties.show_properties()+"\n";
+        return x;
     }
 
     /**
      * Prints the ratings of the accommodation
      */
-    public void showRatings(){
-        System.out.println("Ratings:");
+    public String showRatings(){
+        String x="Ratings:";
         for (Rating t: ratings)
         {
-            t.Show();
+            x=x+t.Show();
         }
+        return x;
     }
     /** Setter for address*/
     public void setName(String i){
@@ -157,7 +160,7 @@ public class Accommodation implements Serializable {
         for (Rating s:ratings)
         {
             String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-            if (s.getUser()==o){s.setRatingDescription(d,s.getDate());
+            if (s.getUser().equals(o)){s.setRatingDescription(d,s.getDate());
                 s.setGrade(f,date);
             }
         }
@@ -184,5 +187,5 @@ public class Accommodation implements Serializable {
      * Method that deletes a rating from a user
      * @param o The name of the user/owner of the rating that will get deleted
      */
-    public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser()==o){ratings.remove(s);return;}}}}
+    public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser().equals(o)){ratings.remove(s);return;}}}}
 }

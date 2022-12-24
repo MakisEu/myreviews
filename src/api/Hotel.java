@@ -72,12 +72,13 @@ public class Hotel extends  Accommodation implements Serializable {
      * Prints all the information and ratings of the hotel
      */
     @Override
-    public void show() {
-        System.out.println("Accommodation Type: Ξενοδοχείο");
-        super.showNR();
-        System.out.println("Stars:      "+String.valueOf(stars));
-        System.out.println("floors:     "+String.valueOf(floors));
-        System.out.println("Has Suite:  "+String.valueOf(hasSuite));
-        super.showRatings();
+    public String show() {
+        String x="Accommodation Type: Ξενοδοχείο"+"\n";
+        x=x+super.showNR()+"\n";
+        x=x+"Stars:      "+String.valueOf(stars)+"\n";
+        x=x+"floors:     "+String.valueOf(floors)+"\n";
+        x=x+"Has Suite:  "+String.valueOf(hasSuite)+"\n";
+        x=x+super.showRatings()+"\n";
+        return x;
     }
 }

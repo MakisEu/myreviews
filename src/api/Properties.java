@@ -27,14 +27,13 @@ public class Properties implements Serializable {
         return properties.get(key);
     }
 
-    public void show_properties(){
-        int i;
-        System.out.print("|");
+    public String show_properties(){
+        String x="|";
         for (Map.Entry<String,String> e:properties.entrySet())
             {
-                System.out.print(e.getKey()+": "+e.getValue()+"|");
+                x=x+e.getKey()+": "+e.getValue()+"|";
             }
-        System.out.println();
+        return x;
     }
 
 

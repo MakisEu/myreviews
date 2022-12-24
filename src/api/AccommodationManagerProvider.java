@@ -23,20 +23,23 @@ public class AccommodationManagerProvider extends AccommodationManager{
      * @return The result of the addition (If accommodation with the same name and owner exists, replaces it)
      */
     public String addAccommodation(String type, String n, String a, String tk, String c, String desc, String o) {
-        if (type == "Ξενοδοχείο") {
-            Hotel h = new Hotel(n, a, tk, c, desc, o);
-            hotels.put(o+n,h);
-            return "Added successfully";
-        } else if (type == "Διαμέρισμα") {
-            Apartment ap = new Apartment(n, a, tk, c, desc, o);
-            apartments.put(o+n,ap);
-            return "Added successfully";
-        } else if (type == "Μεζονέτα") {
-            Maisonette h = new Maisonette(n, a, tk, c, desc, o);
-            maisonettes.put(o+n,h);
-            return "Added successfully";
-        } else {
-            return "Incorrect type. Addition failed.";
+        switch (type) {
+            case "Ξενοδοχείο": {
+                Hotel h = new Hotel(n, a, tk, c, desc, o);
+                hotels.put(o + n, h);
+                return "Added successfully";
+            }
+            case "Διαμέρισμα":
+                Apartment ap = new Apartment(n, a, tk, c, desc, o);
+                apartments.put(o + n, ap);
+                return "Added successfully";
+            case "Μεζονέτα": {
+                Maisonette h = new Maisonette(n, a, tk, c, desc, o);
+                maisonettes.put(o + n, h);
+                return "Added successfully";
+            }
+            default:
+                return "Incorrect type. Addition failed.";
         }
     }
 
@@ -95,15 +98,23 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void updateProperty(String o, String n, String key, String val) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο") {
-            if (hotels.get(o + n) != null) {
-                hotels.get(o + n).updateProperty(key, val);}}
-        else if (type == "Διαμέρισμα") {
-            if (apartments.get(o + n) != null) {
-                apartments.get(o + n).updateProperty(key, val);}}
-        else if (type == "Μεζονέτα") {
-            if (maisonettes.get(o + n) != null) {
-                maisonettes.get(o + n).updateProperty(key, val);}}
+        switch (type) {
+            case "Ξενοδοχείο":
+                if (hotels.get(o + n) != null) {
+                    hotels.get(o + n).updateProperty(key, val);
+                }
+                break;
+            case "Διαμέρισμα":
+                if (apartments.get(o + n) != null) {
+                    apartments.get(o + n).updateProperty(key, val);
+                }
+                break;
+            case "Μεζονέτα":
+                if (maisonettes.get(o + n) != null) {
+                    maisonettes.get(o + n).updateProperty(key, val);
+                }
+                break;
+        }
     }
 
     /**
@@ -113,15 +124,17 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void deleteAccommodation(String owner, String name) {
         String type = this.getType(owner, name);
-        if (type == "Ξενοδοχείο") {
-            hotels.remove(owner+name);
-            return;}
-        else if (type == "Διαμέρισμα") {
-            apartments.remove(owner+name);
-            return;}
-        else if (type == "Μεζονέτα") {
-            maisonettes.remove(owner+name);
-            return;}
+        switch (type) {
+            case "Ξενοδοχείο":
+                hotels.remove(owner + name);
+                return;
+            case "Διαμέρισμα":
+                apartments.remove(owner + name);
+                return;
+            case "Μεζονέτα":
+                maisonettes.remove(owner + name);
+                return;
+        }
     }
 
     /**
@@ -131,15 +144,15 @@ public class AccommodationManagerProvider extends AccommodationManager{
     public void showOwned(String owner) {
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
             Apartment value=entry.getValue();
-            if (value.getOwner() == owner) {
+            if (value.getOwner().equals(owner)) {
                 value.show();}}
         for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
             Hotel value=entry.getValue();
-            if (value.getOwner() == owner) {
+            if (value.getOwner().equals(owner)) {
                 value.show();}}
         for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
             Maisonette value=entry.getValue();
-            if (value.getOwner() == owner) {
+            if (value.getOwner().equals(owner)) {
                 value.show();}}
     }
 
@@ -151,9 +164,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setDescription(String o,String n,String desc) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο")
+        if (type.equals("Ξενοδοχείο"))
             this.getHotel(o, n).setDescription(desc);
-        else if (type == "Διαμέρισμα")
+        else if (type.equals("Διαμέρισμα"))
             this.getApartment(o, n).setDescription(desc);
         else {
             this.getMaisonette(o, n).setDescription(desc);}
@@ -169,23 +182,23 @@ public class AccommodationManagerProvider extends AccommodationManager{
         String type = this.getType(o, n);
 
 
-        if (type == "Ξενοδοχείο"){
+        if (type.equals("Ξενοδοχείο")){
             Hotel p=hotels.get(o+n);
-            Hotel h=new Hotel(name,p.getAddress(),p.getTK(),p.getCity(),p.getDescription(),p.getOwner(),p.getStars(),p.getFloors(),p.isHasSuite());
+            p.setName(name);
             hotels.remove(o+n);
-            hotels.put(o+name,h);
+            hotels.put(o+name,p);
         }
-        else if (type == "Διαμέρισμα"){
+        else if (type.equals("Διαμέρισμα")){
             Apartment p=apartments.get(o+n);
-            Apartment h=new Apartment(name,p.getAddress(),p.getTK(),p.getCity(),p.getDescription(),p.getOwner(),p.getFloor(),p.getSpace(),p.isGuard(),p.isElevator());
+            p.setName(name);
             apartments.remove(o+n);
-            apartments.put(o+name,h);
+            apartments.put(o+name,p);
         }
         else {
             Maisonette p=maisonettes.get(o+n);
-            Maisonette h=new Maisonette(name,p.getAddress(),p.getTK(),p.getCity(),p.getDescription(),p.getOwner(),p.getRoommates());
+            p.setName(name);
             maisonettes.remove(o+n);
-            maisonettes.put(o+name,h);
+            maisonettes.put(o+name,p);
         }
     }
 
@@ -197,9 +210,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setTK(String o,String n,String tk) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο")
+        if (type.equals("Ξενοδοχείο"))
             this.getHotel(o, n).setTK(tk);
-        else if (type == "Διαμέρισμα")
+        else if (type.equals("Διαμέρισμα"))
             this.getApartment(o, n).setTK(tk);
         else {
             this.getMaisonette(o, n).setTK(tk);}
@@ -213,9 +226,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setCity(String o,String n,String c) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο")
+        if (type.equals("Ξενοδοχείο"))
             this.getHotel(o, n).setCity(c);
-        else if (type == "Διαμέρισμα")
+        else if (type.equals("Διαμέρισμα"))
             this.getApartment(o, n).setCity(c);
         else {
             this.getMaisonette(o, n).setCity(c);
@@ -230,15 +243,14 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setAddress(String o,String n,String a) {
         String type = this.getType(o, n);
-        if (type == "Ξενοδοχείο")
+        if (type.equals("Ξενοδοχείο"))
             this.getHotel(o, n).setAddress(a);
-        else if (type == "Διαμέρισμα")
+        else if (type.equals("Διαμέρισμα"))
             this.getApartment(o, n).setAddress(a);
         else {
             this.getMaisonette(o, n).setAddress(a);
         }
     }
-
 
     public float getRatingsNumber(){
         int sum=0;

@@ -1,7 +1,5 @@
 package api;
 
-import java.io.Serializable;
-
 /** Class Maisonette is a class for accommodations with type Maisonette*/
 public class Maisonette extends  Accommodation {
     /**
@@ -57,10 +55,11 @@ public class Maisonette extends  Accommodation {
 
     /** Prints all the information and ratings of the maisonette */
     @Override
-    public void show() {
-        System.out.println("Accommodation Type: Μεζονέτα");
-        super.showNR();
-        System.out.println("Roommates:      "+String.valueOf(roommates));
-        super.showRatings();
+    public String show() {
+        String x="Accommodation Type: Μεζονέτα"+"\n";
+        x=x+super.showNR();
+        x=x+"Roommates:      "+String.valueOf(roommates)+"\n";
+        x=x+super.showRatings()+"\n";
+        return x;
     }
 }

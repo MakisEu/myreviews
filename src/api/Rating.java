@@ -45,9 +45,10 @@ public class Rating implements Serializable {
         return date;
     }
 
-    public void Show(){
-        System.out.println(date+" | "+name_of_user+" | "+(int)grade+"/5 stars");
-        System.out.println(rating_description);
+    public String Show(){
+        String x=date+" | "+name_of_user+" | "+(int)grade+"/5 stars"+"\n";
+        x=x+rating_description;
+        return x;
     }
     public String getUser(){return name_of_user;}
 }

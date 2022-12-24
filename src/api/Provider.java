@@ -1,5 +1,6 @@
 package api;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Provider {
@@ -11,12 +12,120 @@ public class Provider {
         amp=new AccommodationManagerProvider();
     }
 
-     public void addAcommodation(String type, String n, String a, String tk, String c, String desc, String o){
+     public void addAccommodation(String type, String n, String a, String tk, String c, String desc, String o){
         amp.addAccommodation(type,n,a,tk,c,desc,o);
 
     }
-
-
+    
+    public String editAccommodation(String type, String n, String a, String tk, String c, String desc,String o,String oln,String[] pr){
+        
+        if (type.equals("a")){
+            Apartment acc=amp.getApartment(o,oln);
+            if (n.length()>=1){
+                acc.setName(n);}
+            if (a.length()>=1){
+                acc.setAddress(a);
+            }
+            if (tk.length()>=1){
+                acc.setTK(tk);
+            }
+            if (c.length()>=1){
+                acc.setCity(c);
+            }
+            if (desc.length()>=1){
+                acc.setAddress(desc);
+            }
+            for (String pro:pr){
+                String[] keyval=pro.split("-");
+                acc.updateProperty(keyval[0],keyval[1]);
+            }
+        }
+        else if (type.equals("h")){
+            Hotel acc=amp.getHotel(o,oln);
+            if (n.length()>=1){
+                acc.setName(n);}
+            if (a.length()>=1){
+                acc.setAddress(a);
+            }
+            if (tk.length()>=1){
+                acc.setTK(tk);
+            }
+            if (c.length()>=1){
+                acc.setCity(c);
+            }
+            if (desc.length()>=1){
+                acc.setAddress(desc);
+            }
+            for (String pro:pr){
+                String[] keyval=pro.split("-");
+                acc.updateProperty(keyval[0],keyval[1]);
+            }
+        }
+        else if (type.equals("m")){
+            Maisonette acc=amp.getMaisonette(o,oln);
+            if (n.length()>=1){
+                acc.setName(n);}
+            if (a.length()>=1){
+                acc.setAddress(a);
+            }
+            if (tk.length()>=1){
+                acc.setTK(tk);
+            }
+            if (c.length()>=1){
+                acc.setCity(c);
+            }
+            if (desc.length()>=1){
+                acc.setAddress(desc);
+            }
+            for (String pro:pr){
+                String[] keyval=pro.split("-");
+                acc.updateProperty(keyval[0],keyval[1]);
+            }
+        }
+        return ("Accommodation edited!");
+    }
+    public void setApartment(String floor,String space,String guard,String el,Apartment a){
+        if (floor.length()>=1){
+            a.setFloor(Integer.parseInt(floor));
+        }
+        if (space.length()>=1){
+            a.setSpace(Integer.parseInt(space));
+        }
+        if (guard.length()>=1){
+            if (guard.toLowerCase().equals("true")) {
+                a.setGuard(true);
+            } else if (guard.toLowerCase().equals("false")) {
+                a.setGuard(false);
+            }else {System.out.println("Error, not valid boolean type");}
+        }
+        if (el.length()>=1){
+            if (el.toLowerCase().equals("true")) {
+                a.setElevator(true);
+            } else if (el.toLowerCase().equals("false")) {
+                a.setElevator(false);
+            }else {System.out.println("Error, not valid boolean type");}
+        }
+    }
+    public void setHotel(String stars,String floor,String suite,Hotel h){
+        if (stars.length()>=1){
+            h.setStars(Integer.parseInt(stars));
+        }
+        if (floor.length()>=1){
+            h.setFloors(Integer.parseInt(floor));
+        }
+        if (suite.length()>=1){
+            if (suite.toLowerCase().equals("true")) {
+                h.setHasSuite(true);
+            } else if (suite.toLowerCase().equals("false")) {
+                h.setHasSuite(false);
+            }else {System.out.println("Error, not valid boolean type");}
+        }
+    }
+    public void setMaisonette(String roommates,Maisonette m){
+        if (roommates.length()>=1){
+            m.setRoommates(Integer.parseInt(roommates));
+        }
+    }
     public float getAllRatingsNumber(){
         return amp.getRatingsNumber();
     }
@@ -36,8 +145,18 @@ public class Provider {
     public void deleteAccommodation(String o,String n){
         amp.deleteAccommodation(o,n);
     }
-
-
+    public Apartment getApartment(String o,String n){
+        return amp.getApartment(o,n);
+    }
+    public Hotel getHotel(String o,String n){
+        return amp.getHotel(o,n);
+    }
+    public Maisonette getMaisonette(String o,String n){
+        return amp.getMaisonette(o,n);
+    }
+    public void destructor() throws FileNotFoundException {
+        amp.destructor();
+    }
 
 
 
