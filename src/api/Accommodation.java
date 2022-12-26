@@ -72,8 +72,6 @@ public class Accommodation implements Serializable {
      */
     public String show(){
         return (this.showNR()+this.showRatings());
-        //this.showNR();
-        //this.showRatings();
     }
 
     /**

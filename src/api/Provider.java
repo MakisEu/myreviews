@@ -1,7 +1,6 @@
 package api;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class Provider {
     //private ArrayList<Accommodation> accommodations;
@@ -13,12 +12,23 @@ public class Provider {
         amp=new AccommodationManagerProvider();this.owner=owner;this.first_name=fn;
     }
 
-     public void addAccommodation(String t, String n, String a, String tk, String c, String desc){
-        String type=null;
-        if (t.equals("h")){type="Ξενοδοχείο";}
-        if (t.equals("a")){type="Διαμέρισμα";}
-        if (t.equals("m")){type="Μεζονέτα";}
+     public boolean addAccommodation(String t, String n, String a, String tk, String c, String desc){
+        String type;
+         switch (t) {
+             case "h":
+                 type = "Ξενοδοχείο";
+                 break;
+             case "a":
+                 type = "Διαμέρισμα";
+                 break;
+             case "m":
+                 type = "Μεζονέτα";
+                 break;
+             default:
+                 return false;
+         }
         amp.addAccommodation(type,n,a,tk,c,desc,owner);
+        return true;
     }
     public  void updateProperties(Accommodation acc,String[] pr){
         for (String pro:pr){
@@ -26,67 +36,71 @@ public class Provider {
             acc.updateProperty(keyval[0],keyval[1]);
         }
     }
-    public String editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
-        
-        if (type.equals("a")){
-            Apartment acc=amp.getApartment(owner,oln);
-            if (n.length()>=1){
-                acc.setName(n);}
-            if (a.length()>=1){
-                acc.setAddress(a);
+    public boolean editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
+
+        switch (type) {
+            case "a": {
+                Apartment acc = amp.getApartment(owner, oln);
+                if (n.length() >= 1) {
+                    acc.setName(n);
+                }
+                if (a.length() >= 1) {
+                    acc.setAddress(a);
+                }
+                if (tk.length() >= 1) {
+                    acc.setTK(tk);
+                }
+                if (c.length() >= 1) {
+                    acc.setCity(c);
+                }
+                if (desc.length() >= 1) {
+                    acc.setDescription(desc);
+                }
+                this.updateProperties(acc, pr);
+                break;
             }
-            if (tk.length()>=1){
-                acc.setTK(tk);
+            case "h": {
+                Hotel acc = amp.getHotel(owner, oln);
+                if (n.length() >= 1) {
+                    acc.setName(n);
+                }
+                if (a.length() >= 1) {
+                    acc.setAddress(a);
+                }
+                if (tk.length() >= 1) {
+                    acc.setTK(tk);
+                }
+                if (c.length() >= 1) {
+                    acc.setCity(c);
+                }
+                if (desc.length() >= 1) {
+                    acc.setDescription(desc);
+                }
+                this.updateProperties(acc, pr);
+                break;
             }
-            if (c.length()>=1){
-                acc.setCity(c);
+            case "m": {
+                Maisonette acc = amp.getMaisonette(owner, oln);
+                if (n.length() >= 1) {
+                    acc.setName(n);
+                }
+                if (a.length() >= 1) {
+                    acc.setAddress(a);
+                }
+                if (tk.length() >= 1) {
+                    acc.setTK(tk);
+                }
+                if (c.length() >= 1) {
+                    acc.setCity(c);
+                }
+                if (desc.length() >= 1) {
+                    acc.setDescription(desc);
+                }
+                this.updateProperties(acc, pr);
+                break;
             }
-            if (desc.length()>=1){
-                acc.setDescription(desc);
-            }
-            this.updateProperties(acc,pr);
         }
-        else if (type.equals("h")){
-            Hotel acc=amp.getHotel(owner,oln);
-            if (n.length()>=1){
-                acc.setName(n);}
-            if (a.length()>=1){
-                acc.setAddress(a);
-            }
-            if (tk.length()>=1){
-                acc.setTK(tk);
-            }
-            if (c.length()>=1){
-                acc.setCity(c);
-            }
-            if (desc.length()>=1){
-                acc.setDescription(desc);
-            }
-            this.updateProperties(acc,pr);
-        }
-        else if (type.equals("m")){
-            Maisonette acc=amp.getMaisonette(owner,oln);
-            if (n.length()>=1){
-                acc.setName(n);}
-            if (a.length()>=1){
-                acc.setAddress(a);
-            }
-            if (tk.length()>=1){
-                acc.setTK(tk);
-            }
-            if (c.length()>=1){
-                acc.setCity(c);
-            }
-            if (desc.length()>=1){
-                acc.setDescription(desc);
-            }
-            /*for (String pro:pr){
-                String[] keyval=pro.split("-");
-                acc.updateProperty(keyval[0],keyval[1]);
-            }*/
-            this.updateProperties(acc,pr);
-        }
-        return ("Accommodation edited!");
+        return true;
     }
     public void setApartment(String floor,String space,String guard,String el,Apartment a){
         if (floor.length()>=1){
@@ -96,16 +110,16 @@ public class Provider {
             a.setSpace(Integer.parseInt(space));
         }
         if (guard.length()>=1){
-            if (guard.toLowerCase().equals("true")) {
+            if (guard.equalsIgnoreCase("true")) {
                 a.setGuard(true);
-            } else if (guard.toLowerCase().equals("false")) {
+            } else if (guard.equalsIgnoreCase("false")) {
                 a.setGuard(false);
             }else {System.out.println("Error, not valid boolean type");}
         }
         if (el.length()>=1){
-            if (el.toLowerCase().equals("true")) {
+            if (el.equalsIgnoreCase("true")) {
                 a.setElevator(true);
-            } else if (el.toLowerCase().equals("false")) {
+            } else if (el.equalsIgnoreCase("false")) {
                 a.setElevator(false);
             }else {System.out.println("Error, not valid boolean type");}
         }
@@ -118,9 +132,9 @@ public class Provider {
             h.setFloors(Integer.parseInt(floor));
         }
         if (suite.length()>=1){
-            if (suite.toLowerCase().equals("true")) {
+            if (suite.equalsIgnoreCase("true")) {
                 h.setHasSuite(true);
-            } else if (suite.toLowerCase().equals("false")) {
+            } else if (suite.equalsIgnoreCase("false")) {
                 h.setHasSuite(false);
             }else {System.out.println("Error, not valid boolean type");}
         }

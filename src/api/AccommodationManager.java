@@ -22,12 +22,9 @@ public class AccommodationManager implements Serializable{
             HashMap<String,Apartment> a =(HashMap<String,Apartment>) oos.readObject();
             HashMap<String,Hotel> h = (HashMap<String,Hotel>) oos.readObject();
             HashMap<String,Maisonette> m =(HashMap<String,Maisonette>) oos.readObject();
-            for(Map.Entry<String, Apartment> entry : a.entrySet()) {
-                apartments.put(entry.getKey(),entry.getValue());}
-            for(Map.Entry<String, Hotel> entry : h.entrySet()) {
-                hotels.put(entry.getKey(),entry.getValue());}
-            for(Map.Entry<String, Maisonette> entry : m.entrySet()) {
-                maisonettes.put(entry.getKey(),entry.getValue());}
+            apartments.putAll(a);
+            hotels.putAll(h);
+            maisonettes.putAll(m);
         } catch (IOException | ClassNotFoundException e) {
             //e.printStackTrace();
         }
@@ -98,7 +95,7 @@ public class AccommodationManager implements Serializable{
     /**
      * Destructor. Writes data in binary file
      */
-    public void destructor() throws FileNotFoundException {
+    public void destructor(){
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("accommodations.dat"))) {
             oos.writeObject(apartments);
             oos.writeObject(hotels);

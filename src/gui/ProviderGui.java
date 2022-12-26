@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 public class ProviderGui extends JFrame implements ActionListener {
 
     JTextField textField_UID, textField_Change, textField_Edit,textField_Prop;
-    JTextArea textArea_results;
     JRadioButton radio_button_Edit, radio_button_Add, radio_button_Delete;
     JButton button_change, button_show, button_Edit,button_showOwned;
     JLabel instructions1,instructions2,instructions3,instructions4,instructions5,instructions6,instructions7,instructions8,instructions9,instructions10,instructions11,instructions12,instructions13;
@@ -97,23 +96,6 @@ public class ProviderGui extends JFrame implements ActionListener {
         button_Edit.addActionListener(this);
         button_change.addActionListener(this);
 
-        /**
-         // δημιουργία ανώνυμης κλάσης
-         button_calculate.addActionListener(new ActionListener() {
-        @Override public void actionPerformed(ActionEvent e) {
-        int x = Integer.parseInt(textField_number1.getText());
-        int y = Integer.parseInt(textField_number2.getText());
-        if (radio_button_add.isSelected()) {
-        textArea_results.setText(service.add(x, y) + "");
-        } else if (radio_button_subtract.isSelected()) {
-        textArea_results.setText(service.subtract(x, y) + "");
-        } else if (radio_button_multiply.isSelected()) {
-        textArea_results.setText(service.multiply(x, y) + "");
-        }
-        }
-        });
-         */
-
         this.setVisible(true);
     }
 
@@ -129,60 +111,61 @@ public class ProviderGui extends JFrame implements ActionListener {
             temp3=new String[5];
             for (int i=0;i<5;i++){temp3[i]="";}
         }
-        if (temp[0].equals("a")) {
-            t = "a";
-            title="Apartment";
-            Apartment a = service.getApartment(temp[2]);
-            if (a != null) {
-                button_change.setText("Change(floor,space,guard,elevator)(use ,, if you want to skip a value)");
-                if (e.getActionCommand().equals("Change(floor,space,guard,elevator)(use ,, if you want to skip a value)")) {
-                    service.setApartment(temp2[0], temp2[1], temp2[2], temp2[3], a);
+        switch (temp[0]) {
+            case "a":
+                t = "a";
+                title = "Apartment";
+                Apartment a = service.getApartment(temp[2]);
+                if (a != null) {
+                    button_change.setText("Change(floor,space,guard,elevator)(use ,, if you want to skip a value)");
+                    if (e.getActionCommand().equals("Change(floor,space,guard,elevator)(use ,, if you want to skip a value)")) {
+                        service.setApartment(temp2[0], temp2[1], temp2[2], temp2[3], a);
+                    }
+                    acc = a;
+                } else {
+                    JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
                 }
-                acc = a;
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        else if (temp[0].equals("h")) {
-            t = "h";
-            title="Hotel";
-            Hotel h = service.getHotel(temp[2]);
-            if (h != null) {
-                button_change.setText("Change(stars,floor,suite)(use ,, if you want to skip a value)");
-                if (e.getActionCommand().equals("Change(stars,floor,suite)(use ,, if you want to skip a value)")) {
-                    service.setHotel(temp2[0], temp2[1], temp2[2], h);
+                break;
+            case "h":
+                t = "h";
+                title = "Hotel";
+                Hotel h = service.getHotel(temp[2]);
+                if (h != null) {
+                    button_change.setText("Change(stars,floor,suite)(use ,, if you want to skip a value)");
+                    if (e.getActionCommand().equals("Change(stars,floor,suite)(use ,, if you want to skip a value)")) {
+                        service.setHotel(temp2[0], temp2[1], temp2[2], h);
+                    }
+                    acc = h;
+                } else {
+                    JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
                 }
-                acc = h;
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-            }
-            //this.setVisible(true);
-            //JOptionPane.showMessageDialog(this, service.getHotel(temp[1], temp[2]).show(), "Hotel", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else if (temp[0].equals("m")) {
-            t = "m";
-            title="Maisonette";
-            Maisonette m = service.getMaisonette(temp[2]);
-            if (m != null) {
-                button_change.setText("Change(Roommates)");
-                if (e.getActionCommand().equals("Change(stars,floor,suite)(use ,, if you want to skip a value)")) {
-                    service.setMaisonette(temp2[0], m);
+
+                break;
+            case "m":
+                t = "m";
+                title = "Maisonette";
+                Maisonette m = service.getMaisonette(temp[2]);
+                if (m != null) {
+                    button_change.setText("Change(Roommates)");
+                    if (e.getActionCommand().equals("Change(stars,floor,suite)(use ,, if you want to skip a value)")) {
+                        service.setMaisonette(temp2[0], m);
+                    }
+                    acc = m;
+                } else {
+                    JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
                 }
-                acc = m;
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-            }
+                break;
         }
             if (acc != null) {
                 if (e.getActionCommand().equals("Do Selected")) {
                     if (radio_button_Edit.isSelected()) {
                         service.editAccommodation(t, temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], acc.getName(), prop);
+                        JOptionPane.showMessageDialog(this, "Accommodation was edited successfully", "Edited Successfully", JOptionPane.INFORMATION_MESSAGE);
+
                     }
                     if (radio_button_Delete.isSelected()){
                         service.deleteAccommodation(temp3[0]);
+                        JOptionPane.showMessageDialog(this, "Accommodation was deleted successfully", "Deleted Successfully", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
                     if (!(e.getActionCommand().equals("Do Selected") && radio_button_Delete.isSelected()) && !e.getActionCommand().equals("Show Owned")) {
@@ -190,12 +173,30 @@ public class ProviderGui extends JFrame implements ActionListener {
                     }
                 }
             if (e.getActionCommand().equals("Do Selected") && radio_button_Add.isSelected()){
-                service.addAccommodation(temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], temp3[5]);
-                Accommodation ac = null;
-                if (temp3[0].equals("a")){ac=service.getApartment(temp3[1]);service.updateProperties(ac,prop);JOptionPane.showMessageDialog(this, service.showOwned(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);}
-                else if (temp3[0].equals("h")){ac=service.getHotel(temp3[1]);service.updateProperties(ac,prop);JOptionPane.showMessageDialog(this, service.showOwned(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);}
-                else if (temp3[0].equals("m")){ac=service.getMaisonette(temp3[1]);service.updateProperties(ac,prop);JOptionPane.showMessageDialog(this, service.showOwned(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);}
-
+                boolean q=service.addAccommodation(temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], temp3[5]);
+                Accommodation ac;
+                if (q){
+                    switch (temp3[0]) {
+                        case "a":
+                            ac = service.getApartment(temp3[1]);
+                            service.updateProperties(ac, prop);
+                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case "h":
+                            ac = service.getHotel(temp3[1]);
+                            service.updateProperties(ac, prop);
+                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        case "m":
+                            ac = service.getMaisonette(temp3[1]);
+                            service.updateProperties(ac, prop);
+                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Invalid Accommodation Type.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
 
             }
             if (e.getActionCommand().equals("Show Owned")){
@@ -210,10 +211,7 @@ public class ProviderGui extends JFrame implements ActionListener {
             }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        AccommodationManagerProvider AM=new AccommodationManagerProvider();
-        //AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        //AM.destructor();
+    public static void main(String[] args) {
         new ProviderGui().startGUI("someGuy","SG");
     }
 }
