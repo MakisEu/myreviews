@@ -1,6 +1,9 @@
 package api;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Provider {
     //private ArrayList<Accommodation> accommodations;
@@ -31,9 +34,11 @@ public class Provider {
         return true;
     }
     public  void updateProperties(Accommodation acc,String[] pr){
+        if(pr.length<1){
         for (String pro:pr){
             String[] keyval=pro.split("-");
             acc.updateProperty(keyval[0],keyval[1]);
+        }
         }
     }
     public boolean editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
@@ -175,8 +180,31 @@ public class Provider {
     public void destructor() throws FileNotFoundException {
         amp.destructor();
     }
+    public ArrayList<Apartment> getOwnedApartments(){
+        return amp.getOwnedApartments(owner);
+    }
+    public ArrayList<Hotel> getOwnedHotels(){
+        return amp.getOwnedHotels(owner);
+    }
+    public ArrayList<Maisonette> getOwnedMaisonettes(){
+        return amp.getOwnedMaisonettes(owner);
+    }
+    public String[] getNames(){
+        ArrayList<String> nam=new ArrayList<>();
+        ArrayList<Apartment> ap=this.getOwnedApartments();
+        ArrayList<Hotel> ho=this.getOwnedHotels();
+        ArrayList<Maisonette> ma=this.getOwnedMaisonettes();
+        for (Apartment a:ap){
+            nam.add(a.getName()+"#Apartment");
+        }
+        for (Hotel a:ho){
+            nam.add(a.getName()+"#Hotel");
+        }
+        for (Maisonette a:ma){
+            nam.add(a.getName()+"#Maisonette");
+        }
+        return nam.toArray(new String[0]);
 
-
-
+    }
 
 }

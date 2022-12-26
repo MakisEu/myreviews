@@ -36,7 +36,7 @@ public class AccommodationManagerGui extends JFrame implements ActionListener {
         this.add(button_log);
         // add action listeners
         button_log.addActionListener(this);
-        this.setVisible(true);
+        //this.setVisible(true);
     }
 
     @Override

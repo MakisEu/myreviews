@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-public class ProviderGui extends JFrame implements ActionListener {
+public class AccommodationManagerProviderGui extends JPanel implements ActionListener {
 
     JTextField textField_UID, textField_Change, textField_Edit,textField_Prop;
     JRadioButton radio_button_Edit, radio_button_Add, radio_button_Delete;
@@ -17,13 +17,13 @@ public class ProviderGui extends JFrame implements ActionListener {
     JTabbedPane dashboard;
     Provider service;
 
-    public void startGUI(String o,String fn) {
-        service = new Provider(o,fn);
+    public AccommodationManagerProviderGui startGUI(Provider s) {
+        service = s;
 
-        this.setTitle("Accommodation Management");
+        //this.setTitle("Accommodation Management");
         this.setSize(1600, 300);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //this.setLocationRelativeTo(null);
 
         this.setLayout(new FlowLayout());
 
@@ -97,6 +97,7 @@ public class ProviderGui extends JFrame implements ActionListener {
         button_change.addActionListener(this);
 
         this.setVisible(true);
+        return this;
     }
 
     @Override
@@ -156,62 +157,63 @@ public class ProviderGui extends JFrame implements ActionListener {
                 }
                 break;
         }
-            if (acc != null) {
-                if (e.getActionCommand().equals("Do Selected")) {
-                    if (radio_button_Edit.isSelected()) {
-                        service.editAccommodation(t, temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], acc.getName(), prop);
-                        JOptionPane.showMessageDialog(this, "Accommodation was edited successfully", "Edited Successfully", JOptionPane.INFORMATION_MESSAGE);
+        if (acc != null) {
+            if (e.getActionCommand().equals("Do Selected")) {
+                if (radio_button_Edit.isSelected()) {
+                    service.editAccommodation(t, temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], acc.getName(), prop);
+                    JOptionPane.showMessageDialog(this, "Accommodation was edited successfully", "Edited Successfully", JOptionPane.INFORMATION_MESSAGE);
 
-                    }
-                    if (radio_button_Delete.isSelected()){
-                        service.deleteAccommodation(temp3[0]);
-                        JOptionPane.showMessageDialog(this, "Accommodation was deleted successfully", "Deleted Successfully", JOptionPane.INFORMATION_MESSAGE);
-                    }
                 }
-                    if (!(e.getActionCommand().equals("Do Selected") && radio_button_Delete.isSelected()) && !e.getActionCommand().equals("Show Owned")) {
-                        JOptionPane.showMessageDialog(this, acc.show(), title, JOptionPane.INFORMATION_MESSAGE);
-                    }
+                if (radio_button_Delete.isSelected()){
+                    service.deleteAccommodation(temp3[0]);
+                    JOptionPane.showMessageDialog(this, "Accommodation was deleted successfully", "Deleted Successfully", JOptionPane.INFORMATION_MESSAGE);
                 }
-            if (e.getActionCommand().equals("Do Selected") && radio_button_Add.isSelected()){
-                boolean q=service.addAccommodation(temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], temp3[5]);
-                Accommodation ac;
-                if (q){
-                    switch (temp3[0]) {
-                        case "a":
-                            ac = service.getApartment(temp3[1]);
-                            service.updateProperties(ac, prop);
-                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        case "h":
-                            ac = service.getHotel(temp3[1]);
-                            service.updateProperties(ac, prop);
-                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        case "m":
-                            ac = service.getMaisonette(temp3[1]);
-                            service.updateProperties(ac, prop);
-                            JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                    }
-                }
-                else {
-                    JOptionPane.showMessageDialog(this, "Invalid Accommodation Type.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-
             }
-            if (e.getActionCommand().equals("Show Owned")){
-                JOptionPane.showMessageDialog(this, service.showOwned(), "Owned Accommodations", JOptionPane.INFORMATION_MESSAGE);
-
+            if (!(e.getActionCommand().equals("Do Selected") && radio_button_Delete.isSelected()) && !e.getActionCommand().equals("Show Owned")) {
+                JOptionPane.showMessageDialog(this, acc.show(), title, JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        if (e.getActionCommand().equals("Do Selected") && radio_button_Add.isSelected()){
+            boolean q=service.addAccommodation(temp3[0], temp3[1], temp3[2], temp3[3], temp3[4], temp3[5]);
+            Accommodation ac;
+            if (q){
+                switch (temp3[0]) {
+                    case "a":
+                        ac = service.getApartment(temp3[1]);
+                        service.updateProperties(ac, prop);
+                        JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case "h":
+                        ac = service.getHotel(temp3[1]);
+                        service.updateProperties(ac, prop);
+                        JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case "m":
+                        ac = service.getMaisonette(temp3[1]);
+                        service.updateProperties(ac, prop);
+                        JOptionPane.showMessageDialog(this, ac.show(), "Accommodation added successfully", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Invalid Accommodation Type.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
-            try {
-                service.destructor();
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+        }
+        if (e.getActionCommand().equals("Show Owned")){
+            JOptionPane.showMessageDialog(this, service.showOwned(), "Owned Accommodations", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+
+        try {
+            service.destructor();
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public static void main(String[] args) {
-        new ProviderGui().startGUI("someGuy","SG");
+        Provider p=new Provider("someGuy","SG");
+        new AccommodationManagerProviderGui().startGUI(p);
     }
 }

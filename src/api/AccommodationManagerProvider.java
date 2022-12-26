@@ -1,5 +1,6 @@
 package api;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /** Class AccommodationManagerProvider is a class that provides all the functionalities of a provider*/
@@ -156,6 +157,30 @@ public class AccommodationManagerProvider extends AccommodationManager{
             if (value.getOwner().equals(owner)) {
                 x=x+value.show()+"\n\n";}}
         return x;
+    }
+    public ArrayList<Apartment> getOwnedApartments(String owner){
+        ArrayList<Apartment> a=new ArrayList<>();
+        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+            Apartment value=entry.getValue();
+            if (value.getOwner().equals(owner)) {
+                a.add(value);}}
+        return a;
+    }
+    public ArrayList<Hotel> getOwnedHotels(String owner){
+        ArrayList<Hotel> a=new ArrayList<>();
+        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+            Hotel value=entry.getValue();
+            if (value.getOwner().equals(owner)) {
+                a.add(value);}}
+        return a;
+    }
+    public ArrayList<Maisonette> getOwnedMaisonettes(String owner){
+        ArrayList<Maisonette> a=new ArrayList<>();
+        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
+            Maisonette value=entry.getValue();
+            if (value.getOwner().equals(owner)) {
+                a.add(value);}}
+        return a;
     }
 
     /**
