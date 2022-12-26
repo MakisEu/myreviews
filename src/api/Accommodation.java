@@ -54,7 +54,7 @@ public class Accommodation implements Serializable {
     }
 
 
-    public int getRatingNumber(){
+    /*public int getRatingNumber(){
         return ratings.size();
     }
 
@@ -65,7 +65,7 @@ public class Accommodation implements Serializable {
             sum+= x.getGrade();
             }
         return sum/ratings.size();
-    }
+    }*/
 
     /**
      * Prints all the information and ratings of the accommodation

@@ -279,7 +279,7 @@ public class AccommodationManagerProvider extends AccommodationManager{
         }
     }
 
-    public float getRatingsNumber(){
+    /*public float getRatingsNumber(){
         int sum=0;
         for (Map.Entry<String,Apartment> e:apartments.entrySet())
             {
@@ -311,7 +311,7 @@ public class AccommodationManagerProvider extends AccommodationManager{
                 sum+=e.getValue().getRatingsAverage();
             }
         return sum/(double)(apartments.size()+hotels.size()+maisonettes.size());
-    }
+    }*/
 
 
 

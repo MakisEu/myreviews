@@ -33,14 +33,14 @@ public class Provider {
         amp.addAccommodation(type,n,a,tk,c,desc,owner);
         return true;
     }
-    public  void updateProperties(Accommodation acc,String[] pr){
+    /*public  void updateProperties(Accommodation acc,String[] pr){
         if(pr.length<1){
         for (String pro:pr){
             String[] keyval=pro.split("-");
             acc.updateProperty(keyval[0],keyval[1]);
         }
         }
-    }
+    }*/
     public boolean editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
 
         switch (type) {
@@ -61,7 +61,7 @@ public class Provider {
                 if (desc.length() >= 1) {
                     acc.setDescription(desc);
                 }
-                this.updateProperties(acc, pr);
+                new Helper().updateProperties(acc, pr);
                 break;
             }
             case "h": {
@@ -81,7 +81,7 @@ public class Provider {
                 if (desc.length() >= 1) {
                     acc.setDescription(desc);
                 }
-                this.updateProperties(acc, pr);
+                new Helper().updateProperties(acc, pr);
                 break;
             }
             case "m": {
@@ -101,7 +101,7 @@ public class Provider {
                 if (desc.length() >= 1) {
                     acc.setDescription(desc);
                 }
-                this.updateProperties(acc, pr);
+                new Helper().updateProperties(acc, pr);
                 break;
             }
         }
@@ -149,7 +149,7 @@ public class Provider {
             m.setRoommates(Integer.parseInt(roommates));
         }
     }
-    public float getAllRatingsNumber(){
+    /*public float getAllRatingsNumber(){
         return amp.getRatingsNumber();
     }
 
@@ -163,7 +163,7 @@ public class Provider {
 
     public String showOwned(){
         return amp.showOwned(owner);
-    }
+    }*/
 
     public void deleteAccommodation(String n){
         amp.deleteAccommodation(owner,n);
@@ -180,20 +180,11 @@ public class Provider {
     public void destructor() throws FileNotFoundException {
         amp.destructor();
     }
-    public ArrayList<Apartment> getOwnedApartments(){
-        return amp.getOwnedApartments(owner);
-    }
-    public ArrayList<Hotel> getOwnedHotels(){
-        return amp.getOwnedHotels(owner);
-    }
-    public ArrayList<Maisonette> getOwnedMaisonettes(){
-        return amp.getOwnedMaisonettes(owner);
-    }
     public String[] getNames(){
         ArrayList<String> nam=new ArrayList<>();
-        ArrayList<Apartment> ap=this.getOwnedApartments();
-        ArrayList<Hotel> ho=this.getOwnedHotels();
-        ArrayList<Maisonette> ma=this.getOwnedMaisonettes();
+        ArrayList<Apartment> ap=amp.getOwnedApartments(owner);
+        ArrayList<Hotel> ho=amp.getOwnedHotels(owner);
+        ArrayList<Maisonette> ma=amp.getOwnedMaisonettes(owner);
         for (Apartment a:ap){
             nam.add(a.getName()+"#Apartment");
         }
