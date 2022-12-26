@@ -31,6 +31,7 @@ public class Hotel extends  Accommodation implements Serializable {
         stars=star;
         floors=floor;
         hasSuite=suite;
+        UID="h#"+o+"#"+n;
     }
     /**
      * Normal Constructor with only required parameters
@@ -43,6 +44,7 @@ public class Hotel extends  Accommodation implements Serializable {
      */
     public  Hotel(String n,String a, String tk,String c,String desc,String o){
         super(n,a,tk,c,desc,o);
+        UID="h#"+o+"#"+n;
     }
     /** Getter for stars*/
     public int getStars() {
@@ -74,6 +76,7 @@ public class Hotel extends  Accommodation implements Serializable {
     @Override
     public String show() {
         String x="Accommodation Type: Ξενοδοχείο"+"\n";
+        x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
         x=x+"Stars:      "+String.valueOf(stars)+"\n";
         x=x+"floors:     "+String.valueOf(floors)+"\n";

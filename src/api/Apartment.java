@@ -33,6 +33,7 @@ public class Apartment extends Accommodation{
         this.space=space;
         this.guard=guard;
         this.elevator=elevator;
+        UID="a#"+o+"#"+n;
     }
 
     /**
@@ -46,6 +47,7 @@ public class Apartment extends Accommodation{
      */
     public  Apartment(String n,String a, String tk,String c,String desc,String o){
         super(n,a,tk,c,desc,o);
+        UID="a#"+o+"#"+n;
     }
 
     /** Getter for guard*/
@@ -87,7 +89,9 @@ public class Apartment extends Accommodation{
      */
     @Override
     public String show() {
+
         String x="Accommodation Type: Διαμέρισμα"+"\n";
+        x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
         x=x+"Floor:      "+String.valueOf(floor)+"\n";
         x=x+"Space:      "+String.valueOf(space)+"\n";

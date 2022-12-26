@@ -19,7 +19,7 @@ public class Accommodation implements Serializable {
      *  properties   An object that contains the option properties of the accommodation
      *  */
     private ArrayList<Rating> ratings;
-    private String name,address,TK,city,description,owner;
+    protected String name,address,TK,city,description,owner,UID;
     private Properties properties;
     /** Empty Constructor */
     public Accommodation(){ratings=new ArrayList<>();properties=new Properties();}

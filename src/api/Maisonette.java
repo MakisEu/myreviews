@@ -24,6 +24,7 @@ public class Maisonette extends  Accommodation {
     public  Maisonette(String n,String a, String tk,String c,String desc,String o,int rm){
         super(n,a,tk,c,desc,o);
         roommates=rm;
+        UID="m#"+o+"#"+n;
     }
 
     /**
@@ -37,6 +38,8 @@ public class Maisonette extends  Accommodation {
      */
     public  Maisonette(String n,String a, String tk,String c,String desc,String o){
         super(n,a,tk,c,desc,o);
+        UID="m#"+o+"#"+n;
+
     }
 
     /**
@@ -57,6 +60,7 @@ public class Maisonette extends  Accommodation {
     @Override
     public String show() {
         String x="Accommodation Type: Μεζονέτα"+"\n";
+        x=x+"UID:"+UID+"\n";
         x=x+super.showNR();
         x=x+"Roommates:      "+String.valueOf(roommates)+"\n";
         x=x+super.showRatings()+"\n";

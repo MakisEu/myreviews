@@ -141,19 +141,21 @@ public class AccommodationManagerProvider extends AccommodationManager{
      * Method that shows all accommodation owned by an owner
      * @param owner The owner
      */
-    public void showOwned(String owner) {
+    public String showOwned(String owner) {
+        String x = "";
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
             Apartment value=entry.getValue();
             if (value.getOwner().equals(owner)) {
-                value.show();}}
+                x=x+value.show()+"\n\n";}}
         for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
             Hotel value=entry.getValue();
             if (value.getOwner().equals(owner)) {
-                value.show();}}
+                x=x+value.show()+"\n\n";}}
         for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
             Maisonette value=entry.getValue();
             if (value.getOwner().equals(owner)) {
-                value.show();}}
+                x=x+value.show()+"\n\n";}}
+        return x;
     }
 
     /**

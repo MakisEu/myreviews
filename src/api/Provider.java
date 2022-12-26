@@ -6,21 +6,30 @@ import java.util.ArrayList;
 public class Provider {
     //private ArrayList<Accommodation> accommodations;
     private AccommodationManagerProvider amp;
+    String owner,first_name;
 
 
-    public Provider(){
-        amp=new AccommodationManagerProvider();
+    public Provider(String owner,String fn){
+        amp=new AccommodationManagerProvider();this.owner=owner;this.first_name=fn;
     }
 
-     public void addAccommodation(String type, String n, String a, String tk, String c, String desc, String o){
-        amp.addAccommodation(type,n,a,tk,c,desc,o);
-
+     public void addAccommodation(String t, String n, String a, String tk, String c, String desc){
+        String type=null;
+        if (t.equals("h")){type="Ξενοδοχείο";}
+        if (t.equals("a")){type="Διαμέρισμα";}
+        if (t.equals("m")){type="Μεζονέτα";}
+        amp.addAccommodation(type,n,a,tk,c,desc,owner);
     }
-    
-    public String editAccommodation(String type, String n, String a, String tk, String c, String desc,String o,String oln,String[] pr){
+    public  void updateProperties(Accommodation acc,String[] pr){
+        for (String pro:pr){
+            String[] keyval=pro.split("-");
+            acc.updateProperty(keyval[0],keyval[1]);
+        }
+    }
+    public String editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
         
         if (type.equals("a")){
-            Apartment acc=amp.getApartment(o,oln);
+            Apartment acc=amp.getApartment(owner,oln);
             if (n.length()>=1){
                 acc.setName(n);}
             if (a.length()>=1){
@@ -33,15 +42,12 @@ public class Provider {
                 acc.setCity(c);
             }
             if (desc.length()>=1){
-                acc.setAddress(desc);
+                acc.setDescription(desc);
             }
-            for (String pro:pr){
-                String[] keyval=pro.split("-");
-                acc.updateProperty(keyval[0],keyval[1]);
-            }
+            this.updateProperties(acc,pr);
         }
         else if (type.equals("h")){
-            Hotel acc=amp.getHotel(o,oln);
+            Hotel acc=amp.getHotel(owner,oln);
             if (n.length()>=1){
                 acc.setName(n);}
             if (a.length()>=1){
@@ -54,15 +60,12 @@ public class Provider {
                 acc.setCity(c);
             }
             if (desc.length()>=1){
-                acc.setAddress(desc);
+                acc.setDescription(desc);
             }
-            for (String pro:pr){
-                String[] keyval=pro.split("-");
-                acc.updateProperty(keyval[0],keyval[1]);
-            }
+            this.updateProperties(acc,pr);
         }
         else if (type.equals("m")){
-            Maisonette acc=amp.getMaisonette(o,oln);
+            Maisonette acc=amp.getMaisonette(owner,oln);
             if (n.length()>=1){
                 acc.setName(n);}
             if (a.length()>=1){
@@ -75,12 +78,13 @@ public class Provider {
                 acc.setCity(c);
             }
             if (desc.length()>=1){
-                acc.setAddress(desc);
+                acc.setDescription(desc);
             }
-            for (String pro:pr){
+            /*for (String pro:pr){
                 String[] keyval=pro.split("-");
                 acc.updateProperty(keyval[0],keyval[1]);
-            }
+            }*/
+            this.updateProperties(acc,pr);
         }
         return ("Accommodation edited!");
     }
@@ -138,21 +142,21 @@ public class Provider {
         amp.showAll();
     }
 
-    public void showOwned(String o){
-        amp.showOwned(o);
+    public String showOwned(){
+        return amp.showOwned(owner);
     }
 
-    public void deleteAccommodation(String o,String n){
-        amp.deleteAccommodation(o,n);
+    public void deleteAccommodation(String n){
+        amp.deleteAccommodation(owner,n);
     }
-    public Apartment getApartment(String o,String n){
-        return amp.getApartment(o,n);
+    public Apartment getApartment(String n){
+        return amp.getApartment(owner,n);
     }
-    public Hotel getHotel(String o,String n){
-        return amp.getHotel(o,n);
+    public Hotel getHotel(String n){
+        return amp.getHotel(owner,n);
     }
-    public Maisonette getMaisonette(String o,String n){
-        return amp.getMaisonette(o,n);
+    public Maisonette getMaisonette(String n){
+        return amp.getMaisonette(owner,n);
     }
     public void destructor() throws FileNotFoundException {
         amp.destructor();
