@@ -19,13 +19,13 @@ public class Provider {
         String type;
          switch (t) {
              case "h":
-                 type = "Ξενοδοχείο";
+                 type = "Hotel";
                  break;
              case "a":
-                 type = "Διαμέρισμα";
+                 type = "Apartment";
                  break;
              case "m":
-                 type = "Μεζονέτα";
+                 type = "Maisonette";
                  break;
              default:
                  return false;

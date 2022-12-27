@@ -86,4 +86,7 @@ public class Helper {
         }
         return null;
     }
+    public String UIDResolve(String uid){
+        return uid.split("#")[1]+"#"+uid.split("#")[2];
+    }
 }

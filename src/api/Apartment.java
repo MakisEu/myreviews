@@ -90,7 +90,7 @@ public class Apartment extends Accommodation{
     @Override
     public String show() {
 
-        String x="Accommodation Type: Διαμέρισμα"+"\n";
+        String x="Accommodation Type: Apartment"+"\n";
         x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
         x=x+"Floor:      "+String.valueOf(floor)+"\n";

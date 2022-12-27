@@ -25,16 +25,16 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public String addAccommodation(String type, String n, String a, String tk, String c, String desc, String o) {
         switch (type) {
-            case "Ξενοδοχείο": {
+            case "Hotel": {
                 Hotel h = new Hotel(n, a, tk, c, desc, o);
                 hotels.put(o + n, h);
                 return "Added successfully";
             }
-            case "Διαμέρισμα":
+            case "Apartment":
                 Apartment ap = new Apartment(n, a, tk, c, desc, o);
                 apartments.put(o + n, ap);
                 return "Added successfully";
-            case "Μεζονέτα": {
+            case "Maisonette": {
                 Maisonette h = new Maisonette(n, a, tk, c, desc, o);
                 maisonettes.put(o + n, h);
                 return "Added successfully";
@@ -100,17 +100,17 @@ public class AccommodationManagerProvider extends AccommodationManager{
     public void updateProperty(String o, String n, String key, String val) {
         String type = this.getType(o, n);
         switch (type) {
-            case "Ξενοδοχείο":
+            case "Hotel":
                 if (hotels.get(o + n) != null) {
                     hotels.get(o + n).updateProperty(key, val);
                 }
                 break;
-            case "Διαμέρισμα":
+            case "Apartment":
                 if (apartments.get(o + n) != null) {
                     apartments.get(o + n).updateProperty(key, val);
                 }
                 break;
-            case "Μεζονέτα":
+            case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
                     maisonettes.get(o + n).updateProperty(key, val);
                 }
@@ -126,13 +126,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
     public void deleteAccommodation(String owner, String name) {
         String type = this.getType(owner, name);
         switch (type) {
-            case "Ξενοδοχείο":
+            case "Hotel":
                 hotels.remove(owner + name);
                 return;
-            case "Διαμέρισμα":
+            case "Apartment":
                 apartments.remove(owner + name);
                 return;
-            case "Μεζονέτα":
+            case "Maisonette":
                 maisonettes.remove(owner + name);
                 return;
         }

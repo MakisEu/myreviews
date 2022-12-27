@@ -105,13 +105,13 @@ public class AccommodationManagerUser extends AccommodationManager{
     public String[][] findType(String type) {
         int cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
-        if (type.equals("Ξενοδοχείο")) {
+        if (type.equals("Hotel")) {
             for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
                 Hotel value=entry.getValue();
                 h[cnt]=value.getOwner()+"#"+value.getName();
                 cnt++;
             }
-        } else if (type.equals("Διαμέρισμα")) {
+        } else if (type.equals("Apartment")) {
             for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
                 Apartment value=entry.getValue();
                 a[cnt]=value.getOwner()+"#"+value.getName();
@@ -175,17 +175,17 @@ public class AccommodationManagerUser extends AccommodationManager{
     public void addRating(String o, String n, String desc, float ra, String user, String date) {
         String type = this.getType(o, n);
         switch (type) {
-            case "Ξενοδοχείο":
+            case "Hotel":
                 if (hotels.get(o + n) != null) {
                     hotels.get(o + n).addRating(desc, ra, user, date);
                 }
                 break;
-            case "Διαμέρισμα":
+            case "Apartment":
                 if (apartments.get(o + n) != null) {
                     apartments.get(o + n).addRating(desc, ra, user, date);
                 }
                 break;
-            case "Μεζονέτα":
+            case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
                     maisonettes.get(o + n).addRating(desc, ra, user, date);
                 }
@@ -196,17 +196,17 @@ public class AccommodationManagerUser extends AccommodationManager{
     public void editRatings(String o, String n, String desc, float ra, String user) {
         String type = this.getType(o, n);
         switch (type) {
-            case "Ξενοδοχείο":
+            case "Hotel":
                 if (hotels.get(o + n) != null) {
                     hotels.get(o + n).editRating(user, desc, ra);
                 }
                 break;
-            case "Διαμέρισμα":
+            case "Apartment":
                 if (apartments.get(o + n) != null) {
                     apartments.get(o + n).editRating(user, desc, ra);
                 }
                 break;
-            case "Μεζονέτα":
+            case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
                     maisonettes.get(o + n).editRating(user, desc, ra);
                 }
@@ -217,17 +217,17 @@ public class AccommodationManagerUser extends AccommodationManager{
     public void deleteRating(String o, String n, String user) {
         String type = this.getType(o, n);
         switch (type) {
-            case "Ξενοδοχείο":
+            case "Hotel":
                 if (hotels.get(o + n) != null) {
                     hotels.get(o + n).deleteRating(user);
                 }
                 break;
-            case "Διαμέρισμα":
+            case "Apartment":
                 if (apartments.get(o + n) != null) {
                     apartments.get(o + n).deleteRating(user);
                 }
                 break;
-            case "Μεζονέτα":
+            case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
                     maisonettes.get(o + n).deleteRating(user);
                 }

@@ -75,7 +75,7 @@ public class Hotel extends  Accommodation implements Serializable {
      */
     @Override
     public String show() {
-        String x="Accommodation Type: Ξενοδοχείο"+"\n";
+        String x="Accommodation Type: Hotel"+"\n";
         x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
         x=x+"Stars:      "+String.valueOf(stars)+"\n";

@@ -39,13 +39,13 @@ public class AccommodationManager implements Serializable{
      */
     public String getType(String o, String n) {
         if (apartments.get(o+n)!=null) {
-            return "Διαμέρισμα";
+            return "Apartment";
         }
         else if (hotels.get(o+n)!=null) {
-            return "Ξενοδοχείο";
+            return "Hotel";
         }
         else if (maisonettes.get(o+n)!=null) {
-            return "Μεζονέτα";
+            return "Maisonette";
         }
         return null;
     }

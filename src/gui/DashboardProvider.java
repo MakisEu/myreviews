@@ -1,6 +1,6 @@
 package gui;
 
-import api.*;
+import api.Provider;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
