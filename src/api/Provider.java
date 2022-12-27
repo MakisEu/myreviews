@@ -149,12 +149,12 @@ public class Provider {
             m.setRoommates(Integer.parseInt(roommates));
         }
     }
-    /*public float getAllRatingsNumber(){
-        return amp.getRatingsNumber();
+    public int getAllRatingsNumber(String owner){
+        return amp.getRatingsNumber(owner);
     }
 
-    public double getAllAccommodationsGrades(){
-        return amp.getRatingAverage();
+    public double getAllAccommodationsGrades(String owner){
+        return amp.getRatingAverage(owner);
     }
 
     public void showAll(){
@@ -163,7 +163,7 @@ public class Provider {
 
     public String showOwned(){
         return amp.showOwned(owner);
-    }*/
+    }         //here
 
     public void deleteAccommodation(String n){
         amp.deleteAccommodation(owner,n);

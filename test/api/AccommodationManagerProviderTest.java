@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -190,4 +191,81 @@ public class AccommodationManagerProviderTest {
         AM.setAddress("someGuy2","4-story building in Antigonidon(Hotel)","center");
         assertEquals(expected,AM.getMaisonette("someGuy2","4-story building in Antigonidon(Hotel)").getAddress());
     }
+
+
+    @Test
+    public void getRatingsNumber() {
+        System.out.println("get Ratings Number:");
+        AccommodationManagerProvider AM = new AccommodationManagerProvider();
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+
+        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
+            if (entry.getValue().getOwner().equals("someGuy")) {
+                entry.getValue().addRating("SuperR!", 4, "KOSTAS", "1/1/2022");
+            }
+        }
+        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
+            if (entry.getValue().getOwner().equals("someGuy")) {
+                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022");
+            }
+        }
+        int excepted = 3;
+        System.out.println(AM.getRatingsNumber("someGuy"));
+        assertEquals(excepted, AM.getRatingsNumber("someGuy"));
+    }
+
+
+    @Test
+    public void getRatingAverage() {
+        System.out.println("get Ratings Average:");
+        AccommodationManagerProvider AM = new AccommodationManagerProvider();
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AM.addAccommodation("Ξενοδοχείο", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
+            if (entry.getValue().getOwner().equals("someGuy")) {
+                entry.getValue().addRating("ok!", 5, "gio", "1/1/2022");
+            }
+        }
+        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
+            if (entry.getValue().getOwner().equals("someGuy")) {
+                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022");
+            }
+        }
+        for (Map.Entry<String,Apartment> entry : AM.apartments.entrySet()) {
+            if (entry.getValue().getOwner().equals("someGuy")) {
+                entry.getValue().addRating("mid",2,"jim","24/9/2022");
+            }
+        }
+        double excepted=4.25;
+        System.out.println(AM.getRatingAverage("someGuy"));
+        assertEquals(excepted,AM.getRatingAverage("someGuy"),0.01);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
