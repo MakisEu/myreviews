@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class AllRegistered {
 
-    private HashMap<String,Registration> registered_users,registered_providers;
+    protected HashMap<String,Registration> registered_users,registered_providers;
 
     public AllRegistered(){
         registered_users=new HashMap<>();
