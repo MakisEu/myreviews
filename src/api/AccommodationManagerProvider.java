@@ -279,39 +279,52 @@ public class AccommodationManagerProvider extends AccommodationManager{
         }
     }
 
-    /*public float getRatingsNumber(){
+    public int getRatingsNumber(String owner){
         int sum=0;
         for (Map.Entry<String,Apartment> e:apartments.entrySet())
-            {
-            sum+=e.getValue().getRatingNumber();
-            }
+        {
+            if (e.getValue().getOwner().equals(owner))
+                sum+=e.getValue().getRatingNumber();
+        }
         for (Map.Entry<String,Hotel> e:hotels.entrySet())
-            {
+        {
+            if (e.getValue().getOwner().equals(owner))
                 sum+=e.getValue().getRatingNumber();
-            }
+        }
+
         for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
-            {
+        {
+            if (e.getValue().getOwner().equals(owner))
                 sum+=e.getValue().getRatingNumber();
-            }
-    return sum; //returns the number of ratings of all accommodations a user has offered
+        }
+        return sum; //returns the number of ratings of all accommodations a user has offered
     }
 
-    public double getRatingAverage(){
-        int sum=0;
+    public double getRatingAverage(String owner){
+        int sum=0,i=0,j=0,z=0;
         for (Map.Entry<String,Apartment> e:apartments.entrySet())
-            {
-                sum+=e.getValue().getRatingsAverage();
+        {
+            if (e.getValue().getOwner().equals(owner)) {
+                sum += e.getValue().getRatingsAverage();
+                i+=e.getValue().getRatingNumber();
             }
+        }
         for (Map.Entry<String,Hotel> e:hotels.entrySet())
-            {
-                sum+=e.getValue().getRatingsAverage();
+        {
+            if (e.getValue().getOwner().equals(owner)) {
+                sum += e.getValue().getRatingsAverage();
+                j+=e.getValue().getRatingNumber();
+
             }
-        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
-            {
-                sum+=e.getValue().getRatingsAverage();
+        }
+        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet()) {
+            if (e.getValue().getOwner().equals(owner)) {
+                sum += e.getValue().getRatingsAverage();
+                z+=e.getValue().getRatingNumber();
             }
-        return sum/(double)(apartments.size()+hotels.size()+maisonettes.size());
-    }*/
+        }
+        return sum/(double)(i+j+z);
+    }
 
 
 
