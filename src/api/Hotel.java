@@ -10,10 +10,6 @@ public class Hotel extends  Accommodation implements Serializable {
      *  */
     private int stars=0,floors=1;
     private  boolean hasSuite=false;
-    /**
-     * Empty Constructor
-     */
-    public  Hotel(){super();}
 
     /**Full Constructor
      * @param n     The name of the accommodation

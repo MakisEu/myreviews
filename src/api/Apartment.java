@@ -9,11 +9,6 @@ public class Apartment extends Accommodation{
     private int floor=1,space=2;
     private boolean guard=false,elevator=false;
 
-    /**
-     * Empty Constructor
-     */
-    public  Apartment(){super();}
-
     /**Full Constructor
      * @param n     The name of the accommodation
      * @param a     The address of the accommodation
