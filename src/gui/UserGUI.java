@@ -12,7 +12,8 @@ public class UserGUI extends JPanel {
     JButton searchButton;
     JFrame frame;
     JList list;
-    public UserGUI startGUI(){
+    public UserGUI startGUI(String name,String username){
+        service=new api.User(name,username);
         frame=new JFrame();
         frame.setTitle("Operations for users");
         frame.setSize(600,400);
@@ -28,7 +29,7 @@ public class UserGUI extends JPanel {
     }
 
     public static void main(String[] args) {
-        new UserGUI().startGUI();
+        new UserGUI().startGUI("someGuy2","SG2");
     }
 
 
