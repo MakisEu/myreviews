@@ -7,11 +7,6 @@ public class Maisonette extends  Accommodation {
      */
     private int roommates=0;
 
-    /**
-     * Empty Constructor
-     */
-    public  Maisonette(){super();}
-
     /**Full Constructor
      * @param n     The name of the accommodation
      * @param a     The address of the accommodation

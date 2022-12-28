@@ -23,19 +23,19 @@ public class AccommodationManagerUserTest {
     @Test
     public void findProperties() throws FileNotFoundException {
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Hotel", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AMP.updateProperty("someGuy","three-story building in Antigonidon(Hotel)","view","Sea");
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Apartment", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AMP.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","view","Sea");
         AMP.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","internet","fast");
         AMP.updateProperty("someGuy","three-story building in Antigonidon(Apartment)","laundry","yes");
-        AMP.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Maisonette", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.updateProperty("someGuy3","5-story building in Antigonidon(Maisonette)","view","Sea");
         AMP.updateProperty("someGuy3","5-story building in Antigonidon(Maisonette)","laundry","yes");
         AMP.destructor();
@@ -85,7 +85,7 @@ public class AccommodationManagerUserTest {
     public void addRating() throws FileNotFoundException {
         System.out.println("Add Accommodation Rating:");
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
@@ -97,7 +97,7 @@ public class AccommodationManagerUserTest {
     public void editRatings() throws FileNotFoundException {
         System.out.println("Edit Accommodation Rating:");
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
@@ -111,7 +111,7 @@ public class AccommodationManagerUserTest {
     public void deleteRating() throws FileNotFoundException {
         System.out.println("Delete Accommodation Rating:");
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
@@ -123,15 +123,15 @@ public class AccommodationManagerUserTest {
     @Test
     public void findName() throws FileNotFoundException {
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Μεζονέτα", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Hotel", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Apartment", "three-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Apartment", "5-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Maisonette", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Maisonette", "4-story building in Antigonidon", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
         String[][] n=AM.findName("three-story building in Antigonidon");
@@ -144,33 +144,33 @@ public class AccommodationManagerUserTest {
     @Test
     public void findType() throws FileNotFoundException {
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Hotel", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Apartment", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Maisonette", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        String[][] n=AM.findType("Ξενοδοχείο");
+        String[][] n=AM.findType("Hotel");
         System.out.println(Arrays.deepToString(n));
 
     }
     @Test
     public void findLocation() throws FileNotFoundException {
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Ξενοδοχείο", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Ξενοδοχείο", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Ξενοδοχείο", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Διαμέρισμα", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Διαμέρισμα", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Διαμέρισμα", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AMP.addAccommodation("Μεζονέτα", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AMP.addAccommodation("Μεζονέτα", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AMP.addAccommodation("Μεζονέτα", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Hotel", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Apartment", "three-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
+        AMP.addAccommodation("Maisonette", "three-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
+        AMP.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
+        AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
         String[][] n=AM.findLocation("Athens");

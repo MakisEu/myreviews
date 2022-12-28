@@ -1,5 +1,6 @@
 package api;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -148,5 +149,19 @@ public class AccommodationTest {
         instance.updateProperty("parking","yes");
         instance.show();
 
+    }
+    @Test
+    public void getRatingNumber(){
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
+        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02");
+        assertEquals(2,instance.getRatingNumber());
+    }
+    @Test
+    public void getRatingsAverage(){
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
+        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02");
+        assertEquals(3,instance.getRatingsAverage(),0.01);
     }
 }

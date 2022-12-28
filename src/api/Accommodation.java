@@ -21,8 +21,6 @@ public class Accommodation implements Serializable {
     private ArrayList<Rating> ratings;
     protected String name,address,TK,city,description,owner,UID;
     private Properties properties;
-    /** Empty Constructor */
-    public Accommodation(){ratings=new ArrayList<>();properties=new Properties();}
 
     /**
      * Normal Constructor:
@@ -102,6 +100,8 @@ public class Accommodation implements Serializable {
     /** Setter for address*/
     public void setName(String i){
         name=i;
+        String[] x=UID.split("#");
+        UID=x[0]+"#"+x[1]+"#"+name;
     }
 
     public void setAddress(String i){
@@ -162,7 +162,6 @@ public class Accommodation implements Serializable {
             }
         }
     }
-
     /**
      * @param key Name of property
      * @return value of property

@@ -191,9 +191,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setDescription(String o,String n,String desc) {
         String type = this.getType(o, n);
-        if (type.equals("Ξενοδοχείο"))
+        if (type.equals("Hotel"))
             this.getHotel(o, n).setDescription(desc);
-        else if (type.equals("Διαμέρισμα"))
+        else if (type.equals("Apartment"))
             this.getApartment(o, n).setDescription(desc);
         else {
             this.getMaisonette(o, n).setDescription(desc);}
@@ -209,13 +209,13 @@ public class AccommodationManagerProvider extends AccommodationManager{
         String type = this.getType(o, n);
 
 
-        if (type.equals("Ξενοδοχείο")){
+        if (type.equals("Hotel")){
             Hotel p=hotels.get(o+n);
             p.setName(name);
             hotels.remove(o+n);
             hotels.put(o+name,p);
         }
-        else if (type.equals("Διαμέρισμα")){
+        else if (type.equals("Apartment")){
             Apartment p=apartments.get(o+n);
             p.setName(name);
             apartments.remove(o+n);
@@ -237,9 +237,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setTK(String o,String n,String tk) {
         String type = this.getType(o, n);
-        if (type.equals("Ξενοδοχείο"))
+        if (type.equals("Hotel"))
             this.getHotel(o, n).setTK(tk);
-        else if (type.equals("Διαμέρισμα"))
+        else if (type.equals("Apartment"))
             this.getApartment(o, n).setTK(tk);
         else {
             this.getMaisonette(o, n).setTK(tk);}
@@ -253,9 +253,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setCity(String o,String n,String c) {
         String type = this.getType(o, n);
-        if (type.equals("Ξενοδοχείο"))
+        if (type.equals("Hotel"))
             this.getHotel(o, n).setCity(c);
-        else if (type.equals("Διαμέρισμα"))
+        else if (type.equals("Apartment"))
             this.getApartment(o, n).setCity(c);
         else {
             this.getMaisonette(o, n).setCity(c);
@@ -270,9 +270,9 @@ public class AccommodationManagerProvider extends AccommodationManager{
      */
     public void setAddress(String o,String n,String a) {
         String type = this.getType(o, n);
-        if (type.equals("Ξενοδοχείο"))
+        if (type.equals("Hotel"))
             this.getHotel(o, n).setAddress(a);
-        else if (type.equals("Διαμέρισμα"))
+        else if (type.equals("Apartment"))
             this.getApartment(o, n).setAddress(a);
         else {
             this.getMaisonette(o, n).setAddress(a);
