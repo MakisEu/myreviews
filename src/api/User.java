@@ -13,6 +13,15 @@ public class User {
         username=u;
         amu=new AccommodationManagerUser();
     }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
     public void AddRating(String on,String rating,float score){
         String[] x=on.split("#");
         amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
