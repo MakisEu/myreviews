@@ -10,9 +10,9 @@ import java.io.FileNotFoundException;
 
 public class AccommodationManagerUserGui extends JPanel implements ActionListener {
     User service;
-    JButton button_Search,button_Rate;
+    JButton button_Search,button_Rate,button_Edit,button_Delete;
     JTextField textField_Type, textField_City, textField_Name, textField_Prop,textField_Description,textField_Grade,textField_Rate;
-    JLabel label1,label2,label3,label4,rate,grade,desc;
+    JLabel label1,label2,label3,label4,rate,grade,desc,label5;
     JPanel panel1,panel2,panel3,panel4;
 
     public AccommodationManagerUserGui newGui(User s) {
@@ -46,31 +46,52 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         panel1.add(label4);
         panel1.add(textField_Prop);
         add(panel1,BorderLayout.NORTH);
-
-        panel2=new JPanel();
-        panel2=new JPanel((new GridLayout(4,1)));
-        //panel2.setBackground(Color.red);
-        add(panel2,BorderLayout.CENTER);
-
         panel1.add(button_Search);
 
+        panel2=new JPanel();
+        panel2=new JPanel((new GridLayout(5,1)));
+        rate=new JLabel("Name of accommodation:");
+        grade=new JLabel("Grade:");
+        desc=new JLabel("Description:");
+        panel2.add(rate);
+        textField_Rate=new JTextField(10);
+        panel2.add(textField_Rate);
+        panel2.add(grade);
+        textField_Grade=new JTextField(10);
+        panel2.add(textField_Grade);
+        panel2.add(desc);
+        textField_Description=new JTextField(10);
+        panel2.add(textField_Description);
+        button_Rate=new JButton("Rate");
+        button_Rate.setBackground(Color.orange);
+        panel2.add(button_Rate);
+        add(panel2,BorderLayout.CENTER);
 
+        button_Edit=new JButton("Edit Rating");
+        button_Delete=new JButton("Delete Rating");
+        button_Edit.setBackground(Color.orange);
+        button_Delete.setBackground(Color.red);
+        panel2.add(button_Edit);
+        panel2.add(button_Delete);
+        //label5=new JLabel("If you want to delete a rating give only the name of it");
+        //panel2.add(label5);
+
+
+        button_Edit.addActionListener(this);
+        button_Delete.addActionListener(this);
+        button_Rate.addActionListener(this);
         button_Search.addActionListener(this);
-
         return this;
-
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //System.out.println("hi");
-
     String ct=textField_City.getText();
     String tp=textField_Type.getText();
     String nm=textField_Name.getText();
     String[] prp=textField_Prop.getText().split(",");
-
     if (e.getActionCommand().equals("Search")){
         System.out.println(ct+","+tp+","+nm+","+prp.length);
         if (ct.length()<1)
@@ -86,46 +107,30 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         String[] all=new String[2];//=service.Search(ct,tp,nm,prp);
         all[0]="ena";
         all[1]="dio";
+        System.out.println(all[0].length());
         for (int i=0;i<all.length;i++) {
             System.out.println(all[i]);
         }
 
-        if (!(all.length<1)){
-            rate=new JLabel("Rate:");
-            grade=new JLabel("Grade:");
-            desc=new JLabel("Description:");
-
-            panel2.add(rate);
-            textField_Rate=new JTextField(10);
-            panel2.add(textField_Rate);
-
-            panel2.add(grade);
-            textField_Grade=new JTextField(10);
-            panel2.add(textField_Grade);
-
-            panel2.add(desc);
-            textField_Description=new JTextField(10);
-            panel2.add(textField_Description);
-
-
-            button_Rate=new JButton("Rate");
-            button_Rate.setBackground(Color.orange);
-            panel2.add(button_Rate);
-            button_Rate.addActionListener(this);
-
-            this.validate();
-            //String[] tx=textField_Rate.getText().split(",",2);
-            for (int i=0;i<all.length;i++) {
-                if (textField_Rate.getText().equals(all[i]) && e.getActionCommand().equals("Rate")){
-                    service.AddRating(textField_Rate.getText(),textField_Description.getText(),Integer.parseInt(textField_Grade.getText().replaceAll("[^0-9]", "")));
+        boolean flag=false;
+        if (e.getActionCommand().equals("Rate")) {
+            System.out.println("hello world");
+            for (int i=0;i<all.length && !flag;i++)
+            {
+                //System.out.println(textField_Rate.getText()+"anigga");
+                if (all[i].contains(textField_Rate.getText())) {
+                    System.out.println("okkk");
+                    service.AddRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
+                    JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
+                    flag=true;
                 }
             }
+            //if (e.getActionCommand().equals("Edit")){
 
+                //}
         }
 
-
-
-        }
+    }
 
 
 
