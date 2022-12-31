@@ -100,7 +100,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                 if (prp[i].length() < 1)
                     prp[i] = "";
             }
-            //all = new String[2];//=service.Search(ct,tp,nm,prp);
+            //all=service.Search(ct,tp,nm,prp);
             all=Arrays.copyOf(all,2);
             all[0] = "e#a";
             all[1] = "d#o";
@@ -113,7 +113,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         if (e.getActionCommand().equals("Rate")) {
             for (int i = 0; i < all.length && !flag; i++) {
                 if (textField_Rate.getText().equals(all[i])) {
-                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),4);
+                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText()));
                     JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
                     flag = true;
                 }
