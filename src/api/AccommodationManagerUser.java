@@ -173,7 +173,9 @@ public class AccommodationManagerUser extends AccommodationManager{
             return  b;
         }
     public void addRating(String o, String n, String desc, float ra, String user, String date) {
+        //System.out.println(o+" "+n+" "+desc+" "+ra+" "+user+" "+date);
         String type = this.getType(o, n);
+        System.out.println("all ok");
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
