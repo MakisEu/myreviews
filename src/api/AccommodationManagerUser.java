@@ -1,5 +1,6 @@
 package api;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class AccommodationManagerUser extends AccommodationManager{
@@ -236,4 +237,37 @@ public class AccommodationManagerUser extends AccommodationManager{
                 break;
         }
     }
+
+    public String[] allRatings(String o, String n, String username) {
+        String[] all=new String[0];
+        int k=0;
+        String type = this.getType(o, n);
+        switch (type) {
+            case "Hotel":
+                for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+                    all= Arrays.copyOf(all,k+1);
+                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
+                }
+                break;
+            case "Apartment":
+                for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+                    all= Arrays.copyOf(all,k+1);
+                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
+                }
+                break;
+            case "Maisonette":
+                for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
+                    all= Arrays.copyOf(all,k+1);
+                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
+                }
+        }
+        return all;
+    }
+
+
+
+
+
+
+
 }

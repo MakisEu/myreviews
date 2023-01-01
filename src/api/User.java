@@ -34,6 +34,12 @@ public class User {
         String[] x=on.split("#");
         amu.deleteRating(x[0],x[1],username);
     }
+
+    public void allRatings(String on){
+        String[] x=on.split("#");
+        amu.allRatings(x[0],x[1],username);
+    }
+
     public String[] Search(String city,String type,String name,String[] prop){
         String[][] temp;
         String[] t;

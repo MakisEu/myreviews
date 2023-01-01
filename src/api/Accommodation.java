@@ -51,6 +51,15 @@ public class Accommodation implements Serializable {
         ratings.add(r);
     }
 
+    public Rating getRating(String username){
+        for (Rating r:ratings) {
+            if (r.getUser().equals(username)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
 
     public int getRatingNumber(){
         return ratings.size();
