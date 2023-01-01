@@ -37,7 +37,7 @@ public class Helper {
                 Apartment a = service.getApartment(name);
                 if (a != null) {
                     if (command) {
-                        service.setApartment(change[0], change[1], change[2], change[3], a);
+                        new Helper2().setApartment(change[0], change[1], change[2], change[3], a);
                     }
                     acc = a;
                 } else {
@@ -50,7 +50,7 @@ public class Helper {
                 Hotel h = service.getHotel(name);
                 if (h != null) {
                     if (command) {
-                        service.setHotel(change[0], change[1], change[2], h);
+                        new Helper2().setHotel(change[0], change[1], change[2], h);
                     }
                     acc = h;
                 } else {
@@ -64,7 +64,7 @@ public class Helper {
                 Maisonette m = service.getMaisonette(name);
                 if (m != null) {
                     if (command) {
-                        service.setMaisonette(change[0], m);
+                        new Helper2().setMaisonette(change[0], m);
                     }
                     acc = m;
                 } else {

@@ -123,8 +123,8 @@ public class AccommodationManagerProvider extends AccommodationManager{
      * @param owner The owner of the accommodation
      * @param name  The name of the accommodation
      */
-    public void deleteAccommodation(String owner, String name) {
-        String type = this.getType(owner, name);
+    public void deleteAccommodation(String owner, String name,String type) {
+        //String type = this.getType(owner, name);
         switch (type) {
             case "Hotel":
                 hotels.remove(owner + name);
@@ -189,7 +189,7 @@ public class AccommodationManagerProvider extends AccommodationManager{
      * @param n The name of the accommodation
      * @param desc The new description of the accommodation
      */
-    public void setDescription(String o,String n,String desc) {
+    /*public void setDescription(String o,String n,String desc) {
         String type = this.getType(o, n);
         if (type.equals("Hotel"))
             this.getHotel(o, n).setDescription(desc);
@@ -197,7 +197,7 @@ public class AccommodationManagerProvider extends AccommodationManager{
             this.getApartment(o, n).setDescription(desc);
         else {
             this.getMaisonette(o, n).setDescription(desc);}
-    }
+    }*/
 
     /**
      * Setter for the name of a specified accommodation
@@ -228,14 +228,14 @@ public class AccommodationManagerProvider extends AccommodationManager{
             maisonettes.put(o+name,p);
         }
     }
-
+/*
     /**
      * Setter for the postal code of a specified accommodation
      * @param o The owner of the accommodation
      * @param n The name of the accommodation
      * @param tk The postal code of the accommodation
      */
-    public void setTK(String o,String n,String tk) {
+    /*public void setTK(String o,String n,String tk) {
         String type = this.getType(o, n);
         if (type.equals("Hotel"))
             this.getHotel(o, n).setTK(tk);
@@ -261,14 +261,14 @@ public class AccommodationManagerProvider extends AccommodationManager{
             this.getMaisonette(o, n).setCity(c);
         }
     }
-
+/*
     /**
      * Setter for the address of a specified accommodation
      * @param o The owner of the accommodation
      * @param n The name of the accommodation
      * @param a The address of the accommodation
      */
-    public void setAddress(String o,String n,String a) {
+    /*public void setAddress(String o,String n,String a) {
         String type = this.getType(o, n);
         if (type.equals("Hotel"))
             this.getHotel(o, n).setAddress(a);
@@ -277,7 +277,7 @@ public class AccommodationManagerProvider extends AccommodationManager{
         else {
             this.getMaisonette(o, n).setAddress(a);
         }
-    }
+    }*/
 
     public int getRatingsNumber(String owner){
         int sum=0;

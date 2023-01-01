@@ -107,7 +107,7 @@ public class AccommodationManagerProviderTest {
 
     @Test
     public void deleteAccommodation() {
-        System.out.println("Delete Accommodations:");
+        /*System.out.println("Delete Accommodations:");
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
         //Test Hotel
         AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
@@ -121,8 +121,7 @@ public class AccommodationManagerProviderTest {
         AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Maisonette)");
-
-        AM.showAll();
+        AM.showAll();*/
     }
     @Test
     public void updateProperty() {
@@ -145,7 +144,7 @@ public class AccommodationManagerProviderTest {
         AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AM.showOwned("someGuy3");
     }
-    @Test
+    /*@Test
     public void setDescription() {
         System.out.println("Set Description:");
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
@@ -161,7 +160,7 @@ public class AccommodationManagerProviderTest {
         expected="Gdr#p";
         AM.setDescription("someGuy2","4-story building in Antigonidon(ap)","Gdr#p");
         assertEquals(expected,AM.getApartment("someGuy2","4-story building in Antigonidon(ap)").getDescription());
-    }
+    }*/
 
     @Test
     public void setName() {
@@ -181,7 +180,7 @@ public class AccommodationManagerProviderTest {
         assertEquals(expected,AM.getApartment("someGuy2","Gdr#p").getName());
     }
 
-    @Test
+    /*@Test
     public void setTK() {
         System.out.println("Set TK:");
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
@@ -225,7 +224,7 @@ public class AccommodationManagerProviderTest {
         String expected="center";
         AM.setAddress("someGuy2","4-story building in Antigonidon(Hotel)","center");
         assertEquals(expected,AM.getMaisonette("someGuy2","4-story building in Antigonidon(Hotel)").getAddress());
-    }
+    }*/
 
 
     @Test

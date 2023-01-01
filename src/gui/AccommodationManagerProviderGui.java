@@ -90,11 +90,10 @@ public class AccommodationManagerProviderGui extends JPanel implements ActionLis
         this.setVisible(true);
         return this;
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        String[] temp = textField_UID.getText().split("#",-1);
-        Accommodation acc;
+        String[] temp = textField_UID.getText().split("#",-1);}
+        /*Accommodation acc;
         String[] temp2 = textField_Change.getText().split(",",-1);
         String[] temp3 = textField_Edit.getText().split(",",-1);
         String[] prop = textField_Prop.getText().split(",");
@@ -149,7 +148,7 @@ public class AccommodationManagerProviderGui extends JPanel implements ActionLis
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
-    }
+    }*/
 
     public static void main(String[] args) {
         Provider p=new Provider("someGuy","SG");

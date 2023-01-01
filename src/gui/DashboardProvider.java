@@ -1,5 +1,6 @@
 package gui;
 
+import api.Hotel;
 import api.Provider;
 
 import javax.swing.*;
@@ -63,7 +64,8 @@ public class DashboardProvider extends JPanel implements  ActionListener{
         if (p[1].equals("Apartment")) {
             jTextArea.setText(service.getApartment(p[0]).show());}
         if (p[1].equals("Hotel")){
-            jTextArea.setText(service.getHotel(p[0]).show());}
+            Hotel ac=service.getHotel(p[0]);
+            jTextArea.setText(ac.show());}
         if (p[1].equals("Maisonette")){
             jTextArea.setText(service.getMaisonette(p[0]).show());}}
     }

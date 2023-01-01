@@ -12,13 +12,14 @@ public class ProviderGUI extends JFrame{
         service=new api.Provider(username,first_name);
         //JPanel p=new JPanel();
         this.setTitle("Accommodation Management");
-        this.setSize(1600, 400);
+        this.setSize(1600, 500);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         tabs=new JTabbedPane();
 
         tabs.add("Dashboard",new DashboardProvider().startGUI(service));
-        tabs.add("Accommodation Manager",new AccommodationManagerProviderGui().startGUI(service));
+        //tabs.add("Accommodation Manager",new AccommodationManagerProviderGui().startGUI(service));
+        tabs.add("Accommodation Manager",new AMPGUIEdit_Add().startGUI(service));
         this.add(tabs);
         this.setVisible(true);
     }
