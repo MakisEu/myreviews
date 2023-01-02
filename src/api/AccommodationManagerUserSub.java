@@ -78,21 +78,20 @@ public class AccommodationManagerUserSub extends AccommodationManager{
             case "Hotel":
                 for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
+                    all[k++]=entry.getValue().getName()+","+"Hotel,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();
                 }
                 break;
             case "Apartment":
                 for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
-                }
+                    all[k++]=entry.getValue().getName()+","+"Apartment,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
                 break;
             case "Maisonette":
                 for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getRating(username).getRatingDescription()+" "+entry.getValue().getRating(username).getGrade()+" "+entry.getValue().getRating(username).getDate();
+                    all[k++]=entry.getValue().getName()+","+"Maisonette,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
+                break;
                 }
-        }
         return all;
     }
 }

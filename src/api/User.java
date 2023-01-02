@@ -26,6 +26,21 @@ public class User {
         String[] x=on.split("#");
         amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
     }
+
+   public Apartment getApartment(String o,String n)  {
+       return amu.getApartment(o,n);
+   }
+
+    public Hotel getHotel(String o,String n)  {
+        return amu.getHotel(o,n);
+    }
+
+    public Maisonette getMaisonette(String o,String n)  {
+        return amu.getMaisonette(o,n);
+    }
+
+
+
     public void EditRating(String on,String rating,float score){
         String[] x=on.split("#");
         amu.editRatings(x[0],x[1],rating,score,username);

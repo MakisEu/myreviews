@@ -1,5 +1,6 @@
 package gui;
 
+import api.Hotel;
 import api.User;
 
 import javax.swing.*;
@@ -60,10 +61,15 @@ public class DashboardUser extends JPanel implements  ActionListener{
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         //set text on right here
         String s = (String) jList.getSelectedValue();
-
-
-
-
+        //String[] strings = service.allRatings(service.getUsername());
+        if (s!=null){
+            String[] p=s.split(",");
+            if (p[1].equals("Apartment")) {
+                jTextArea.setText(service.getApartment(p[2],p[0]).show());}
+            if (p[1].equals("Hotel")){
+                jTextArea.setText(service.getHotel(p[2],p[0]).show());}
+            if (p[1].equals("Maisonette")){
+                jTextArea.setText(service.getMaisonette(p[2],p[0]).show());}}
     }
 
     @Override
