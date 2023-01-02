@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import api.*;
 import java.awt.*;
 import java.util.Arrays;
+import javax.swing.JPanel;
 import java.io.FileNotFoundException;
 
 public class AccommodationManagerUserGui extends JPanel implements ActionListener {
@@ -14,12 +15,13 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
     JButton button_Search, button_Rate, button_Edit, button_Delete;
     JTextField textField_Type, textField_City, textField_Name, textField_Prop, textField_Description, textField_Grade, textField_Rate;
     JLabel label1, label2, label3, label4, rate, grade, desc, label5;
-    JPanel panel1, panel2, panel3, panel4;
+    JPanel panel1, panel2,panel3;
+    JList<String> list;
     String[] all=new String[0];
 
     public AccommodationManagerUserGui newGui(User s) {
         service = s;
-        this.setSize(1300, 300);
+        this.setSize(1400, 300);
         //this.setLayout(new FlowLayout());
         //this.setLayout(new BorderLayout());
         button_Search = new JButton("Search");
@@ -43,11 +45,14 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         panel1.add(textField_Name);
         panel1.add(label4);
         panel1.add(textField_Prop);
-        add(panel1, BorderLayout.NORTH);
+        panel1.setLayout(new FlowLayout());
         panel1.add(button_Search);
+        panel1.setBackground(Color.GRAY);
+        this.add(panel1);
 
         panel2 = new JPanel();
-        panel2 = new JPanel((new GridLayout(5, 1)));
+        panel2.setLayout(new FlowLayout());
+        panel2.setBackground(Color.gray);
         rate = new JLabel("Name of accommodation:");
         grade = new JLabel("Grade:");
         desc = new JLabel("Description:");
@@ -63,7 +68,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         button_Rate = new JButton("Rate");
         button_Rate.setBackground(Color.orange);
         panel2.add(button_Rate);
-        add(panel2, BorderLayout.CENTER);
+        this.add(panel2);
 
         button_Edit = new JButton("Edit Rating");
         button_Delete = new JButton("Delete Rating");
@@ -72,10 +77,16 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         panel2.add(button_Edit);
         panel2.add(button_Delete);
 
+     /*   panel3=new JPanel();
+        panel3.setLayout(new FlowLayout());
+        panel3.setBackground(Color.magenta);
+        this.add(panel3);*/
+
         button_Edit.addActionListener(this);
         button_Delete.addActionListener(this);
         button_Rate.addActionListener(this);
         button_Search.addActionListener(this);
+
         return this;
     }
 
@@ -104,6 +115,12 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
             all=Arrays.copyOf(all,2);
             all[0] = "e#a";
             all[1] = "d#o";
+            DefaultListModel<String> myList=new DefaultListModel<>();
+            list=new JList<>(myList);
+            this.add(list);
+            for (String s : all)
+                myList.addElement(s);
+            panel3.add(list);
             if (all.length < 1) {
                 JOptionPane.showMessageDialog(this, "There are no accommodations with these elements", "Accommodation not found", JOptionPane.ERROR_MESSAGE);
             }
