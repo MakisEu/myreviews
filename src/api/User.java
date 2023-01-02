@@ -50,9 +50,9 @@ public class User {
         amu.deleteRating(x[0],x[1],username);
     }
 
-    public String[] allRatings(String on){
-        String[] x=on.split("#"),all;
-        all=amu.allRatings(x[0],x[1],username);
+    public String[] allRatings(){
+        String[] all;
+        all=amu.allRatings(username);
         return all;
     }
 

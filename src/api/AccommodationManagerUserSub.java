@@ -69,29 +69,20 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         }
     }
 
-    public String[] allRatings(String o, String n, String username) {
+    public String[] allRatings(String username) {
         String[] all=new String[0];
         int k=0;
-        //double mean=0;
-        String type = this.getType(o, n);
-        switch (type) {
-            case "Hotel":
                 for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
                     all[k++]=entry.getValue().getName()+","+"Hotel,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();
                 }
-                break;
-            case "Apartment":
                 for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
                     all[k++]=entry.getValue().getName()+","+"Apartment,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
-                break;
-            case "Maisonette":
+
                 for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
                     all= Arrays.copyOf(all,k+1);
                     all[k++]=entry.getValue().getName()+","+"Maisonette,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
-                break;
-                }
         return all;
     }
 }

@@ -19,7 +19,7 @@ public class DashboardUser extends JPanel implements  ActionListener{
     JButton refresh;
     public void updateList(){
         jList.setModel(new AbstractListModel() {
-            String[] strings = service.allRatings(service.getUsername());
+            String[] strings = service.allRatings();
 
             @Override
             public int getSize() {
@@ -47,6 +47,8 @@ public class DashboardUser extends JPanel implements  ActionListener{
         jTextArea = new JTextArea();
         refresh=new JButton("Refresh list");
 
+        //System.out.println(service.allRatings().length);
+
         updateList();
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
@@ -61,7 +63,6 @@ public class DashboardUser extends JPanel implements  ActionListener{
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         //set text on right here
         String s = (String) jList.getSelectedValue();
-        //String[] strings = service.allRatings(service.getUsername());
         if (s!=null){
             String[] p=s.split(",");
             if (p[1].equals("Apartment")) {
