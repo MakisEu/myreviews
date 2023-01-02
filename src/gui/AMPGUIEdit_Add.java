@@ -40,7 +40,7 @@ public class AMPGUIEdit_Add extends JPanel implements ActionListener {
         textField_Prop = new JTextField(10);
         textField_Special=new JTextField();
 
-        UID=new JLabel("UID of accommodation(only required by Edit and Delete)");
+        UID=new JLabel("UID of accommodation(only required by Edit and is \"Delete\"'s only field)");
         Name=new JLabel("Name");
         PostalCode=new JLabel("Postal Code");
         City=new JLabel("City");
@@ -140,7 +140,7 @@ public class AMPGUIEdit_Add extends JPanel implements ActionListener {
                 Hotel ac=service.getHotel(uid[2]);
                 if(special.length==3)
                 {new Helper2().setHotel(special[0],special[1],special[2],ac);}
-                else if (special.length!=0){
+                else if (!(special.length==1 && special[0].equals(""))){
                     JOptionPane.showMessageDialog(this, "Incorrect amount of special fields. Special fields will not be edited.", "Edited Successfully(Partially)", JOptionPane.ERROR_MESSAGE);}
                 acc=ac;
 
@@ -149,7 +149,7 @@ public class AMPGUIEdit_Add extends JPanel implements ActionListener {
                 Maisonette ac=service.getMaisonette(uid[2]);
                 if(special.length==1)
                 {new Helper2().setMaisonette(special[0],ac);}
-                else if (special.length!=0){
+                else if (special.length!=1 && special[0].equals("")){
                     JOptionPane.showMessageDialog(this, "Incorrect amount of special fields. Special fields will not be edited.", "Edited Successfully(Partially)", JOptionPane.ERROR_MESSAGE);
                 }
                 acc=ac;
@@ -158,7 +158,7 @@ public class AMPGUIEdit_Add extends JPanel implements ActionListener {
                 Apartment ac=service.getApartment(uid[2]);
                 if(special.length==4)
                 {new Helper2().setApartment(special[0],special[1],special[2],special[3],ac);}
-                else if (special.length!=0){
+                else if (special.length!=1 && special[0].equals("")){
                     JOptionPane.showMessageDialog(this, "Incorrect amount of special fields. Special fields will not be edited.", "Edited Successfully(Partially)", JOptionPane.ERROR_MESSAGE);
                 }
                 acc=ac;

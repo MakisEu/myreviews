@@ -3,23 +3,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login {
+    AllRegistered R;
 
     public Login(){
+        R=new AllRegistered();
+
 
     }
 
-    void log_in(String username,String password,AllRegistered R){
-        if (R.registered_users.get(username).getUsername().equals(username) && R.registered_users.get(username).getPassword().equals(password))
+    public String log_in(String username,String password){
+        if (R.registered_users.get(username)!=null)
             {
-            System.out.println("Επιτυχής σύνδεση!");
+                Registration r=R.registered_users.get(username);
+                if (r.getUsername().equals(username) && r.getPassword().equals(password))
+                    return  "User"+"#"+R.registered_users.get(username).getName();
             }
-        else if (R.registered_providers.get(username).getUsername().equals(username) && R.registered_providers.get(username).getPassword().equals(password))
+        else if (R.registered_providers.get(username)!=null)
             {
-            System.out.println("Επιτυχής σύνδεση!");
+                Registration r=R.registered_providers.get(username);
+                if (r.getUsername().equals(username) && r.getPassword().equals(password))
+                    return "Provider"+"#"+R.registered_providers.get(username).getName();
             }
-        else
-            System.out.println("Λάθος στοιχεία");
+        return null;
 
     }
-
 }

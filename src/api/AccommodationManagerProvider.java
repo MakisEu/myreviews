@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /** Class AccommodationManagerProvider is a class that provides all the functionalities of a provider*/
-public class AccommodationManagerProvider extends AccommodationManager{
+public class AccommodationManagerProvider extends AccommodationManagerProviderSub{
     /**
      * Empty constructor. Calls inherited constructor
      */
@@ -137,68 +137,6 @@ public class AccommodationManagerProvider extends AccommodationManager{
                 return;
         }
     }
-
-    /**
-     * Method that shows all accommodation owned by an owner
-     * @param owner The owner
-     */
-    public String showOwned(String owner) {
-        String x = "";
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            Apartment value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            Hotel value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
-        return x;
-    }
-    public ArrayList<Apartment> getOwnedApartments(String owner){
-        ArrayList<Apartment> a=new ArrayList<>();
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            Apartment value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                a.add(value);}}
-        return a;
-    }
-    public ArrayList<Hotel> getOwnedHotels(String owner){
-        ArrayList<Hotel> a=new ArrayList<>();
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            Hotel value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                a.add(value);}}
-        return a;
-    }
-    public ArrayList<Maisonette> getOwnedMaisonettes(String owner){
-        ArrayList<Maisonette> a=new ArrayList<>();
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value=entry.getValue();
-            if (value.getOwner().equals(owner)) {
-                a.add(value);}}
-        return a;
-    }
-
-    /**
-     * Setter for the description of a specified accommodation
-     * @param o The owner of the accommodation
-     * @param n The name of the accommodation
-     * @param desc The new description of the accommodation
-     */
-    /*public void setDescription(String o,String n,String desc) {
-        String type = this.getType(o, n);
-        if (type.equals("Hotel"))
-            this.getHotel(o, n).setDescription(desc);
-        else if (type.equals("Apartment"))
-            this.getApartment(o, n).setDescription(desc);
-        else {
-            this.getMaisonette(o, n).setDescription(desc);}
-    }*/
-
     /**
      * Setter for the name of a specified accommodation
      * @param o The owner of the accommodation
@@ -227,103 +165,6 @@ public class AccommodationManagerProvider extends AccommodationManager{
             maisonettes.remove(o+n);
             maisonettes.put(o+name,p);
         }
-    }
-/*
-    /**
-     * Setter for the postal code of a specified accommodation
-     * @param o The owner of the accommodation
-     * @param n The name of the accommodation
-     * @param tk The postal code of the accommodation
-     */
-    /*public void setTK(String o,String n,String tk) {
-        String type = this.getType(o, n);
-        if (type.equals("Hotel"))
-            this.getHotel(o, n).setTK(tk);
-        else if (type.equals("Apartment"))
-            this.getApartment(o, n).setTK(tk);
-        else {
-            this.getMaisonette(o, n).setTK(tk);}
-    }
-
-    /**
-     * Setter for the postal code of a specified accommodation
-     * @param o The owner of the accommodation
-     * @param n The name of the accommodation
-     * @param c The city of the accommodation
-     */
-    public void setCity(String o,String n,String c) {
-        String type = this.getType(o, n);
-        if (type.equals("Hotel"))
-            this.getHotel(o, n).setCity(c);
-        else if (type.equals("Apartment"))
-            this.getApartment(o, n).setCity(c);
-        else {
-            this.getMaisonette(o, n).setCity(c);
-        }
-    }
-/*
-    /**
-     * Setter for the address of a specified accommodation
-     * @param o The owner of the accommodation
-     * @param n The name of the accommodation
-     * @param a The address of the accommodation
-     */
-    /*public void setAddress(String o,String n,String a) {
-        String type = this.getType(o, n);
-        if (type.equals("Hotel"))
-            this.getHotel(o, n).setAddress(a);
-        else if (type.equals("Apartment"))
-            this.getApartment(o, n).setAddress(a);
-        else {
-            this.getMaisonette(o, n).setAddress(a);
-        }
-    }*/
-
-    public int getRatingsNumber(String owner){
-        int sum=0;
-        for (Map.Entry<String,Apartment> e:apartments.entrySet())
-        {
-            if (e.getValue().getOwner().equals(owner))
-                sum+=e.getValue().getRatingNumber();
-        }
-        for (Map.Entry<String,Hotel> e:hotels.entrySet())
-        {
-            if (e.getValue().getOwner().equals(owner))
-                sum+=e.getValue().getRatingNumber();
-        }
-
-        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
-        {
-            if (e.getValue().getOwner().equals(owner))
-                sum+=e.getValue().getRatingNumber();
-        }
-        return sum; //returns the number of ratings of all accommodations a user has offered
-    }
-
-    public double getRatingAverage(String owner){
-        int sum=0,i=0,j=0,z=0;
-        for (Map.Entry<String,Apartment> e:apartments.entrySet())
-        {
-            if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
-                i+=e.getValue().getRatingNumber();
-            }
-        }
-        for (Map.Entry<String,Hotel> e:hotels.entrySet())
-        {
-            if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
-                j+=e.getValue().getRatingNumber();
-
-            }
-        }
-        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet()) {
-            if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
-                z+=e.getValue().getRatingNumber();
-            }
-        }
-        return sum/(double)(i+j+z);
     }
 
 

@@ -1,9 +1,10 @@
 package api;
 
+import java.io.Serializable;
 import java.net.PasswordAuthentication;
 import java.util.ArrayList;
 
-public class Registration {
+public class Registration implements Serializable {
 
     private String Username, Password, Name, Surname, user_type;
 
@@ -33,6 +34,14 @@ public class Registration {
 
     public String getPassword() {
         return Password;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 }
 

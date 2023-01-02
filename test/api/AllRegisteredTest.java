@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import java.io.PrintWriter;
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,6 +15,9 @@ public class AllRegisteredTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("Accounts.dat");
+        pw.close();
+
     }
 
     @Test
@@ -23,6 +28,7 @@ public class AllRegisteredTest {
         R.add_registration("FranzLiszt","piano123","Franz","Liszt","User");
         //Registration expected=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
         String expected="Liszt";
+        R.add_registration("someGuy","1234567","SG","someOtherGuy","Provider");
         assertEquals(expected,reg.getSurname());
 
     }

@@ -1,29 +1,30 @@
 package gui;
 
 import api.Provider;
+import api.User;
 
 import javax.swing.*;
 
-public class ProviderGUI extends JFrame{
+public class StartScreenGUI extends JFrame{
     JTabbedPane tabs;
-    Provider service;
+    Provider serviceP;
+    User serviceU;
 
     public void g(String username,String first_name){
-        service=new api.Provider(username,first_name);
         //JPanel p=new JPanel();
-        this.setTitle("Accommodation Management");
-        this.setSize(1600, 500);
+        this.setTitle("My Reviews");
+        this.setSize(250, 400);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         tabs=new JTabbedPane();
-
-        tabs.add("Dashboard",new DashboardProvider().startGUI(service));
+        tabs.add("Log in",new LoginGUI().startGui());
         //tabs.add("Accommodation Manager",new AccommodationManagerProviderGui().startGUI(service));
-        tabs.add("Accommodation Manager",new AMPGUIEdit_Add().startGUI(service));
+        tabs.add("Sign up",new SignupGUI().startGui());
         this.add(tabs);
         this.setVisible(true);
     }
-     public static void main(String[] args) {
-        new ProviderGUI().g("someGuy","SG");
+    public static void main(String[] args) {
+        new StartScreenGUI().g("someGuy","SG");
     }
 }
+

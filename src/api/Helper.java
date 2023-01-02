@@ -4,7 +4,7 @@ package api;
 public class Helper {
 
     public  void updateProperties(Accommodation acc,String[] pr){
-        if(pr.length<1){
+        if(pr.length>1){
             for (String pro:pr){
                 String[] keyval=pro.split("-");
                 acc.updateProperty(keyval[0],keyval[1]);
@@ -29,7 +29,7 @@ public class Helper {
         }
         return ac;
     }
-    public Accommodation Change(String type,String name,Provider service,String[] change,boolean command){
+    /*public Accommodation Change(String type,String name,Provider service,String[] change,boolean command){
         Accommodation acc = null;
         switch (type) {
             case "a":
@@ -74,7 +74,7 @@ public class Helper {
                 break;
         }
         return acc;
-    }
+    }*/
     public String getTitle(String type){
         switch (type) {
             case "a":
@@ -86,7 +86,7 @@ public class Helper {
         }
         return null;
     }
-    public String UIDResolve(String uid){
+    /*public String UIDResolve(String uid){
         return uid.split("#")[1]+"#"+uid.split("#")[2];
-    }
+    }*/
 }
