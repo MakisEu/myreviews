@@ -116,10 +116,10 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                 if (prp[i].length() < 1)
                     prp[i] = "";
             }
-            //all=service.Search(ct,tp,nm,prp);
-            all=Arrays.copyOf(all,2);
-            all[0] = "e#a";
-            all[1] = "d#o";
+            all=service.Search(ct,tp,nm,prp);
+            //all=Arrays.copyOf(all,2);
+            //all[0] = "e#a";
+            //all[1] = "d#o";
             DefaultListModel<String> myList=new DefaultListModel<>();
             list=new JList<>(myList);
             for (String s:all)
