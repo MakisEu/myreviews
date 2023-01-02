@@ -42,6 +42,7 @@ public class User {
 
 
     public void EditRating(String on,String rating,float score){
+        System.out.println("EDITTT");
         String[] x=on.split("#");
         amu.editRatings(x[0],x[1],rating,score,username);
     }
@@ -55,6 +56,11 @@ public class User {
         all=amu.allRatings(username);
         return all;
     }
+
+    public double getMean(String username){
+        return amu.getMean(username);
+    }
+
 
     public String[] Search(String city,String type,String name,String[] prop){
         String[][] temp;

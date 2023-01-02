@@ -135,13 +135,14 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         if (e.getActionCommand().equals("Rate")) {
             for (int i = 0; i < all.length && !flag; i++) {
                 if (textField_Rate.getText().equals(all[i])) {
-                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText()));
+                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
                     JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
                     flag = true;
                 }
             }
-            if (!flag)
+            if (!flag) {
                 JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getActionCommand().equals("Edit Rating")) {
             //System.out.println("Edit");
             for (int i = 0; i < all.length && !flag; i++) {

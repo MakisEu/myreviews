@@ -7,7 +7,6 @@ public class AccommodationManagerUserSub extends AccommodationManager{
     public void addRating(String o, String n, String desc, float ra, String user, String date) {
         //System.out.println(o+" "+n+" "+desc+" "+ra+" "+user+" "+date);
         String type = this.getType(o, n);
-        System.out.println("all ok");
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
@@ -85,4 +84,28 @@ public class AccommodationManagerUserSub extends AccommodationManager{
                     all[k++]=entry.getValue().getName()+","+"Maisonette,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
         return all;
     }
+
+    public double getMean(String username) {
+        double mean = 0;
+        int sum=0;
+        for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
+            mean += entry.getValue().getRating(username).getGrade();
+            sum+=entry.getValue().number_of_ratings_of_user(username);
+        }
+        for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
+            mean+=entry.getValue().getRating(username).getGrade();
+            sum+=entry.getValue().number_of_ratings_of_user(username);
+        }
+        for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
+            mean+=entry.getValue().getRating(username).getGrade();
+            sum+=entry.getValue().number_of_ratings_of_user(username);
+        }
+        return (double)mean/sum;
+
+        }
+
+
+
+
+
 }
