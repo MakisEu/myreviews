@@ -26,7 +26,23 @@ public class User {
         String[] x=on.split("#");
         amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name);
     }
+
+   public Apartment getApartment(String o,String n)  {
+       return amu.getApartment(o,n);
+   }
+
+    public Hotel getHotel(String o,String n)  {
+        return amu.getHotel(o,n);
+    }
+
+    public Maisonette getMaisonette(String o,String n)  {
+        return amu.getMaisonette(o,n);
+    }
+
+
+
     public void EditRating(String on,String rating,float score){
+        System.out.println("EDITTT");
         String[] x=on.split("#");
         amu.editRatings(x[0],x[1],rating,score,username);
     }
@@ -35,10 +51,16 @@ public class User {
         amu.deleteRating(x[0],x[1],username);
     }
 
-    public void allRatings(String on){
-        String[] x=on.split("#");
-        amu.allRatings(x[0],x[1],username);
+    public String[] allRatings(){
+        String[] all;
+        all=amu.allRatings(username);
+        return all;
     }
+
+    public double getMean(String username){
+        return amu.getMean(username);
+    }
+
 
     public String[] Search(String city,String type,String name,String[] prop){
         String[][] temp;

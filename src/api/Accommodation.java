@@ -60,6 +60,15 @@ public class Accommodation implements Serializable {
         return null;
     }
 
+    public int number_of_ratings_of_user(String username){
+        int sum=0;
+        for (Rating r:ratings){
+            if (r.getUser().equals(username)) {
+                sum+=1;
+            }
+        }
+        return sum;
+    }
 
     public int getRatingNumber(){
         return ratings.size();

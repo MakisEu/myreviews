@@ -15,7 +15,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
     JButton button_Search, button_Rate, button_Edit, button_Delete;
     JTextField textField_Type, textField_City, textField_Name, textField_Prop, textField_Description, textField_Grade, textField_Rate;
     JLabel label1, label2, label3, label4, rate, grade, desc, label5;
-    JPanel panel1, panel2,panel3;
+    JPanel panel1, panel2,panel3,pane;
     JList<String> list;
     String[] all=new String[0];
 
@@ -23,7 +23,6 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         service = s;
         this.setSize(1400, 300);
         //this.setLayout(new FlowLayout());
-        //this.setLayout(new BorderLayout());
         button_Search = new JButton("Search");
         textField_City = new JTextField(10);
         textField_Type = new JTextField(10);
@@ -36,7 +35,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         label2 = new JLabel("Accommodation Type:");
         label3 = new JLabel("Accommodation Name:");
         label4 = new JLabel("Give desirable properties:");
-        panel1 = new JPanel(new GridLayout(5, 1));
+        //panel1 = new JPanel(new GridLayout(5, 1));
         panel1.add(label1);
         panel1.add(textField_City);
         panel1.add(label2);
@@ -80,7 +79,13 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
      /*   panel3=new JPanel();
         panel3.setLayout(new FlowLayout());
         panel3.setBackground(Color.magenta);
-        this.add(panel3);*/
+        this.add(panel3);
+        pane=new JPanel(new BoxLayout(pane,BoxLayout.Y_AXIS));
+        pane.add(panel1);
+        pane.add(panel2);
+        pane.setBackground(Color.red);
+        this.add(pane);*/
+
 
         button_Edit.addActionListener(this);
         button_Delete.addActionListener(this);
@@ -111,16 +116,16 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                 if (prp[i].length() < 1)
                     prp[i] = "";
             }
-            //all=service.Search(ct,tp,nm,prp);
-            all=Arrays.copyOf(all,2);
-            all[0] = "e#a";
-            all[1] = "d#o";
+            all=service.Search(ct,tp,nm,prp);
+            //all=Arrays.copyOf(all,2);
+            //all[0] = "e#a";
+            //all[1] = "d#o";
             DefaultListModel<String> myList=new DefaultListModel<>();
             list=new JList<>(myList);
-            this.add(list);
-            for (String s : all)
+            for (String s:all)
                 myList.addElement(s);
-            panel3.add(list);
+            this.add(list);
+
             if (all.length < 1) {
                 JOptionPane.showMessageDialog(this, "There are no accommodations with these elements", "Accommodation not found", JOptionPane.ERROR_MESSAGE);
             }
@@ -130,13 +135,14 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         if (e.getActionCommand().equals("Rate")) {
             for (int i = 0; i < all.length && !flag; i++) {
                 if (textField_Rate.getText().equals(all[i])) {
-                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText()));
+                    service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
                     JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
                     flag = true;
                 }
             }
-            if (!flag)
+            if (!flag) {
                 JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getActionCommand().equals("Edit Rating")) {
             //System.out.println("Edit");
             for (int i = 0; i < all.length && !flag; i++) {

@@ -1,6 +1,5 @@
 package gui;
 
-import api.Provider;
 import api.User;
 
 import javax.swing.*;
@@ -20,7 +19,7 @@ public class UserGUI extends JPanel {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(true);
         tabs=new JTabbedPane();
-        //tabs.add("Dashboard",new AccommodationManagerUserGui().newGui(service));
+        tabs.add("Dashboard",new DashboardUser().newGui(service));
         tabs.add("Search",new AccommodationManagerUserGui().newGui(service));
         frame.setVisible(true);
         frame.add(tabs);
