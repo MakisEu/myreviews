@@ -50,29 +50,30 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
     }
 
     public double getRatingAverage(String owner){
-        int sum=0,i=0,j=0,z=0;
+        int sum=0,i=0;
         for (Map.Entry<String,Apartment> e:apartments.entrySet())
         {
             if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
+                sum += e.getValue().ratingsSum();
                 i+=e.getValue().getRatingNumber();
             }
         }
         for (Map.Entry<String,Hotel> e:hotels.entrySet())
         {
             if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
-                j+=e.getValue().getRatingNumber();
+                sum += e.getValue().ratingsSum();
+                i+=e.getValue().getRatingNumber();
 
             }
         }
         for (Map.Entry<String,Maisonette> e:maisonettes.entrySet()) {
             if (e.getValue().getOwner().equals(owner)) {
-                sum += e.getValue().getRatingsAverage();
-                z+=e.getValue().getRatingNumber();
+                sum += e.getValue().ratingsSum();
+                i+=e.getValue().getRatingNumber();
             }
         }
-        return sum/(double)(i+j+z);
+        if (i==0){return 0;}
+        return sum/(double)(i);
     }
     /**
      * Method that returns all accommodations owned by an owner as String

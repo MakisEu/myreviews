@@ -24,7 +24,7 @@ public class User {
 
     public void AddRating(String on,String rating,float score){
         String[] x=on.split("#");
-        amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
+        amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name);
     }
     public void EditRating(String on,String rating,float score){
         String[] x=on.split("#");

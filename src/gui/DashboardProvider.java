@@ -16,9 +16,13 @@ public class DashboardProvider extends JPanel implements  ActionListener{
 
     JList jList;
     JTextArea jTextArea;
+    JLabel ratings;
     JButton refresh;
     public void updateList(){
+
+        ratings.setText("Number of ratings: "+service.getAllRatingsNumber()+"| Average rating: "+service.getAllAccommodationsGrades());
         jList.setModel(new AbstractListModel() {
+
             String[] strings = service.getNames();
             @Override
             public int getSize() {
@@ -44,11 +48,13 @@ public class DashboardProvider extends JPanel implements  ActionListener{
         jList = new JList();
         jTextArea = new JTextArea();
         refresh=new JButton("Refresh list");
+        ratings=new JLabel();
 
         updateList();
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
         this.add(refresh);
+        this.add(ratings);
         this.add(jList);
         this.add(jTextArea);
         refresh.addActionListener(this);

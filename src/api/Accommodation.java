@@ -46,8 +46,8 @@ public class Accommodation implements Serializable {
      *  @param ra   The grade of the rating (up to 5)
      *  @param user The user tha created the rating
      *  @param date The date the rating was created */
-    public void addRating(String desc,float ra,String user,String date){
-        Rating r=new Rating(desc,ra,user,date);
+    public void addRating(String desc,float ra,String user,String date,String small_name){
+        Rating r=new Rating(desc,ra,user,date,small_name);
         ratings.add(r);
     }
 
@@ -65,12 +65,15 @@ public class Accommodation implements Serializable {
         return ratings.size();
     }
 
-    public double getRatingsAverage() {
-        double sum = 0;
-        for (Rating x : ratings) {
-            sum += x.getGrade();
+    public float getRatingsAverage(){
+        return this.ratingsSum()/ratings.size();
+    }
+    public float ratingsSum(){
+        float x=0;
+        for (Rating r:ratings){
+            x=x+r.getGrade();
         }
-        return (double) sum / ratings.size();
+        return  x;
     }
 
     /**
@@ -92,6 +95,8 @@ public class Accommodation implements Serializable {
         x=x+"Owner:      "+owner+"\n";
         x=x+"Properties:"+"\n";
         x=x+properties.show_properties()+"\n";
+        x=x+"Number of ratings:"+ratings.size()+"\n";
+        x=x+"Average ratings:"+this.getRatingsAverage()+"\n";
         return x;
     }
 
@@ -193,4 +198,5 @@ public class Accommodation implements Serializable {
      * @param o The name of the user/owner of the rating that will get deleted
      */
     public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser().equals(o)){ratings.remove(s);return;}}}}
+
 }
