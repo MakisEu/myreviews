@@ -72,6 +72,7 @@ public class AccommodationManagerUserSub extends AccommodationManager{
     public String[] allRatings(String o, String n, String username) {
         String[] all=new String[0];
         int k=0;
+        //double mean=0;
         String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
