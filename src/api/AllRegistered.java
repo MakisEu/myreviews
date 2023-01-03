@@ -46,6 +46,12 @@ public class AllRegistered implements  Serializable{
         }
         destructor();
     }
+    public boolean contains(String username){
+        if (registered_users.containsKey(username) || registered_providers.containsKey(username)){
+            return true;
+        }
+        else {return false;}
+    }
 
     public Registration getUserRegistration(String key){
         return registered_users.get(key);

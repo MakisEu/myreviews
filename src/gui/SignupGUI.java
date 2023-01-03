@@ -76,8 +76,12 @@ public class SignupGUI extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Please fill all fields.", "Not all fields are filled.", JOptionPane.ERROR_MESSAGE);
             }
             else {
-                registered.add_registration(Username,Password,Name,Surname,Type);
-                JOptionPane.showMessageDialog(this, "A new account has been created.", "Registration has been added successfully!", JOptionPane.INFORMATION_MESSAGE);
+                Boolean b=registered.contains(Username);
+                if (!b) {registered.add_registration(Username,Password,Name,Surname,Type);
+                JOptionPane.showMessageDialog(this, "A new account has been created.", "Registration has been added successfully!", JOptionPane.INFORMATION_MESSAGE);}
+                else{
+                    JOptionPane.showMessageDialog(this, "This Username is already in use. Please try another one", "This Username is already in use", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
     }

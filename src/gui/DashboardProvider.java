@@ -6,6 +6,7 @@ import api.Provider;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,8 @@ public class DashboardProvider extends JPanel implements  ActionListener{
     JList jList;
     JTextArea jTextArea;
     JLabel ratings;
-    JButton refresh;
+    JFrame frame;
+    JButton refresh,Logout;
     public void updateList(){
 
         ratings.setText("Number of ratings: "+service.getAllRatingsNumber()+"| Average rating: "+service.getAllAccommodationsGrades());
@@ -43,11 +45,17 @@ public class DashboardProvider extends JPanel implements  ActionListener{
         });
         jTextArea.setText("");
     }
-    public DashboardProvider startGUI(Provider p) {
+    public void Logout(){
+        new StartScreenGUI().g();
+        frame.dispose();
+    }
+    public DashboardProvider startGUI(Provider p,JFrame j) {
+        frame=j;
         service=p;
         jList = new JList();
         jTextArea = new JTextArea();
         refresh=new JButton("Refresh list");
+        Logout=new JButton("Log out");
         ratings=new JLabel();
 
         updateList();
@@ -57,7 +65,9 @@ public class DashboardProvider extends JPanel implements  ActionListener{
         this.add(ratings);
         this.add(jList);
         this.add(jTextArea);
+        this.add(Logout, BorderLayout.PAGE_END);
         refresh.addActionListener(this);
+        Logout.addActionListener(this);
         this.setVisible(true);
         return this;
     }
@@ -80,6 +90,9 @@ public class DashboardProvider extends JPanel implements  ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Refresh list")){
             this.updateList();
+        }
+        if (e.getActionCommand().equals("Log out")){
+            Logout();
         }
 
     }

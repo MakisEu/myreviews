@@ -10,7 +10,7 @@ public class StartScreenGUI extends JFrame{
     Provider serviceP;
     User serviceU;
 
-    public void g(String username,String first_name){
+    public void g(){
         //JPanel p=new JPanel();
         this.setTitle("My Reviews");
         this.setSize(250, 400);
@@ -24,7 +24,7 @@ public class StartScreenGUI extends JFrame{
         this.setVisible(true);
     }
     public static void main(String[] args) {
-        new StartScreenGUI().g("someGuy","SG");
+        new StartScreenGUI().g();
     }
 }
 

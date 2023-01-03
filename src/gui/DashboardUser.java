@@ -16,7 +16,12 @@ public class DashboardUser extends JPanel implements  ActionListener{
 
     JList jList;
     JTextArea jTextArea;
-    JButton refresh;
+    JFrame frame;
+    JButton refresh,Logout;
+    public void Logout(){
+        new StartScreenGUI().g();
+        frame.dispose();
+    }
     public void updateList(){
         jList.setModel(new AbstractListModel() {
             String[] strings = service.allRatings();
@@ -41,11 +46,14 @@ public class DashboardUser extends JPanel implements  ActionListener{
         jTextArea.setText("");
     }
 
-    public DashboardUser newGui(User s) {
+    public DashboardUser newGui(User s,JFrame j) {
+        frame=j;
         service=s;
         jList = new JList();
         jTextArea = new JTextArea();
+        Logout=new JButton("Log out");
         refresh=new JButton("Refresh list");
+
 
         //System.out.println(service.allRatings().length);
 
@@ -55,6 +63,8 @@ public class DashboardUser extends JPanel implements  ActionListener{
         this.add(refresh);
         this.add(jList);
         this.add(jTextArea);
+        this.add(Logout);
+        Logout.addActionListener(this);
         refresh.addActionListener(this);
         this.setVisible(true);
         return this;
@@ -78,6 +88,8 @@ public class DashboardUser extends JPanel implements  ActionListener{
         if (e.getActionCommand().equals("Refresh list")){
             this.updateList();
         }
-
+        if (e.getActionCommand().equals("Log out")){
+            Logout();
+        }
     }
 }

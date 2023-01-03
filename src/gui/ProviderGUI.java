@@ -17,7 +17,7 @@ public class ProviderGUI extends JFrame{
         this.setLocationRelativeTo(null);
         tabs=new JTabbedPane();
 
-        tabs.add("Dashboard",new DashboardProvider().startGUI(service));
+        tabs.add("Dashboard",new DashboardProvider().startGUI(service,this));
         //tabs.add("Accommodation Manager",new AccommodationManagerProviderGui().startGUI(service));
         tabs.add("Accommodation Manager",new AMPGUIEdit_Add().startGUI(service));
         this.add(tabs);
