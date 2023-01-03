@@ -237,12 +237,12 @@ public class AccommodationManagerProviderTest {
 
         for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("SuperR!", 4, "KOSTAS", "1/1/2022");
+                entry.getValue().addRating("SuperR!", 4, "KOSTAS", "1/1/2022","ks");
             }
         }
         for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022");
+                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
             }
         }
         int excepted = 3;
@@ -261,17 +261,17 @@ public class AccommodationManagerProviderTest {
         AM.addAccommodation("Hotel", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("ok!", 5, "gio", "1/1/2022");
+                entry.getValue().addRating("ok!", 5, "gio", "1/1/2022","g");
             }
         }
         for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022");
+                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
             }
         }
         for (Map.Entry<String,Apartment> entry : AM.apartments.entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("mid",2,"jim","24/9/2022");
+                entry.getValue().addRating("mid",2,"jim","24/9/2022","jimD");
             }
         }
         double excepted=4.25;

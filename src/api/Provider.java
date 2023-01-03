@@ -107,17 +107,14 @@ public class Provider {
         }
         return true;
     }
-    public int getAllRatingsNumber(String owner){
+    public int getAllRatingsNumber(){
         return amp.getRatingsNumber(owner);
     }
 
-    public double getAllAccommodationsGrades(String owner){
+    public double getAllAccommodationsGrades(){
         return amp.getRatingAverage(owner);
     }
 
-    public void showAll(){
-        amp.showAll();
-    }
 
     public String showOwned(){
         return amp.showOwned(owner);
@@ -144,13 +141,13 @@ public class Provider {
         ArrayList<Hotel> ho=amp.getOwnedHotels(owner);
         ArrayList<Maisonette> ma=amp.getOwnedMaisonettes(owner);
         for (Apartment a:ap){
-            nam.add(a.getName()+"#Apartment");
+            nam.add(a.getName()+"#Apartment#"+a.getCity()+"#"+a.getRatingsAverage());
         }
         for (Hotel a:ho){
-            nam.add(a.getName()+"#Hotel");
+            nam.add(a.getName()+"#Hotel#"+a.getCity()+"#"+a.getRatingsAverage());
         }
         for (Maisonette a:ma){
-            nam.add(a.getName()+"#Maisonette");
+            nam.add(a.getName()+"#Maisonette#"+a.getCity()+"#"+a.getRatingsAverage());
         }
         return nam.toArray(new String[0]);
 

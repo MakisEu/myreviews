@@ -89,7 +89,7 @@ public class AccommodationManagerUserTest {
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date);
+        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk");
         AM.showAll();
     }
 
@@ -101,7 +101,7 @@ public class AccommodationManagerUserTest {
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date);
+        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk");
         AM.showAll();
         AM.editRatings("someGuy2","4-story building in Antigonidon(Hotel)","This is actually good!!!",4,"Makis");
         AM.showAll();
@@ -115,7 +115,7 @@ public class AccommodationManagerUserTest {
         String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date);
+        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk");
         AM.showAll();
         AM.deleteRating("someGuy2","4-story building in Antigonidon(Hotel)","Makis");
         AM.showAll();

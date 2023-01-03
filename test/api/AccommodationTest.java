@@ -17,7 +17,7 @@ public class AccommodationTest {
     public void addRating() {
             System.out.println("Add Rating:");
             Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-            instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
+            instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
             instance.show();
     }
 
@@ -124,7 +124,7 @@ public class AccommodationTest {
     public void editRating() {
         System.out.println("Edit Rating:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
         instance.showRatings();
         instance.editRating("Makis","It sucks",1);
         instance.showRatings();
@@ -134,8 +134,8 @@ public class AccommodationTest {
     public void deleteRating() {
         System.out.println("Delete Rating:");
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-        instance.addRating("Its good!!!",4,"Makis","19/11/2022");
-        instance.addRating("Its good5!!!",4,"John","20/11/2022");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022","mk");
+        instance.addRating("Its good5!!!",4,"John","20/11/2022","mk");
         instance.showRatings();
         instance.deleteRating("Makis");
         instance.showRatings();
@@ -153,15 +153,15 @@ public class AccommodationTest {
     @Test
     public void getRatingNumber(){
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
-        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
+        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02","jn");
         assertEquals(2,instance.getRatingNumber());
     }
     @Test
     public void getRatingsAverage(){
         Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
-        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02");
-        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
+        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02","jn");
         assertEquals(3,instance.getRatingsAverage(),0.01);
     }
 }

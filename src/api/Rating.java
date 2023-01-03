@@ -4,15 +4,16 @@ import java.io.Serializable;
 
 public class Rating implements Serializable {
 
-    private String rating_description,name_of_user,date;
+    private String rating_description,name_of_user,date,small_name;
     private float grade;
 
-    public Rating(String description,float grade,String name_of_user,String date)
+    public Rating(String description,float grade,String name_of_user,String date,String sn)
     {
         rating_description=description;
         this.grade=grade;
         this.name_of_user=name_of_user;
         this.date=date;
+        small_name=sn;
     }
 
 
@@ -46,7 +47,7 @@ public class Rating implements Serializable {
     }
 
     public String Show(){
-        String x=date+" | "+name_of_user+" | "+(int)grade+"/5 stars"+"\n";
+        String x=date+" | "+small_name+" | "+(int)grade+"/5 stars"+"\n";
         x=x+rating_description;
         return x;
     }
