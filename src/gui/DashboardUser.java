@@ -47,8 +47,8 @@ public class DashboardUser extends JPanel implements  ActionListener{
     }
 
     public DashboardUser newGui(User s,JFrame j) {
-        frame=j;
         service=s;
+        frame=j;
         jList = new JList();
         jTextArea = new JTextArea();
         Logout=new JButton("Log out");
