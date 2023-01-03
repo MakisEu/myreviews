@@ -4,68 +4,74 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class AccommodationManagerUserSub extends AccommodationManager{
-    public void addRating(String o, String n, String desc, float ra, String user, String date,String name) {
+    public boolean addRating(String o, String n, String desc, float ra, String user, String date) {
         //System.out.println(o+" "+n+" "+desc+" "+ra+" "+user+" "+date);
+        boolean bool = false;
         String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
-                    hotels.get(o + n).addRating(desc, ra, user, date,name);
+                    bool=hotels.get(o + n).addRating(desc, ra, user, date);
                 }
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null) {
-                    apartments.get(o + n).addRating(desc, ra, user, date,name);
+                    bool=apartments.get(o + n).addRating(desc, ra, user, date);
                 }
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
-                    maisonettes.get(o + n).addRating(desc, ra, user, date,name);
+                    bool=maisonettes.get(o + n).addRating(desc, ra, user, date);
                 }
                 break;
         }
+        return bool;
     }
 
-    public void editRatings(String o, String n, String desc, float ra, String user) {
+    public boolean editRatings(String o, String n, String desc, float ra, String user) {
+        boolean bool=false;
         String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
-                    hotels.get(o + n).editRating(user, desc, ra);
+                    bool=hotels.get(o + n).editRating(user, desc, ra);
                 }
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null) {
-                    apartments.get(o + n).editRating(user, desc, ra);
+                    bool=apartments.get(o + n).editRating(user, desc, ra);
                 }
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
-                    maisonettes.get(o + n).editRating(user, desc, ra);
+                    bool=maisonettes.get(o + n).editRating(user, desc, ra);
                 }
                 break;
         }
+        return bool;
     }
 
-    public void deleteRating(String o, String n, String user) {
+    public boolean deleteRating(String o, String n, String user) {
+        boolean bool=false;
         String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
-                    hotels.get(o + n).deleteRating(user);
+                    bool=hotels.get(o + n).deleteRating(user);
                 }
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null) {
-                    apartments.get(o + n).deleteRating(user);
+                    bool=apartments.get(o + n).deleteRating(user);
                 }
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
-                    maisonettes.get(o + n).deleteRating(user);
+                    bool=maisonettes.get(o + n).deleteRating(user);
                 }
                 break;
         }
+    return bool;
     }
 
     public String[] allRatings(String username) {

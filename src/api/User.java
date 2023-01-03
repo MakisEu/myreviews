@@ -22,9 +22,11 @@ public class User {
         return username;
     }
 
-    public void AddRating(String on,String rating,float score){
+    public boolean AddRating(String on,String rating,float score){
+        boolean bool=false;
         String[] x=on.split("#");
-        amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name);
+        bool=amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
+        return bool;
     }
 
    public Apartment getApartment(String o,String n)  {
@@ -41,14 +43,17 @@ public class User {
 
 
 
-    public void EditRating(String on,String rating,float score){
-        System.out.println("EDITTT");
+    public boolean EditRating(String on,String rating,float score){
+        boolean bool;
         String[] x=on.split("#");
-        amu.editRatings(x[0],x[1],rating,score,username);
+        bool=amu.editRatings(x[0],x[1],rating,score,username);
+        return bool;
     }
-    public void DeleteRating(String on){
+    public boolean DeleteRating(String on){
+        boolean bool;
         String[] x=on.split("#");
-        amu.deleteRating(x[0],x[1],username);
+        bool=amu.deleteRating(x[0],x[1],username);
+        return bool;
     }
 
     public String[] allRatings(){
