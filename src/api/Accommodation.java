@@ -46,9 +46,19 @@ public class Accommodation implements Serializable {
      *  @param ra   The grade of the rating (up to 5)
      *  @param user The user tha created the rating
      *  @param date The date the rating was created */
-    public void addRating(String desc,float ra,String user,String date){
-        Rating r=new Rating(desc,ra,user,date);
-        ratings.add(r);
+    public boolean addRating(String desc,float ra,String user,String date) {
+        boolean bool = false;
+        for (Rating r : ratings) {
+            if (r.getUser().equals(user)) {
+                bool = true;
+                return bool;
+            }
+        }
+        if (!bool) {
+            Rating r = new Rating(desc, ra, user, date);
+            ratings.add(r);
+        }
+        return bool;
     }
 
     public Rating getRating(String username){
@@ -171,14 +181,19 @@ public class Accommodation implements Serializable {
      * @param d The new description of the rating
      * @param f The new grade of the rating
      */
-    public void editRating(String o,String d,float f){
+    public boolean editRating(String o,String d,float f){
+        boolean bool=false;
         for (Rating s:ratings)
         {
             String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-            if (s.getUser().equals(o)){s.setRatingDescription(d,s.getDate());
+            if (s.getUser().equals(o)){
+                s.setRatingDescription(d,s.getDate());
                 s.setGrade(f,date);
+                bool=true;
+                return bool;
             }
         }
+    return bool;
     }
     /**
      * @param key Name of property
@@ -201,5 +216,18 @@ public class Accommodation implements Serializable {
      * Method that deletes a rating from a user
      * @param o The name of the user/owner of the rating that will get deleted
      */
-    public void deleteRating(String o){{for (Rating s:ratings) {if (s.getUser().equals(o)){ratings.remove(s);return;}}}}
+    public boolean deleteRating(String o){
+        {
+        boolean bool=false;
+        for (Rating s:ratings) {
+            if (s.getUser().equals(o)) {
+                ratings.remove(s);
+                bool=true;
+                return bool;
+            }
+
+        }
+        return bool;
+        }
+    }
 }
