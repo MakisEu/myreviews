@@ -25,7 +25,7 @@ public class User {
     public boolean AddRating(String on,String rating,float score){
         boolean bool=false;
         String[] x=on.split("#");
-        bool=amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()));
+        bool=amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name);
         return bool;
     }
 
