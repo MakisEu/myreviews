@@ -17,7 +17,7 @@ public class StartScreenGUI extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         tabs=new JTabbedPane();
-        tabs.add("Log in",new LoginGUI().startGui());
+        tabs.add("Log in",new LoginGUI().startGui(this));
         //tabs.add("Accommodation Manager",new AccommodationManagerProviderGui().startGUI(service));
         tabs.add("Sign up",new SignupGUI().startGui());
         this.add(tabs);

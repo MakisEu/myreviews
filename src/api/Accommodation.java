@@ -75,6 +75,7 @@ public class Accommodation implements Serializable {
     }
 
     public float getRatingsAverage(){
+        if (ratings.size()==0){return 0;}
         return this.ratingsSum()/ratings.size();
     }
     public float ratingsSum(){
