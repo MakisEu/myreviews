@@ -78,16 +78,23 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         String[] all=new String[0];
         int k=0;
                 for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-                    all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getName()+","+"Hotel,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();
+                    if (entry.getValue().getRating(username) != null) {
+                        all = Arrays.copyOf(all, k + 1);
+                        all[k++] = entry.getValue().getName() + "," + "Hotel," + entry.getValue().getOwner() + "," + entry.getValue().getCity() + "," + entry.getValue().getRating(username).getGrade();
+                    }
                 }
                 for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-                    all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getName()+","+"Apartment,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
-
+                    if (entry.getValue().getRating(username) != null) {
+                        all = Arrays.copyOf(all, k + 1);
+                        all[k++] = entry.getValue().getName() + "," + "Apartment," + entry.getValue().getOwner() + "," + entry.getValue().getCity() + "," + entry.getValue().getRating(username).getGrade();
+                    }
+                }
                 for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-                    all= Arrays.copyOf(all,k+1);
-                    all[k++]=entry.getValue().getName()+","+"Maisonette,"+entry.getValue().getOwner()+","+entry.getValue().getCity()+","+entry.getValue().getRating(username).getGrade();                }
+                    if (entry.getValue().getRating(username) != null) {
+                        all = Arrays.copyOf(all, k + 1);
+                        all[k++] = entry.getValue().getName() + "," + "Maisonette," + entry.getValue().getOwner() + "," + entry.getValue().getCity() + "," + entry.getValue().getRating(username).getGrade();
+                    }
+                }
         return all;
     }
 
