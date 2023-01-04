@@ -48,10 +48,9 @@ public class User {
 
 
     public boolean EditRating(String on,String rating,float score){
-        boolean bool;
+        boolean bool=false;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
-
         bool=amu.editRatings(x[1],x[2],rating,score,username,type);
         return bool;
     }

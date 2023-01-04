@@ -5,26 +5,25 @@ import java.util.Map;
 
 public class AccommodationManagerUserSub extends AccommodationManager{
     public boolean addRating(String o, String n, String desc, float ra, String user, String date,String name,String type) {
-        //System.out.println(o+" "+n+" "+desc+" "+ra+" "+user+" "+date);
         boolean bool = false;
         //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
-                if (hotels.get(o + n) != null) {
+                if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)==null) {
                     hotels.get(o + n).addRating(desc, ra, user, date,name);
                 }
                 else
                     bool=true;
                 break;
             case "Apartment":
-                if (apartments.get(o + n) != null) {
+                if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)==null) {
                     apartments.get(o + n).addRating(desc, ra, user, date,name);
                 }
                 else
                     bool=true;
                 break;
             case "Maisonette":
-                if (maisonettes.get(o + n) != null) {
+                if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)==null) {
                     maisonettes.get(o + n).addRating(desc, ra, user, date,name);
                 }
                 else
@@ -39,17 +38,17 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
-                if (hotels.get(o + n) != null) {
+                if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)!=null) {
                     hotels.get(o + n).editRating(user, desc, ra);
                 }
                 break;
             case "Apartment":
-                if (apartments.get(o + n) != null) {
+                if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)!=null) {
                     apartments.get(o + n).editRating(user, desc, ra);
                 }
                 break;
             case "Maisonette":
-                if (maisonettes.get(o + n) != null) {
+                if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)!=null) {
                     maisonettes.get(o + n).editRating(user, desc, ra);
                 }
                 break;
@@ -62,17 +61,17 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
-                if (hotels.get(o + n) != null) {
+                if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)!=null) {
                     hotels.get(o + n).deleteRating(user);
                 }
                 break;
             case "Apartment":
-                if (apartments.get(o + n) != null) {
+                if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)!=null) {
                     apartments.get(o + n).deleteRating(user);
                 }
                 break;
             case "Maisonette":
-                if (maisonettes.get(o + n) != null) {
+                if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)!=null) {
                     maisonettes.get(o + n).deleteRating(user);
                 }
                 break;
