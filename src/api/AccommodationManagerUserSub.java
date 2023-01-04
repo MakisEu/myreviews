@@ -13,16 +13,22 @@ public class AccommodationManagerUserSub extends AccommodationManager{
                 if (hotels.get(o + n) != null) {
                     hotels.get(o + n).addRating(desc, ra, user, date,name);
                 }
+                else
+                    bool=true;
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null) {
                     apartments.get(o + n).addRating(desc, ra, user, date,name);
                 }
+                else
+                    bool=true;
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null) {
                     maisonettes.get(o + n).addRating(desc, ra, user, date,name);
                 }
+                else
+                    bool=true;
                 break;
         }
         return bool;
