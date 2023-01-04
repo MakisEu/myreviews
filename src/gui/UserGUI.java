@@ -19,7 +19,7 @@ public class UserGUI extends JFrame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(true);
         tabs=new JTabbedPane();
-        tabs.add("Dashboard",new DashboardUser().newGui(service,frame));
+        tabs.add("Dashboard",new DashboardUser().startGUI(service,frame));
         tabs.add("Search",new AccommodationManagerUserGui().newGui(service));
         frame.setVisible(true);
         frame.add(tabs);
