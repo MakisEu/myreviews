@@ -110,11 +110,11 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                     prp[i] = "";
             }
 
-            //all = Arrays.copyOf(all, service.Search(ct,tp,nm,prp).length);
-            //all=service.Search(ct,tp,nm,prp);
-            all = Arrays.copyOf(all, 2);
-            all[0] = "e#a";
-            all[1] = "d#o";
+            all = Arrays.copyOf(all, service.Search(ct,tp,nm,prp).length);
+            all=service.Search(ct,tp,nm,prp);
+            //all = Arrays.copyOf(all, 2);
+            //all[0] = "e#a";
+            //all[1] = "d#o";
 
             newM();
 
@@ -201,12 +201,12 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         String s = (String) list.getSelectedValue();
         if (s != null) {
             String[] p=s.split("#");
-            if (p[1].equals("Apartment")) {
-                jTextArea.setText(service.getApartment(p[2],p[0]).show());}
-            if (p[1].equals("Hotel")){
-                jTextArea.setText(service.getHotel(p[2],p[0]).show());}
-            if (p[1].equals("Maisonette")){
-                jTextArea.setText(service.getMaisonette(p[2],p[0]).show());}}
+            if (p[2].equals("Apartment")) {
+                jTextArea.setText(service.getApartment(p[0],p[1]).show());}
+            if (p[2].equals("Hotel")){
+                jTextArea.setText(service.getHotel(p[0],p[1]).show());}
+            if (p[2].equals("Maisonette")){
+                jTextArea.setText(service.getMaisonette(p[0],p[1]).show());}}
     }
 
 }
