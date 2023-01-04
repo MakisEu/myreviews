@@ -1,7 +1,10 @@
 package api;
 
+import gui.AccommodationManagerUserGui;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -211,4 +214,5 @@ public class User {
         }
         return ar.toArray(new String[0]);
     }
+
 }

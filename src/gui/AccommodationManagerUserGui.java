@@ -8,16 +8,21 @@ import api.*;
 import java.awt.*;
 import java.util.Arrays;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.io.FileNotFoundException;
 
 public class AccommodationManagerUserGui extends JPanel implements ActionListener {
     User service;
-    JButton button_Search, button_Rate, button_Edit, button_Delete;
+    JButton button_Search, button_Rate, button_Edit, button_Delete, refresh;
     JTextField textField_Type, textField_City, textField_Name, textField_Prop, textField_Description, textField_Grade, textField_Rate;
-    JLabel label1, label2, label3, label4, rate, grade, desc, label5;
-    JPanel panel1, panel2,panel3,pane;
+    JLabel label1, label2, label3, label4, rate, grade, desc;
+    JPanel panel1, panel2, panel3;
     JList<String> list;
-    String[] all=new String[0];
+    JTextArea jTextArea;
+    String[] all = new String[0];
+    boolean q=false;
+    javax.swing.event.ListSelectionEvent ev;
 
     public AccommodationManagerUserGui newGui(User s) {
         service = s;
@@ -76,17 +81,6 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         panel2.add(button_Edit);
         panel2.add(button_Delete);
 
-     /*   panel3=new JPanel();
-        panel3.setLayout(new FlowLayout());
-        panel3.setBackground(Color.magenta);
-        this.add(panel3);
-        pane=new JPanel(new BoxLayout(pane,BoxLayout.Y_AXIS));
-        pane.add(panel1);
-        pane.add(panel2);
-        pane.setBackground(Color.red);
-        this.add(pane);*/
-
-
         button_Edit.addActionListener(this);
         button_Delete.addActionListener(this);
         button_Rate.addActionListener(this);
@@ -98,14 +92,13 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //System.out.println("hi");
         String ct = textField_City.getText();
         String tp = textField_Type.getText();
         String nm = textField_Name.getText();
         String[] prp = textField_Prop.getText().split(",");
         //String[] all=new String[2];
         if (e.getActionCommand().equals("Search")) {
-            System.out.println(ct + "," + tp + "," + nm + "," + prp.length);
+            //System.out.println(ct + "," + tp + "," + nm + "," + prp.length);
             if (ct.length() < 1)
                 ct = "";
             if (tp.length() < 1)
@@ -116,67 +109,125 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                 if (prp[i].length() < 1)
                     prp[i] = "";
             }
-            all=service.Search(ct,tp,nm,prp);
-            //all=Arrays.copyOf(all,2);
-            //all[0] = "e#a";
-            //all[1] = "d#o";
-            DefaultListModel<String> myList=new DefaultListModel<>();
-            list=new JList<>(myList);
-            for (String s:all)
-                myList.addElement(s);
-            this.add(list);
+            //all=service.Search(ct,tp,nm,prp);
+            all = Arrays.copyOf(all, 2);
+            all[0] = "e#a";
+            all[1] = "d#o";
+
+            newM();
 
             if (all.length < 1) {
                 JOptionPane.showMessageDialog(this, "There are no accommodations with these elements", "Accommodation not found", JOptionPane.ERROR_MESSAGE);
             }
         }
 
-        boolean bool;
-        boolean flag = false;
-        if (e.getActionCommand().equals("Rate")) {
-            for (int i = 0; i < all.length && !flag; i++) {
-                if (textField_Rate.getText().equals(all[i])) {
-                    bool=service.AddRating(textField_Rate.getText(), textField_Description.getText(),Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
-                    if (!bool)
-                        JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
-                    else
-                        JOptionPane.showMessageDialog(this, "You have already rated this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                    flag = true;
+        if (e.getActionCommand().equals("Refresh list")) {
+            this.updateList();
+
+            boolean bool;
+            boolean flag = false;
+            if (e.getActionCommand().equals("Rate")) {
+                for (int i = 0; i < all.length && !flag; i++) {
+                    if (textField_Rate.getText().equals(all[i])) {
+                        bool = service.AddRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
+                        if (!bool)
+                            JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(this, "You have already rated this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
+                        flag = true;
+                    }
                 }
-            }
-            if (!flag) {
-                JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getActionCommand().equals("Edit Rating")) {
-            for (int i = 0; i < all.length && !flag; i++) {
-                if (textField_Rate.getText().equals(all[i])) {
-                    bool=service.EditRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
-                    if (bool)
-                        JOptionPane.showMessageDialog(this, "Edited Rating added successfully", "Added Edited Rating", JOptionPane.INFORMATION_MESSAGE);
-                    else
-                        JOptionPane.showMessageDialog(this, "You can not edit a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                    flag = true;
+                if (!flag) {
+                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
                 }
-            }
-            if (!flag) {
-                JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getActionCommand().equals("Delete Rating")) {
-            for (int i = 0; i < all.length && !flag; i++) {
-                if (textField_Rate.getText().equals(all[i])) {
-                    bool=service.DeleteRating(textField_Rate.getText());
-                    if (bool)
-                        JOptionPane.showMessageDialog(this, "Accommodation deleted successfully", "Deleted Rating", JOptionPane.INFORMATION_MESSAGE);
-                    else
-                        JOptionPane.showMessageDialog(this, "You can not delete a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                    flag = true;
+            } else if (e.getActionCommand().equals("Edit Rating")) {
+                for (int i = 0; i < all.length && !flag; i++) {
+                    if (textField_Rate.getText().equals(all[i])) {
+                        bool = service.EditRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
+                        if (bool)
+                            JOptionPane.showMessageDialog(this, "Edited Rating added successfully", "Added Edited Rating", JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(this, "You can not edit a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
+                        flag = true;
+                    }
                 }
-            }
-            if (!flag) {
-                JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
+                if (!flag) {
+                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (e.getActionCommand().equals("Delete Rating")) {
+                for (int i = 0; i < all.length && !flag; i++) {
+                    if (textField_Rate.getText().equals(all[i])) {
+                        bool = service.DeleteRating(textField_Rate.getText());
+                        if (bool)
+                            JOptionPane.showMessageDialog(this, "Accommodation deleted successfully", "Deleted Rating", JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(this, "You can not delete a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
+                        flag = true;
+                    }
+                }
+                if (!flag) {
+                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
+    }
 
+    public void updateList() {
+        list.setModel(new AbstractListModel() {
+            String[] strings = all;
+
+            @Override
+            public int getSize() {
+                return strings.length;
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return strings[i];
+            }
+        });
+        list.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent evt) {
+                list1ValueChanged(evt);
+            }
+        });
+        jTextArea.setText("");
+    }
+
+
+    public void newM() {
+        if (!q) {
+            list = new JList<>();
+            jTextArea = new JTextArea();
+            refresh = new JButton("Refresh list");
+
+            updateList();
+            jTextArea.setColumns(20);
+            jTextArea.setRows(5);
+            this.add(refresh);
+            this.add(list);
+            this.add(jTextArea);
+            refresh.addActionListener(this);
+            this.validate();
+            this.setVisible(true);
+        }
+        q=true;
+    }
+
+
+    private void list1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
+        //set text on right here
+        String s = (String) list.getSelectedValue();
+        if (s != null) {
+            String[] p=s.split("#");
+            if (p[1].equals("Apartment")) {
+                jTextArea.setText(service.getApartment(p[2],p[0]).show());}
+            if (p[1].equals("Hotel")){
+                jTextArea.setText(service.getHotel(p[2],p[0]).show());}
+            if (p[1].equals("Maisonette")){
+                jTextArea.setText(service.getMaisonette(p[2],p[0]).show());}}
     }
 
 }
