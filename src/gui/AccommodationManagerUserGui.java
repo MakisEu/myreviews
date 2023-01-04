@@ -109,6 +109,8 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                 if (prp[i].length() < 1)
                     prp[i] = "";
             }
+
+            //all = Arrays.copyOf(all, service.Search(ct,tp,nm,prp).length);
             //all=service.Search(ct,tp,nm,prp);
             all = Arrays.copyOf(all, 2);
             all[0] = "e#a";
@@ -123,52 +125,29 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
 
         if (e.getActionCommand().equals("Refresh list")) {
             this.updateList();
+        }
 
-            boolean bool;
-            boolean flag = false;
-            if (e.getActionCommand().equals("Rate")) {
-                for (int i = 0; i < all.length && !flag; i++) {
-                    if (textField_Rate.getText().equals(all[i])) {
-                        bool = service.AddRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
-                        if (!bool)
-                            JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
-                        else
-                            JOptionPane.showMessageDialog(this, "You have already rated this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                        flag = true;
-                    }
-                }
-                if (!flag) {
-                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (e.getActionCommand().equals("Edit Rating")) {
-                for (int i = 0; i < all.length && !flag; i++) {
-                    if (textField_Rate.getText().equals(all[i])) {
-                        bool = service.EditRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
-                        if (bool)
-                            JOptionPane.showMessageDialog(this, "Edited Rating added successfully", "Added Edited Rating", JOptionPane.INFORMATION_MESSAGE);
-                        else
-                            JOptionPane.showMessageDialog(this, "You can not edit a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                        flag = true;
-                    }
-                }
-                if (!flag) {
-                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (e.getActionCommand().equals("Delete Rating")) {
-                for (int i = 0; i < all.length && !flag; i++) {
-                    if (textField_Rate.getText().equals(all[i])) {
-                        bool = service.DeleteRating(textField_Rate.getText());
-                        if (bool)
-                            JOptionPane.showMessageDialog(this, "Accommodation deleted successfully", "Deleted Rating", JOptionPane.INFORMATION_MESSAGE);
-                        else
-                            JOptionPane.showMessageDialog(this, "You can not delete a non existing rating!!!", "Error", JOptionPane.ERROR_MESSAGE);
-                        flag = true;
-                    }
-                }
-                if (!flag) {
-                    JOptionPane.showMessageDialog(this, "Accommodation name not existing!", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+        boolean bool;
+        if (e.getActionCommand().equals("Rate")) {
+            bool = service.AddRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
+            if (!bool)
+                JOptionPane.showMessageDialog(this, "Rating added successfully", "Added Rating", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(this, "You cannot rate this accommodation", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (e.getActionCommand().equals("Edit Rating")) {
+            bool = service.EditRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
+            if (bool)
+                JOptionPane.showMessageDialog(this, "Edited Rating added successfully", "Added Edited Rating", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(this, "You cannot edit this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (e.getActionCommand().equals("Delete Rating")) {
+            bool = service.DeleteRating(textField_Rate.getText());
+            if (bool)
+                JOptionPane.showMessageDialog(this, "Accommodation deleted successfully", "Deleted Rating", JOptionPane.INFORMATION_MESSAGE);
+            else
+                JOptionPane.showMessageDialog(this, "You cannot delete this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
