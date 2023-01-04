@@ -74,7 +74,7 @@ public class User {
 
 
     public String[] Search(String city,String type,String name,String[] prop){
-        String[][] temp;
+        String[][] temp = new String[0][];
         String[] t;
         HashSet<String> aMain=null;
         HashSet<String> hMain=null;
@@ -85,12 +85,15 @@ public class User {
             mMain=new HashSet<>();
             temp=amu.findLocation(city);
             for (String s:temp[0]){
+                if (s!=null)
                 aMain.add(s);
             }
             for (String s:temp[1]){
+                if (s!=null)
                 hMain.add(s);
             }
             for (String s:temp[2]){
+                if (s!=null)
                 mMain.add(s);
             }
         }
@@ -108,12 +111,15 @@ public class User {
             HashSet<String> hSub=new HashSet<>();
             HashSet<String> mSub=new HashSet<>();
             for (String s:temp[0]){
+                if (s!=null)
                 aSub.add(s);
             }
             for (String s:temp[1]){
+                if (s!=null)
                 hSub.add(s);
             }
             for (String s:temp[2]){
+                if (s!=null)
                 mSub.add(s);
             }
             aMain.retainAll(aSub);
@@ -123,14 +129,16 @@ public class User {
                 aMain=new HashSet<>();
                 hMain=new HashSet<>();
                 mMain=new HashSet<>();
-                temp=amu.findLocation(city);
                 for (String s:temp[0]){
+                    if (s!=null)
                     aMain.add(s);
                 }
                 for (String s:temp[1]){
+                    if (s!=null)
                     hMain.add(s);
                 }
                 for (String s:temp[2]){
+                    if (s!=null)
                     mMain.add(s);
                 }
             }
@@ -142,12 +150,15 @@ public class User {
                 HashSet<String> hSub=new HashSet<>();
                 HashSet<String> mSub=new HashSet<>();
                 for (String s:temp[0]){
+                    if (s!=null)
                     aSub.add(s);
                 }
                 for (String s:temp[1]){
+                    if (s!=null)
                     hSub.add(s);
                 }
                 for (String s:temp[2]){
+                    if (s!=null)
                     mSub.add(s);
                 }
                 aMain.retainAll(aSub);
@@ -157,14 +168,16 @@ public class User {
                 aMain=new HashSet<>();
                 hMain=new HashSet<>();
                 mMain=new HashSet<>();
-                temp=amu.findLocation(city);
                 for (String s:temp[0]){
+                    if (s!=null)
                     aMain.add(s);
                 }
                 for (String s:temp[1]){
+                    if (s!=null)
                     hMain.add(s);
                 }
                 for (String s:temp[2]){
+                    if (s!=null)
                     mMain.add(s);
                 }
             }
@@ -191,19 +204,19 @@ public class User {
                 aMain=new HashSet<>();
                 hMain=new HashSet<>();
                 mMain=new HashSet<>();
-                temp=amu.findLocation(city);
                 HashSet<String> main=new HashSet<>();
                 if(type.equals("Διαμέρισμα")){
                     for (String s:temp[0]){
-                        main.add(s);}
+
+                        main.add(s+"#"+"Apartment");}
                 }
                 else if(type.equals("Ξενοδοχείο")){
                     for (String s:temp[1]){
-                        main.add(s);}
+                        main.add(s+"#"+"Hotel");}
                 }
                 else if(type.equals("Μεζονέτα")){
                     for (String s:temp[2]){
-                        main.add(s);}
+                        main.add(s+"#"+"Maisonette");}
                 }
                 return main.toArray(new String[0]);
             }
