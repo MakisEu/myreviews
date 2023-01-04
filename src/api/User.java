@@ -171,14 +171,20 @@ public class User {
         }
         if(type.length()>1){
             if (aMain!=null) {
-                if(type.equals("Διαμέρισμα")){
-                    return aMain.toArray(new String[0]);
+                if(type.equalsIgnoreCase("apartment")){
+                    hMain=null;
+                    mMain=null;
+                    //return aMain.toArray(new String[0]);
                 }
-                else if(type.equals("Ξενοδοχείο")){
-                    return hMain.toArray(new String[0]);
+                else if(type.equalsIgnoreCase("hotel")){
+                    aMain=null;
+                    mMain=null;
+                    //return hMain.toArray(new String[0]);
                 }
-                else if(type.equals("Μεζονέτα")){
-                    return hMain.toArray(new String[0]);
+                else if(type.equalsIgnoreCase("maisonette")){
+                    hMain=null;
+                    aMain=null;
+                    //return hMain.toArray(new String[0]);
                 }
             }
             else{
@@ -203,18 +209,24 @@ public class User {
             }
         }
         ArrayList<String> ar=new ArrayList<>();
+        if (aMain!=null){
         t=aMain.toArray(new String[0]);
         for (String s:t){
+            if (s!=null)
             ar.add(s+"#"+"Apartment");
-        }
+        }}
+        if (hMain!=null){
         t=hMain.toArray(new String[0]);
         for (String s:t){
-            ar.add(s+"#"+"Hotel");
-        }
+            if (s!=null)
+                ar.add(s+"#"+"Hotel");
+        }}
+        if (mMain!=null){
         t=mMain.toArray(new String[0]);
         for (String s:t){
-            ar.add(s+"#"+"Maisonette");
-        }
+            if (s!=null)
+                ar.add(s+"#"+"Maisonette");
+        }}
         return ar.toArray(new String[0]);
     }
 

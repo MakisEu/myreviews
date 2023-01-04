@@ -38,21 +38,21 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
-                if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)==null) {
+                if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)!=null) {
                     hotels.get(o + n).editRating(user, desc, ra);
                 }
                 else
                     bool=true;
                 break;
             case "Apartment":
-                if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)==null) {
+                if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)!=null) {
                     apartments.get(o + n).editRating(user, desc, ra);
                 }
                 else
                     bool=true;
                 break;
             case "Maisonette":
-                if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)==null) {
+                if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)!=null) {
                     maisonettes.get(o + n).editRating(user, desc, ra);
                 }
                 else

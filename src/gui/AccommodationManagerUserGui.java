@@ -109,7 +109,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
                     prp[i] = "";
             }
 
-            all = Arrays.copyOf(all, service.Search(ct,tp,nm,prp).length);
+            //all = Arrays.copyOf(all, service.Search(ct,tp,nm,prp).length);
             all=service.Search(ct,tp,nm,prp);
             //all = Arrays.copyOf(all, 2);
             //all[0] = "e#a";
