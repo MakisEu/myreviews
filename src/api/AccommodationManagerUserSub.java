@@ -41,16 +41,22 @@ public class AccommodationManagerUserSub extends AccommodationManager{
                 if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)==null) {
                     hotels.get(o + n).editRating(user, desc, ra);
                 }
+                else
+                    bool=true;
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)==null) {
                     apartments.get(o + n).editRating(user, desc, ra);
                 }
+                else
+                    bool=true;
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)==null) {
                     maisonettes.get(o + n).editRating(user, desc, ra);
                 }
+                else
+                    bool=true;
                 break;
         }
         return bool;
@@ -64,16 +70,22 @@ public class AccommodationManagerUserSub extends AccommodationManager{
                 if (hotels.get(o + n) != null && hotels.get(o+n).getRating(user)!=null) {
                     hotels.get(o + n).deleteRating(user);
                 }
+                else
+                    bool=true;
                 break;
             case "Apartment":
                 if (apartments.get(o + n) != null && apartments.get(o+n).getRating(user)!=null) {
                     apartments.get(o + n).deleteRating(user);
                 }
+                else
+                    bool=true;
                 break;
             case "Maisonette":
                 if (maisonettes.get(o + n) != null && maisonettes.get(o+n).getRating(user)!=null) {
                     maisonettes.get(o + n).deleteRating(user);
                 }
+                else
+                    bool=true;
                 break;
         }
     return bool;

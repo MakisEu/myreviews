@@ -135,14 +135,14 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         }
         else if (e.getActionCommand().equals("Edit Rating")) {
             bool = service.EditRating(textField_Rate.getText(), textField_Description.getText(), Float.parseFloat(textField_Grade.getText().replaceAll("[^0-9]", "")));
-            if (bool)
+            if (!bool)
                 JOptionPane.showMessageDialog(this, "Edited Rating added successfully", "Added Edited Rating", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(this, "You cannot edit this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if (e.getActionCommand().equals("Delete Rating")) {
             bool = service.DeleteRating(textField_Rate.getText());
-            if (bool)
+            if (!bool)
                 JOptionPane.showMessageDialog(this, "Accommodation deleted successfully", "Deleted Rating", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(this, "You cannot delete this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
