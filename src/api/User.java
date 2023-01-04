@@ -28,7 +28,8 @@ public class User {
     public boolean AddRating(String on,String rating,float score){
         boolean bool=false;
         String[] x=on.split("#");
-        bool=amu.addRating(x[0],x[1],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name);
+        String type=new Helper().getTitle(x[0]);
+        bool=amu.addRating(x[1],x[2],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name,type);
         return bool;
     }
 
@@ -49,13 +50,16 @@ public class User {
     public boolean EditRating(String on,String rating,float score){
         boolean bool;
         String[] x=on.split("#");
-        bool=amu.editRatings(x[0],x[1],rating,score,username);
+        String type=new Helper().getTitle(x[0]);
+
+        bool=amu.editRatings(x[1],x[2],rating,score,username,type);
         return bool;
     }
     public boolean DeleteRating(String on){
         boolean bool;
         String[] x=on.split("#");
-        bool=amu.deleteRating(x[0],x[1],username);
+        String type=new Helper().getTitle(x[0]);
+        bool=amu.deleteRating(x[1],x[2],username,type);
         return bool;
     }
 

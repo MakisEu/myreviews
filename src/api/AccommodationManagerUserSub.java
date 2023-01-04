@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class AccommodationManagerUserSub extends AccommodationManager{
-    public boolean addRating(String o, String n, String desc, float ra, String user, String date,String name) {
+    public boolean addRating(String o, String n, String desc, float ra, String user, String date,String name,String type) {
         //System.out.println(o+" "+n+" "+desc+" "+ra+" "+user+" "+date);
         boolean bool = false;
-        String type = this.getType(o, n);
+        //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
@@ -28,9 +28,9 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         return bool;
     }
 
-    public boolean editRatings(String o, String n, String desc, float ra, String user) {
+    public boolean editRatings(String o, String n, String desc, float ra, String user,String type) {
         boolean bool=false;
-        String type = this.getType(o, n);
+        //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
@@ -51,9 +51,9 @@ public class AccommodationManagerUserSub extends AccommodationManager{
         return bool;
     }
 
-    public boolean deleteRating(String o, String n, String user) {
+    public boolean deleteRating(String o, String n, String user,String type) {
         boolean bool=false;
-        String type = this.getType(o, n);
+        //String type = this.getType(o, n);
         switch (type) {
             case "Hotel":
                 if (hotels.get(o + n) != null) {
