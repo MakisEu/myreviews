@@ -115,12 +115,11 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
             //all[0] = "e#a";
             //all[1] = "d#o";
 
-            newM();
-
-            if (all.length < 1) {
+            if (all.length < 1)
                 JOptionPane.showMessageDialog(this, "There are no accommodations with these elements", "Accommodation not found", JOptionPane.ERROR_MESSAGE);
+            else
+                newM();
             }
-        }
 
         if (e.getActionCommand().equals("Refresh list")) {
             this.updateList();
@@ -152,7 +151,8 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
 
     public void updateList() {
         list.setModel(new AbstractListModel() {
-            String[] strings = all;
+            String[] strings=all;
+
 
             @Override
             public int getSize() {
