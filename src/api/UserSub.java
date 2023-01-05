@@ -4,14 +4,34 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class UserSub {
+    /**
+     * All the Variables in the User class:
+     * amu              AccommodationManagerUser object
+     * name             The name of a user
+     * username         The username of a user
+     */
     AccommodationManagerUser amu;
     String name,username;
+
+    /**
+     * Normal constructor:
+     * @param n The name
+     * @param u The username
+     */
     public UserSub(String n,String u){
         name=n;
         username=u;
         amu=new AccommodationManagerUser();
     }
 
+    /**
+     * Method that Searches and returns all the accommodations with same characteristics with the parameters
+     * @param city The city of the accommodation
+     * @param type The type of the accommodation
+     * @param name The name of the accommodation
+     * @param prop The properties of the accommodation
+     * @return A string array with the accommodations with the preferred characteristic
+     */
     public String[] Search(String city,String type,String name,String[] prop){
         String[][] temp;
         String[] t;
