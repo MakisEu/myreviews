@@ -5,8 +5,15 @@ import java.util.HashMap;
 
 public class AllRegistered implements  Serializable{
 
+    /**All the Variables of AllRegistered class:
+     * registered_users         A hashmap contains registrations for every registered user
+     * registered_providers     A hashmap contains registrations for every registered provider
+     */
     protected HashMap<String,Registration> registered_users,registered_providers;
 
+    /**
+     * Normal constructor:
+     */
     public AllRegistered(){
         registered_users=new HashMap<>();
         registered_providers=new HashMap<>();
@@ -20,6 +27,14 @@ public class AllRegistered implements  Serializable{
         }
     }
 
+    /**
+     * This method adds a new registration in one of the 2 hashmaps accordingly to the user type
+     * @param username The username
+     * @param password The password
+     * @param name     The name
+     * @param surname  The surname
+     * @param type     The type of user
+     */
     public void add_registration(String username,String password,String name,String surname,String type){
         Registration reg =new Registration(username,password,name,surname,type);
         if (reg.getUserType().equals("User"))
@@ -46,6 +61,12 @@ public class AllRegistered implements  Serializable{
         }
         destructor();
     }
+
+    /**
+     * This method checks if there is a registration with the given username
+     * @param username The username
+     * @return true or false
+     */
     public boolean contains(String username){
         if (registered_users.containsKey(username) || registered_providers.containsKey(username)){
             return true;
@@ -53,6 +74,11 @@ public class AllRegistered implements  Serializable{
         else {return false;}
     }
 
+    /**
+     * This method returns a registration based on the given key(-username)
+     * @param key A username-key for the hashmap
+     * @return A registration
+     */
     public Registration getUserRegistration(String key){
         return registered_users.get(key);
     }
@@ -66,11 +92,5 @@ public class AllRegistered implements  Serializable{
         }
         //Write the data in a binary file and close it
     }
-
-
-
-
-
-
 
 }
