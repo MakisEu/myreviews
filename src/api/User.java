@@ -242,5 +242,8 @@ public class User {
         }}
         return ar.toArray(new String[0]);
     }
+    public void destructor(){
+        amu.destructor();
+    }
 
 }

@@ -147,6 +147,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
             else
                 JOptionPane.showMessageDialog(this, "You cannot delete this accommodation!!!", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        service.destructor();
     }
 
     public void updateList() {
