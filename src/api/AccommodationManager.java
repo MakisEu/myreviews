@@ -53,13 +53,15 @@ public class AccommodationManager implements Serializable{
     /**
      * Shows all accommodations
      */
-    public void showAll() {
+    public String showAll() {
+        String s="";
         for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            entry.getValue().show();}
+            s=s+entry.getValue().show()+"\n";}
         for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            entry.getValue().show();}
+            s=s+entry.getValue().show()+"\n";}
         for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            entry.getValue().show();}
+            s=s+entry.getValue().show()+"\n";}
+        return s;
     }
 
     /**

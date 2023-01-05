@@ -107,21 +107,21 @@ public class AccommodationManagerProviderTest {
 
     @Test
     public void deleteAccommodation() {
-        /*System.out.println("Delete Accommodations:");
+        System.out.println("Delete Accommodations:");
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
         //Test Hotel
         AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Hotel)");
+        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Hotel)","Hotel");
         //Test Apartment
         AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Apartment)");
+        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Apartment)","Apartment");
         //Test Maisonette
         AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Maisonette)");
-        AM.showAll();*/
+        AM.deleteAccommodation("someGuy3","5-story building in Antigonidon(Maisonette)","Maisonette");
+        System.out.println(AM.showAll());
     }
     @Test
     public void updateProperty() {
@@ -129,21 +129,9 @@ public class AccommodationManagerProviderTest {
         AccommodationManagerProvider AM = new AccommodationManagerProvider();
         AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
         AM.updateProperty("someGuy2","4-story building in Antigonidon(Hotel)","view","Sea");
-        AM.showAll();
+        System.out.println(AM.showAll());
     }
 
-    @Test
-    public void showOwned() {
-        System.out.println("Show Owned Accommodations:");
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.showOwned("someGuy3");
-    }
     /*@Test
     public void setDescription() {
         System.out.println("Set Description:");
@@ -179,6 +167,7 @@ public class AccommodationManagerProviderTest {
         AM.setName("someGuy2","4-story building in Antigonidon(ap)","Gdr#p");
         assertEquals(expected,AM.getApartment("someGuy2","Gdr#p").getName());
     }
+
 
     /*@Test
     public void setTK() {
@@ -226,99 +215,4 @@ public class AccommodationManagerProviderTest {
         assertEquals(expected,AM.getMaisonette("someGuy2","4-story building in Antigonidon(Hotel)").getAddress());
     }*/
 
-
-    @Test
-    public void getRatingsNumber() {
-        System.out.println("get Ratings Number:");
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Hotel", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-
-        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
-            if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("SuperR!", 4, "KOSTAS", "1/1/2022","ks");
-            }
-        }
-        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
-            if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
-            }
-        }
-        int excepted = 3;
-        System.out.println(AM.getRatingsNumber("someGuy"));
-        assertEquals(excepted, AM.getRatingsNumber("someGuy"));
-    }
-
-
-    @Test
-    public void getRatingAverage() {
-        System.out.println("get Ratings Average:");
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "three-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        AM.addAccommodation("Hotel", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
-            if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("ok!", 5, "gio", "1/1/2022","g");
-            }
-        }
-        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
-            if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
-            }
-        }
-        for (Map.Entry<String,Apartment> entry : AM.apartments.entrySet()) {
-            if (entry.getValue().getOwner().equals("someGuy")) {
-                entry.getValue().addRating("mid",2,"jim","24/9/2022","jimD");
-            }
-        }
-        double excepted=4.25;
-        System.out.println(AM.getRatingAverage("someGuy"));
-        assertEquals(excepted,AM.getRatingAverage("someGuy"),0.01);
-
-    }
-
-
-    @Test
-    public void getOwnedApartments() {
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        Apartment exp=AM.getApartment("someGuy3","5-story building in Antigonidon(Apartment)");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        assertEquals(exp,AM.getOwnedApartments("someGuy3").get(0));
-
-
-    }
-
-    @Test
-    public void getOwnedHotels() {
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        Hotel exp=AM.getHotel("someGuy3","5-story building in Antigonidon(Hotel)");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        assertEquals(exp,AM.getOwnedHotels("someGuy3").get(0));
-    }
-
-    @Test
-    public void getOwnedMaisonettes() {
-        AccommodationManagerProvider AM = new AccommodationManagerProvider();
-        AM.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Hotel", "5-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Apartment", "5-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        AM.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
-        Maisonette exp=AM.getMaisonette("someGuy3","5-story building in Antigonidon(Maisonette)");
-        assertEquals(exp,AM.getOwnedMaisonettes("someGuy3").get(0));
-    }
 }

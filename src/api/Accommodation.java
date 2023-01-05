@@ -40,6 +40,7 @@ public class Accommodation implements Serializable {
         owner=o;
         ratings=new ArrayList<>();
         properties=new Properties();
+        UID="Accommodation#Owner#name";
     }
     /** This method adds a rating to the accommodation
      *  @param desc Description of the rating
@@ -61,13 +62,11 @@ public class Accommodation implements Serializable {
     }
 
     public int number_of_ratings_of_user(String username){
-        int sum=0;
-        for (Rating r:ratings){
-            if (r.getUser().equals(username)) {
-                sum+=1;
-            }
+        Rating r=getRating(username);
+        if (r!=null){
+            return 1;
         }
-        return sum;
+        return 0;
     }
 
     public int getRatingNumber(){

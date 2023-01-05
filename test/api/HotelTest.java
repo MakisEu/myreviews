@@ -3,6 +3,8 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintWriter;
+
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,6 +13,8 @@ public class HotelTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
     }
 
 
@@ -69,7 +73,7 @@ public class HotelTest {
     @Test
     public void show() {
         System.out.println("Show:");
-        Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,6,true);
+        Hotel instance = new Hotel("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
         instance.show();
     }
 }

@@ -4,6 +4,8 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintWriter;
+
 import static org.junit.Assert.*;
 
 import static org.junit.Assert.assertEquals;
@@ -14,6 +16,8 @@ public class RegistrationTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
     }
 
     @Test
@@ -58,4 +62,20 @@ public class RegistrationTest {
         assertEquals(expected,reg.getUsername());
     }
 
+    @Test
+    public void getName() {
+        System.out.println("get user's surname");
+        Registration reg=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
+        String expected="Franz";
+        assertEquals(expected,reg.getName());
+    }
+
+    @Test
+    public void setName() {
+        System.out.println("set user's name");
+        Registration reg=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
+        reg.setName("Werner");
+        String expected="Werner";
+        assertEquals(expected,reg.getName());
+    }
 }

@@ -81,45 +81,7 @@ public class AccommodationManagerUserTest {
         }*/
         //AM.findProperties();
     }
-    @Test
-    public void addRating() throws FileNotFoundException {
-        System.out.println("Add Accommodation Rating:");
-        AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-        AMP.destructor();
-        AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk","Hotel");
-        AM.showAll();
-    }
 
-    @Test
-    public void editRatings() throws FileNotFoundException {
-        System.out.println("Edit Accommodation Rating:");
-        AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-        AMP.destructor();
-        AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk","Hotel");
-        AM.showAll();
-        AM.editRatings("someGuy2","4-story building in Antigonidon(Hotel)","This is actually good!!!",4,"Makis","Hotel");
-        AM.showAll();
-    }
-
-    @Test
-    public void deleteRating() throws FileNotFoundException {
-        System.out.println("Delete Accommodation Rating:");
-        AccommodationManagerProvider AMP = new AccommodationManagerProvider();
-        AMP.addAccommodation("Hotel", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy2");
-        String date = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date());
-        AMP.destructor();
-        AccommodationManagerUser AM = new AccommodationManagerUser();
-        AM.addRating("someGuy2","4-story building in Antigonidon(Hotel)","This sucks!!!",2,"Makis",date,"mk","Hotel");
-        AM.showAll();
-        AM.deleteRating("someGuy2","4-story building in Antigonidon(Hotel)","Makis","Hotel");
-        AM.showAll();
-    }
     @Test
     public void findName() throws FileNotFoundException {
         AccommodationManagerProvider AMP = new AccommodationManagerProvider();

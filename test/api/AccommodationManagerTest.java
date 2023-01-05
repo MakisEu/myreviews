@@ -30,7 +30,7 @@ public class AccommodationManagerTest {
         AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManager AM=new AccommodationManager();
-        AM.showAll();
+        System.out.println(AM.showAll());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class AccommodationManagerTest {
         AMP.destructor();
         AccommodationManager AM = new AccommodationManager();
         h=AM.getHotel("someGuy2","4-story building in Antigonidon(Hotel)");
-        h.show();
+        System.out.println(h.show());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AccommodationManagerTest {
         AMP.destructor();
         AccommodationManager AM = new AccommodationManager();
         h=AM.getApartment("someGuy2","4-story building in Antigonidon(Hotel)");
-        h.show();
+        System.out.println(h.show());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AccommodationManagerTest {
         AMP.destructor();
         AccommodationManager AM = new AccommodationManager();
         h=AM.getMaisonette("someGuy2","4-story building in Antigonidon(Hotel)");
-        h.show();
+        System.out.println(h.show());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class AccommodationManagerTest {
         AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManager AM = new AccommodationManager();
-        AM.showAll();
+        System.out.println(AM.showAll());
 
     }
 }

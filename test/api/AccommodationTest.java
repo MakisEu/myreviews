@@ -4,13 +4,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.io.PrintWriter;
+
+import static org.junit.Assert.*;
 
 public class AccommodationTest {
 
+
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
     }
 
     @Test
@@ -163,5 +167,52 @@ public class AccommodationTest {
         instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
         instance.addRating("Its good!!!",2,"John","19/11/2022 20:02","jn");
         assertEquals(3,instance.getRatingsAverage(),0.01);
+    }
+
+    @Test
+    public void getRating() {
+        System.out.println("Add Rating:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
+        assertNotNull(instance.getRating("Makis"));
+
+    }
+
+    @Test
+    public void number_of_ratings_of_user() {
+        System.out.println("Number of ratings of a user in an accommodation:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
+        assertEquals(1,instance.number_of_ratings_of_user("Makis"));
+        assertEquals(0,instance.number_of_ratings_of_user("John"));
+    }
+
+    @Test
+    public void ratingsSum() {
+        System.out.println("Sum of ratings in an accommodation:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessaloniki","someGuy");
+        instance.addRating("Its good!!!",4,"Makis","19/11/2022 20:02","mk");
+        instance.addRating("Its good!!!",2,"John","19/11/2022 20:02","jn");
+        instance.addRating("Its good!!!",1,"Jim","19/11/2022 20:02","jm");
+        float expected=7;
+        assertEquals(expected,instance.ratingsSum(),0.01);
+    }
+
+    @Test
+    public void setName() {
+        System.out.println("Set Name:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
+        instance.setName("HI");
+        String expected="HI";
+        assertEquals(expected,instance.getName());
+    }
+
+    @Test
+    public void getProperty() {
+        System.out.println("Set Name:");
+        Accommodation instance = new Accommodation("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
+        instance.updateProperty("view","Sea");
+        assertEquals("Sea",instance.getProperty("view"));
+
     }
 }

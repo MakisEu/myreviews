@@ -3,12 +3,16 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintWriter;
+
 import static org.junit.Assert.*;
 
 public class ApartmentTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
     }
 
     @Test
@@ -75,7 +79,7 @@ public class ApartmentTest {
     @Test
     public void show() {
         System.out.println("Show:");
-        Apartment instance = new Apartment("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",4,3,true,true);
+        Apartment instance = new Apartment("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
         instance.show();
     }
 }

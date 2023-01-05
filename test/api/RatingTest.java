@@ -66,8 +66,20 @@ public class RatingTest {
     }
 
 
+    @Test
+    public void show() {
+        System.out.println("set date");
+        Rating rating=new Rating("Pretty good!",4,"user1234","19/11/2022","u1234");
+        rating.setDate("19/11/2022");
+        String expected="19/11/2022 | u1234 | 4/5 stars\n" + "Pretty good!";
+        assertEquals(expected,rating.Show());
+    }
 
-
-
-
+    @Test
+    public void getUser() {
+        Rating rating=new Rating("Pretty good!",4,"user1234","19/11/2022","u1234");
+        rating.setDate("19/11/2022");
+        String expected="user1234";
+        assertEquals(expected,rating.getUser());
+    }
 }

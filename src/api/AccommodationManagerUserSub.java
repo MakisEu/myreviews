@@ -3,6 +3,7 @@ package api;
 import java.util.Arrays;
 import java.util.Map;
 
+/** A subclass of AccommodationManagerUser that holds the rating part*/
 public class AccommodationManagerUserSub extends AccommodationManager{
     public boolean addRating(String o, String n, String desc, float ra, String user, String date,String name,String type) {
         boolean bool = false;
@@ -117,18 +118,31 @@ public class AccommodationManagerUserSub extends AccommodationManager{
 
     public double getMean(String username) {
         double mean = 0;
+        Rating r=null;
         int sum=0;
         for (Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            mean += entry.getValue().getRating(username).getGrade();
-            sum+=entry.getValue().number_of_ratings_of_user(username);
+            r=entry.getValue().getRating(username);
+            if (r!=null)
+            {
+                mean += r.getGrade();
+                sum+=entry.getValue().number_of_ratings_of_user(username);
+            }
         }
         for (Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            mean+=entry.getValue().getRating(username).getGrade();
-            sum+=entry.getValue().number_of_ratings_of_user(username);
+            r=entry.getValue().getRating(username);
+            if (r!=null)
+            {
+                mean += r.getGrade();
+                sum+=entry.getValue().number_of_ratings_of_user(username);
+            }
         }
         for (Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            mean+=entry.getValue().getRating(username).getGrade();
-            sum+=entry.getValue().number_of_ratings_of_user(username);
+            r=entry.getValue().getRating(username);
+            if (r!=null)
+            {
+                mean += r.getGrade();
+                sum+=entry.getValue().number_of_ratings_of_user(username);
+            }
         }
         return (double)mean/sum;
 

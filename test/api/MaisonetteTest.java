@@ -3,12 +3,16 @@ package api;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintWriter;
+
 import static org.junit.Assert.*;
 
 public class MaisonetteTest {
 
     @Before
     public void setUp() throws Exception {
+        PrintWriter pw = new PrintWriter("accommodations.dat");
+        pw.close();
     }
 
     @Test
@@ -31,7 +35,7 @@ public class MaisonetteTest {
     @Test
     public void show() {
         System.out.println("Show:");
-        Maisonette instance = new Maisonette("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy",2);
+        Maisonette instance = new Maisonette("three-story building in Antigonidon","Κέντρο","123456","Thessalonikh","A three story building in Thessalonikh","someGuy");
         instance.show();
     }
 }

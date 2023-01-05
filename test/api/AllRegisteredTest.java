@@ -34,7 +34,16 @@ public class AllRegisteredTest {
     }
 
 
-
-
+    @Test
+    public void contains() {
+        System.out.println("Contains registration");
+        AllRegistered R=new AllRegistered();
+        Registration reg=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
+        R.add_registration("FranzLiszt","piano123","Franz","Liszt","User");
+        //Registration expected=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
+        String expected="Liszt";
+        R.add_registration("someGuy","1234567","SG","someOtherGuy","Provider");
+        assertEquals(true,R.contains("someGuy"));
+    }
 
 }
