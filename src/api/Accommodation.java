@@ -42,7 +42,8 @@ public class Accommodation implements Serializable {
         properties=new Properties();
         UID="Accommodation#Owner#name";
     }
-    /** This method adds a rating to the accommodation
+    /**
+     * This method adds a rating to the accommodation
      *  @param desc Description of the rating
      *  @param ra   The grade of the rating (up to 5)
      *  @param user The user tha created the rating
@@ -52,6 +53,11 @@ public class Accommodation implements Serializable {
         ratings.add(r);
     }
 
+    /**
+     * This method returns the rating (if exists) of  the accommodation of the user with the "username"
+     * @param username The username of a user
+     * @return the rating or null
+     */
     public Rating getRating(String username){
         for (Rating r:ratings) {
             if (r.getUser().equals(username)) {
@@ -61,6 +67,11 @@ public class Accommodation implements Serializable {
         return null;
     }
 
+    /**
+     * This method returns 1 if a user with "username" has submitted a rating for an accommodation  or 0 if there is no rating for this accommodation from the user with the "username"
+     * @param username The username of a user
+     * @return 1 or 0
+     */
     public int number_of_ratings_of_user(String username){
         Rating r=getRating(username);
         if (r!=null){
@@ -69,14 +80,27 @@ public class Accommodation implements Serializable {
         return 0;
     }
 
+    /**
+     * This method returns the size of the arraylist ratings
+     * @return the size of ratings
+     */
     public int getRatingNumber(){
         return ratings.size();
     }
 
+    /**
+     * This method returns the average of the arraylist ratings
+     * the average or ratings
+     */
     public float getRatingsAverage(){
         if (ratings.size()==0){return 0;}
         return this.ratingsSum()/ratings.size();
     }
+
+    /**
+     *This method  returns the sum of all the grades given for an accommodation
+     * @return the sum of grades
+     */
     public float ratingsSum(){
         float x=0;
         for (Rating r:ratings){
