@@ -37,12 +37,12 @@ public class User extends UserSub{
      * @param score The grade of the rating
      * @return true or false depends on if the rating is added successfully or not
      */
-    public boolean AddRating(String on,String rating,float score){
-        boolean bool=false;
+    public int AddRating(String on,String rating,float score){
+        int q=0;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
-        bool=amu.addRating(x[1],x[2],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name,type);
-        return bool;
+        q=amu.addRating(x[1],x[2],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name,type);
+        return q;
     }
 
     /**
@@ -83,19 +83,19 @@ public class User extends UserSub{
      * @param score The grade of the rating
      * @return true or false depends on if the rating is edited successfully or not
      */
-    public boolean EditRating(String on,String rating,float score){
-        boolean bool=false;
+    public int EditRating(String on,String rating,float score){
+        int q=0;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
-        bool=amu.editRatings(x[1],x[2],rating,score,username,type);
-        return bool;
+        q=amu.editRatings(x[1],x[2],rating,score,username,type);
+        return q;
     }
-    public boolean DeleteRating(String on){
-        boolean bool;
+    public int DeleteRating(String on){
+        int q;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
-        bool=amu.deleteRating(x[1],x[2],username,type);
-        return bool;
+        q=amu.deleteRating(x[1],x[2],username,type);
+        return q;
     }
 
     /**

@@ -30,7 +30,7 @@ public class UserSub {
      * @param type The type of the accommodation
      * @param name The name of the accommodation
      * @param prop The properties of the accommodation
-     * @return A string array with the accommodations with the preferred characteristic
+     * @return A string array with the accommodations with the preferred characteristics
      */
     public String[] Search(String city,String type,String name,String[] prop){
         String[][] temp;

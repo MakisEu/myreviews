@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class AccommodationManagerUser extends AccommodationManagerUserSub{
+
+    /**
+     *Constructor:
+     */
     public AccommodationManagerUser(){
         super();
     }
