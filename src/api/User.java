@@ -14,8 +14,8 @@ public class User extends UserSub{
      * @param n The name
      * @param u The username
      */
-    public User(String n,String u){
-        super(n,u);}
+    public User(String u,String n){
+        super(u,n);}
 
 
     /**
@@ -113,7 +113,7 @@ public class User extends UserSub{
      * @param username The username of the user
      * @return The double average
      */
-    public double getMean(String username){
+    public double getMean(){
         return amu.getMean(username);
     }
 

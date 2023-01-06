@@ -18,7 +18,7 @@ public class UserSub {
      * @param n The name
      * @param u The username
      */
-    public UserSub(String n,String u){
+    public UserSub(String u,String n){
         name=n;
         username=u;
         amu=new AccommodationManagerUser();

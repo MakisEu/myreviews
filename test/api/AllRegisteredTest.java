@@ -46,4 +46,12 @@ public class AllRegisteredTest {
         assertEquals(true,R.contains("someGuy"));
     }
 
+    @Test
+    public void getUserRegistration() {
+        System.out.println("Get registration");
+        AllRegistered R=new AllRegistered();
+        Registration reg=new Registration("FranzLiszt","piano123","Franz","Liszt","User");
+        R.add_registration("FranzLiszt","piano123","Franz","Liszt","User");
+        assertNotNull(R.getUserRegistration("FranzLiszt"));
+    }
 }
