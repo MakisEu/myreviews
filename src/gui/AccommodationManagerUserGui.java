@@ -57,7 +57,7 @@ public class AccommodationManagerUserGui extends JPanel implements ActionListene
         panel2 = new JPanel();
         panel2.setLayout(new FlowLayout());
         panel2.setBackground(Color.gray);
-        rate = new JLabel("Name of accommodation:");
+        rate = new JLabel("UID of accommodation:");
         grade = new JLabel("Grade:");
         desc = new JLabel("Description:");
         panel2.add(rate);
