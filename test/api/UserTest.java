@@ -40,7 +40,7 @@ public class UserTest {
         p.addAccommodation("h","This is a name","Address","214365","Athens","Its a hotel");
         p.destructor();
         User user=new User("Makis","mk");
-        assertTrue(!user.AddRating("h#someGuy#This is a name","This is good",5));
+        assertEquals(0,user.AddRating("h#someGuy#This is a name","This is good",5));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class UserTest {
         p.destructor();
         User user=new User("Makis","mk");
         user.AddRating("h#someGuy#This is a name","This is good",5);
-        assertTrue(!user.EditRating("h#someGuy#This is a name","This is bad",3));
+        assertEquals(0,user.EditRating("h#someGuy#This is a name","This is bad",3));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class UserTest {
         p.destructor();
         User user=new User("Makis","mk");
         user.AddRating("h#someGuy#This is a name","This is good",5);
-        assertTrue(!user.DeleteRating("h#someGuy#This is a name"));
+        assertEquals(0,user.DeleteRating("h#someGuy#This is a name"));
     }
 
     @Test
