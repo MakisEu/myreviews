@@ -110,7 +110,7 @@ public class User extends UserSub{
 
     /**
      * Method that returns a users average ratings based on grade
-     * @param username The username of the user
+     * username The username of the user
      * @return The double average
      */
     public double getMean(){

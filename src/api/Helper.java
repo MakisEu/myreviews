@@ -29,52 +29,6 @@ public class Helper {
         }
         return ac;
     }
-    /*public Accommodation Change(String type,String name,Provider service,String[] change,boolean command){
-        Accommodation acc = null;
-        switch (type) {
-            case "a":
-
-                Apartment a = service.getApartment(name);
-                if (a != null) {
-                    if (command) {
-                        new Helper2().setApartment(change[0], change[1], change[2], change[3], a);
-                    }
-                    acc = a;
-                } else {
-                    return null;
-                    //JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case "h":
-
-                Hotel h = service.getHotel(name);
-                if (h != null) {
-                    if (command) {
-                        new Helper2().setHotel(change[0], change[1], change[2], h);
-                    }
-                    acc = h;
-                } else {
-                    return null;
-                    //JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-
-                break;
-            case "m":
-
-                Maisonette m = service.getMaisonette(name);
-                if (m != null) {
-                    if (command) {
-                        new Helper2().setMaisonette(change[0], m);
-                    }
-                    acc = m;
-                } else {
-                    return null;
-                    //JOptionPane.showMessageDialog(this, "ACCOMMODATION NOT FOUND. PLEASE CHECK THAT THE UID IS CORRECT", "ERROR!!!", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-        }
-        return acc;
-    }*/
     public String getTitle(String type){
         switch (type) {
             case "a":
@@ -86,7 +40,4 @@ public class Helper {
         }
         return null;
     }
-    /*public String UIDResolve(String uid){
-        return uid.split("#")[1]+"#"+uid.split("#")[2];
-    }*/
 }
