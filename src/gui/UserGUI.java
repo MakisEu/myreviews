@@ -15,7 +15,7 @@ public class UserGUI extends JFrame {
         service=new api.User(name,username);
         frame=new JFrame();
         frame.setTitle("Operations for users");
-        frame.setSize(600,400);
+        frame.setSize(1600, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(true);
         tabs=new JTabbedPane();

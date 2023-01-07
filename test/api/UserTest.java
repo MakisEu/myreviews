@@ -15,7 +15,6 @@ public class UserTest {
         PrintWriter pw = new PrintWriter("accommodations.dat");
         pw.close();
     }
-
     @Test
     public void getName() throws FileNotFoundException {
         Provider p=new Provider("someGuy","SG");

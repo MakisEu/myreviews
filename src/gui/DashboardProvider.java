@@ -9,11 +9,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class DashboardProvider extends Dashboard{
     Provider service;
-    JLabel ratings;
-    public void DoStuff(){
-        ratings=new JLabel();
-        this.add(ratings);
-    }
+
     public DashboardProvider startGUI(Provider p, JFrame j){
         service=p;
         this.GUI(j);

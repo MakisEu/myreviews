@@ -140,7 +140,7 @@ public class Accommodation implements Serializable {
         String x="Ratings:";
         for (Rating t: ratings)
         {
-            x=x+t.Show();
+            x=x+t.Show()+"\n";
         }
         return x;
     }

@@ -10,6 +10,7 @@ public class Dashboard extends JPanel implements ActionListener {
     JList jList;
     JTextArea jTextArea;
     JFrame frame;
+    JLabel ratings;
     JButton refresh,Logout;
 
     public void updateList(){
@@ -18,7 +19,6 @@ public class Dashboard extends JPanel implements ActionListener {
         new StartScreenGUI().g();
         frame.dispose();
     }
-    public void DoStuff(){}
     public void GUI(JFrame j){
         frame=j;
         jList = new JList();
@@ -32,7 +32,8 @@ public class Dashboard extends JPanel implements ActionListener {
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
         this.add(refresh);
-        DoStuff();
+        ratings=new JLabel();
+        this.add(ratings);
         this.add(jList);
         this.add(jTextArea);
         this.add(Logout);

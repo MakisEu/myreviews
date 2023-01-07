@@ -26,6 +26,7 @@ public class DashboardUser extends Dashboard{
                 jTextArea.setText(service.getMaisonette(p[2],p[0]).show());}}
     }
     public void updateList(){
+        ratings.setText("Average rating: "+service.getMean());
         jList.setModel(new AbstractListModel() {
             String[] strings = service.allRatings();
 
