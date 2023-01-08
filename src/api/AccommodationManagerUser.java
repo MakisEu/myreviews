@@ -11,6 +11,12 @@ public class AccommodationManagerUser extends AccommodationManagerUserSub{
     public AccommodationManagerUser(){
         super();
     }
+
+    /**
+     * @param argv String[] of the name of the properties
+     * @param argv2 String[] of the values of the properties
+     * @return String[][] of all the accommodation with the required values
+     * */
     public String[][] findProperties(String[] argv,String[] argv2) {
         int n = argv.length,cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
@@ -65,6 +71,10 @@ public class AccommodationManagerUser extends AccommodationManagerUserSub{
         b[2]=m;
         return b;
     }
+    /**
+     * @param name the name of the accommodation
+     * @return String[][] of all the accommodation with the specified name
+     * */
     public String[][] findName(String name) {
         int cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
@@ -107,6 +117,10 @@ public class AccommodationManagerUser extends AccommodationManagerUserSub{
         return  b;
     }
 
+    /**
+     * @param type the type of the accommodation
+     * @return String[][] of all the accommodation with the specified type
+     * */
     public String[][] findType(String type) {
         int cnt=0;
         String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];
@@ -136,6 +150,10 @@ public class AccommodationManagerUser extends AccommodationManagerUserSub{
         return b;
     }
 
+    /**
+     * @param city the city of the accommodation
+     * @return String[][] of all the accommodation with the specified city
+     * */
     public String[][] findLocation(String city) {
             int cnt=0;
             String[] a=new String[apartments.size()],h=new String[hotels.size()],m=new String[maisonettes.size()];

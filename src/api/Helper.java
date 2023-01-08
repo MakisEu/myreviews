@@ -3,6 +3,11 @@ package api;
 
 public class Helper {
 
+    /**
+     * This method updates the properties of an accommodation
+     *  @param acc The Accommodation that will be updated
+     *  @param pr The properties-values that will be updated
+     *  */
     public  void updateProperties(Accommodation acc,String[] pr){
         if(pr.length>1){
             for (String pro:pr){
@@ -11,6 +16,14 @@ public class Helper {
             }
         }
     }
+    /**
+     * This method adds properties to accommodation of Provider
+     *  @param type The type of accommodation
+     *  @param service The Provider that has the accommodation
+     *  @param name The name of the accommodation
+     *  @param prop The properies-values that will be updated
+     *  @return the accommodation
+     *  */
     public Accommodation AddProperties(String type,Provider service,String name,String[] prop){
         Accommodation ac = null;
         switch (type) {
@@ -29,6 +42,11 @@ public class Helper {
         }
         return ac;
     }
+    /**
+     * This method gets the title of accommodation from the first letter of the type
+     *  @param type The type of accommodation
+     *  @return the title of the type of accommodation
+     *  */
     public String getTitle(String type){
         switch (type) {
             case "a":
