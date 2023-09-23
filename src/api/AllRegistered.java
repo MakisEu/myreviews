@@ -17,7 +17,7 @@ public class AllRegistered implements  Serializable{
     public AllRegistered(){
         registered_users=new HashMap<>();
         registered_providers=new HashMap<>();
-        try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream("Accounts.dat"))) {
+        try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream("Database/Accounts.dat"))) {
             HashMap<String,Registration> a =(HashMap<String,Registration>) oos.readObject();
             HashMap<String,Registration> h = (HashMap<String,Registration>) oos.readObject();
             registered_users.putAll(a);
@@ -83,7 +83,7 @@ public class AllRegistered implements  Serializable{
         return registered_users.get(key);
     }
     private void destructor(){
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Accounts.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Database/Accounts.dat"))) {
             oos.writeObject(registered_users);
             oos.writeObject(registered_providers);
 

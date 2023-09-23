@@ -11,8 +11,8 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @return ArrayList of all owned apartments */
     public ArrayList<Apartment> getOwnedApartments(String owner){
         ArrayList<Apartment> a=new ArrayList<>();
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            Apartment value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Apartment").entrySet()) {
+            Apartment value=(Apartment) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 a.add(value);}}
         return a;
@@ -23,8 +23,8 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @return ArrayList of all owned hotels */
     public ArrayList<Hotel> getOwnedHotels(String owner){
         ArrayList<Hotel> a=new ArrayList<>();
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            Hotel value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Hotel").entrySet()) {
+            Hotel value=(Hotel) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 a.add(value);}}
         return a;
@@ -35,8 +35,8 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @return ArrayList of all owned maisonettes */
     public ArrayList<Maisonette> getOwnedMaisonettes(String owner){
         ArrayList<Maisonette> a=new ArrayList<>();
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Maisonette").entrySet()) {
+            Maisonette value=(Maisonette) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 a.add(value);}}
         return a;
@@ -47,18 +47,18 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @return the number of ratings of all accommodations of an owner */
     public int getRatingsNumber(String owner){
         int sum=0;
-        for (Map.Entry<String,Apartment> e:apartments.entrySet())
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Apartment").entrySet())
         {
             if (e.getValue().getOwner().equals(owner))
                 sum+=e.getValue().getRatingNumber();
         }
-        for (Map.Entry<String,Hotel> e:hotels.entrySet())
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Hotel").entrySet())
         {
             if (e.getValue().getOwner().equals(owner))
                 sum+=e.getValue().getRatingNumber();
         }
 
-        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet())
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Maisonette").entrySet())
         {
             if (e.getValue().getOwner().equals(owner))
                 sum+=e.getValue().getRatingNumber();
@@ -71,14 +71,14 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @return the average of all ratings of all accommodations of an owner */
     public double getRatingAverage(String owner){
         int sum=0,i=0;
-        for (Map.Entry<String,Apartment> e:apartments.entrySet())
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Apartment").entrySet())
         {
             if (e.getValue().getOwner().equals(owner)) {
                 sum += e.getValue().ratingsSum();
                 i+=e.getValue().getRatingNumber();
             }
         }
-        for (Map.Entry<String,Hotel> e:hotels.entrySet())
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Hotel").entrySet())
         {
             if (e.getValue().getOwner().equals(owner)) {
                 sum += e.getValue().ratingsSum();
@@ -86,7 +86,7 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
 
             }
         }
-        for (Map.Entry<String,Maisonette> e:maisonettes.entrySet()) {
+        for (Map.Entry<String,Accommodation> e:accommodations.get("Maisonette").entrySet()) {
             if (e.getValue().getOwner().equals(owner)) {
                 sum += e.getValue().ratingsSum();
                 i+=e.getValue().getRatingNumber();
@@ -101,16 +101,16 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      */
     public String showOwned(String owner) {
         String x = "";
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            Apartment value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Apartment").entrySet()) {
+            Apartment value=(Apartment) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 x=x+value.show()+"\n\n";}}
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            Hotel value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Hotel").entrySet()) {
+            Hotel value=(Hotel) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 x=x+value.show()+"\n\n";}}
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            Maisonette value=entry.getValue();
+        for(Map.Entry<String, Accommodation> entry : accommodations.get("Maisonette").entrySet()) {
+            Maisonette value=(Maisonette) entry.getValue();
             if (value.getOwner().equals(owner)) {
                 x=x+value.show()+"\n\n";}}
         return x;

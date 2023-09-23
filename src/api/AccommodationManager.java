@@ -1,31 +1,37 @@
 package api;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Class AccommodationManager is a Base class that controls all accommodations */
 public class AccommodationManager implements Serializable{
-    protected HashMap<String,Apartment> apartments;
-    protected HashMap<String,Hotel> hotels;
-    protected HashMap<String,Maisonette> maisonettes;
+    protected static ArrayList<String> types;
+    protected HashMap<String,HashMap<String,Accommodation>> accommodations;
 
     /**
      * Empty Constructor
      * Opens a binary file and reads data from it
      */
     public AccommodationManager() {
-        apartments = new HashMap<>();
-        hotels = new HashMap<>();
-        maisonettes = new HashMap<>();
-        try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream("accommodations.dat"))) {
-            HashMap<String,Apartment> a =(HashMap<String,Apartment>) oos.readObject();
-            HashMap<String,Hotel> h = (HashMap<String,Hotel>) oos.readObject();
-            HashMap<String,Maisonette> m =(HashMap<String,Maisonette>) oos.readObject();
-            apartments.putAll(a);
-            hotels.putAll(h);
-            maisonettes.putAll(m);
-        } catch (IOException | ClassNotFoundException e) {
+        accommodations =new HashMap<>();
+        types=new ArrayList<>();
+        types.add("Apartment");
+        types.add("Hotel");
+        types.add("Maisonette");
+
+        accommodations.put("Hotel",new HashMap<>());
+        accommodations.put("Apartment",new HashMap<>());
+        accommodations.put("Maisonette",new HashMap<>());
+        try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream("Database/accommodations.dat"))) {
+            HashMap<String,Accommodation> a =(HashMap<String,Accommodation>) oos.readObject();
+            HashMap<String,Accommodation> h = (HashMap<String,Accommodation>) oos.readObject();
+            HashMap<String,Accommodation> m =(HashMap<String,Accommodation>) oos.readObject();
+            accommodations.get("Apartment").putAll(a);
+            accommodations.get("Hotel").putAll(h);
+            accommodations.get("Maisonette").putAll(m);
+        } catch (NullPointerException |IOException | ClassNotFoundException e) {
             //e.printStackTrace();
         }
         //read data from binary file
@@ -38,14 +44,10 @@ public class AccommodationManager implements Serializable{
      * @return The type of the accommodation
      */
     public String getType(String o, String n) {
-        if (apartments.get(o+n)!=null) {
-            return "Apartment";
-        }
-        else if (hotels.get(o+n)!=null) {
-            return "Hotel";
-        }
-        else if (maisonettes.get(o+n)!=null) {
-            return "Maisonette";
+        for (String s: accommodations.keySet()){
+            if (accommodations.get(s).get(o+n)!=null){
+                return s;
+            }
         }
         return null;
     }
@@ -55,12 +57,11 @@ public class AccommodationManager implements Serializable{
      */
     public String showAll() {
         String s="";
-        for(Map.Entry<String, Apartment> entry : apartments.entrySet()) {
-            s=s+entry.getValue().show()+"\n";}
-        for(Map.Entry<String, Hotel> entry : hotels.entrySet()) {
-            s=s+entry.getValue().show()+"\n";}
-        for(Map.Entry<String, Maisonette> entry : maisonettes.entrySet()) {
-            s=s+entry.getValue().show()+"\n";}
+        for (String type:accommodations.keySet()) {
+            for (String key : accommodations.get(type).keySet()) {
+                s = s + accommodations.get(type).get(key).show() + "\n";
+            }
+        }
         return s;
     }
 
@@ -71,7 +72,7 @@ public class AccommodationManager implements Serializable{
      * @return The Hotel with a specific owner and name
      */
     public Hotel getHotel(String owner, String name) {
-        return hotels.get(owner+name);
+        return (Hotel)accommodations.get("Hotel").get(owner+name);
     }
 
     /**
@@ -81,7 +82,7 @@ public class AccommodationManager implements Serializable{
      * @return The Apartment with a specific owner and name
      */
     public Apartment getApartment(String owner, String name) {
-        return apartments.get(owner+name);
+        return (Apartment) accommodations.get("Apartment").get(owner+name);
     }
 
     /**
@@ -91,17 +92,17 @@ public class AccommodationManager implements Serializable{
      * @return The Maisonette with a specific owner and name
      */
     public Maisonette getMaisonette(String owner, String name) {
-        return maisonettes.get(owner+name);
+        return (Maisonette) accommodations.get("Maisonette").get(owner+name);
     }
 
     /**
      * Destructor. Writes data in binary file
      */
     public void destructor(){
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("accommodations.dat"))) {
-            oos.writeObject(apartments);
-            oos.writeObject(hotels);
-            oos.writeObject(maisonettes);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Database/accommodations.dat"))) {
+            oos.writeObject(accommodations.get("Apartment"));
+            oos.writeObject(accommodations.get("Hotel"));
+            oos.writeObject(accommodations.get("Maisonette"));
 
         } catch (IOException e) {
             e.printStackTrace();

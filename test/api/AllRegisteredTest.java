@@ -15,7 +15,7 @@ public class AllRegisteredTest {
 
     @Before
     public void setUp() throws Exception {
-        PrintWriter pw = new PrintWriter("Accounts.dat");
+        PrintWriter pw = new PrintWriter("Database/Accounts.dat");
         pw.close();
 
     }

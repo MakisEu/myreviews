@@ -11,7 +11,7 @@ public class ApartmentTest {
 
     @Before
     public void setUp() throws Exception {
-        PrintWriter pw = new PrintWriter("accommodations.dat");
+        PrintWriter pw = new PrintWriter("Database/accommodations.dat");
         pw.close();
     }
 

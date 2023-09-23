@@ -12,7 +12,7 @@ public class AccommodationManagerProviderSubTest {
 
     @Before
     public void setUp() throws Exception {
-        PrintWriter pw = new PrintWriter("accommodations.dat");
+        PrintWriter pw = new PrintWriter("Database/accommodations.dat");
         pw.close();
     }
     @Test
@@ -64,12 +64,12 @@ public class AccommodationManagerProviderSubTest {
         AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AM.addAccommodation("Hotel", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
 
-        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
+        for (Map.Entry<String, Accommodation> entry : AM.accommodations.get("Hotel").entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
                 entry.getValue().addRating("SuperR!", 4, "KOSTAS", "1/1/2022","ks");
             }
         }
-        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
+        for (Map.Entry<String, Accommodation> entry : AM.accommodations.get("Maisonette").entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
                 entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
             }
@@ -88,17 +88,17 @@ public class AccommodationManagerProviderSubTest {
         AM.addAccommodation("Maisonette", "4-story building in Antigonidon(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AM.addAccommodation("Apartment", "4-story building in Antigonidon(Apartment)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
         AM.addAccommodation("Hotel", "three-story building in ggg(Hotel)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy");
-        for (Map.Entry<String, Hotel> entry : AM.hotels.entrySet()) {
+        for (Map.Entry<String, Accommodation> entry : AM.accommodations.get("Hotel").entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
                 entry.getValue().addRating("ok!", 5, "gio", "1/1/2022","g");
             }
         }
-        for (Map.Entry<String, Maisonette> entry : AM.maisonettes.entrySet()) {
+        for (Map.Entry<String, Accommodation> entry : AM.accommodations.get("Maisonette").entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
                 entry.getValue().addRating("Very good", 5, "vlad", "3/1/2022","vl");
             }
         }
-        for (Map.Entry<String,Apartment> entry : AM.apartments.entrySet()) {
+        for (Map.Entry<String,Accommodation> entry : AM.accommodations.get("Apartment").entrySet()) {
             if (entry.getValue().getOwner().equals("someGuy")) {
                 entry.getValue().addRating("mid",2,"jim","24/9/2022","jimD");
             }

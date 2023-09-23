@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -16,7 +17,7 @@ public class AccommodationManagerUserTest {
 
     @Before
     public void setUp() throws Exception {
-        PrintWriter pw = new PrintWriter("accommodations.dat");
+        PrintWriter pw = new PrintWriter("Database/accommodations.dat");
         pw.close();
     }
 
@@ -44,8 +45,8 @@ public class AccommodationManagerUserTest {
         keys[0]="view";
         values[0]="Sea";
 
-        String[][] n=AM.findProperties(keys,values);
-        System.out.println(Arrays.deepToString(n));
+        ArrayList<ArrayList<String>> n=AM.findProperties(keys,values);
+        System.out.println(n);
         keys=new String[2];
         values=new String[2];
         keys[0]="view";
@@ -53,7 +54,7 @@ public class AccommodationManagerUserTest {
         values[0]="Sea";
         values[1]="yes";
         n=AM.findProperties(keys,values);
-        System.out.println(Arrays.deepToString(n));
+        System.out.println(n);
         keys=new String[3];
         values=new String[3];
         keys[0]="view";
@@ -63,7 +64,7 @@ public class AccommodationManagerUserTest {
         keys[2]="internet";
         values[2]="fast";
         n=AM.findProperties(keys,values);
-        System.out.println(Arrays.deepToString(n));
+        System.out.println(n);
         /*for (int j=0;j<n[0].length;j++){
             if (n[0][j]!=null){
                 split=n[0][j].split("#");
@@ -96,10 +97,10 @@ public class AccommodationManagerUserTest {
         AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        String[][] n=AM.findName("three-story building in Antigonidon");
-        System.out.println(Arrays.deepToString(n));
+        ArrayList<ArrayList<String>> n=AM.findName("three-story building in Antigonidon");
+        System.out.println(n);
         n=AM.findName("5-story building in Antigonidon(Maisonette)");
-        System.out.println(Arrays.deepToString(n));
+        System.out.println(n);
 
     }
 
@@ -117,8 +118,8 @@ public class AccommodationManagerUserTest {
         AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Thessalonikh", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        String[][] n=AM.findType("Hotel");
-        System.out.println(Arrays.deepToString(n));
+        ArrayList<ArrayList<String>> n=AM.findType("Hotel");
+        System.out.println(n);
 
     }
     @Test
@@ -135,7 +136,7 @@ public class AccommodationManagerUserTest {
         AMP.addAccommodation("Maisonette", "5-story building in Antigonidon(Maisonette)", "Κέντρο", "123456", "Athens", "A three story building in Thessaloniki", "someGuy3");
         AMP.destructor();
         AccommodationManagerUser AM = new AccommodationManagerUser();
-        String[][] n=AM.findLocation("Athens");
-        System.out.println(Arrays.deepToString(n));
+        ArrayList<ArrayList<String>> n=AM.findLocation("Athens");
+        System.out.println(n);
     }
 }

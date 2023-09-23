@@ -27,16 +27,16 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
         switch (type) {
             case "Hotel": {
                 Hotel h = new Hotel(n, a, tk, c, desc, o);
-                hotels.put(o + n, h);
+                accommodations.get(type).put(o + n, h);
                 return "Added successfully";
             }
             case "Apartment":
                 Apartment ap = new Apartment(n, a, tk, c, desc, o);
-                apartments.put(o + n, ap);
+                accommodations.get(type).put(o + n, ap);
                 return "Added successfully";
             case "Maisonette": {
                 Maisonette h = new Maisonette(n, a, tk, c, desc, o);
-                maisonettes.put(o + n, h);
+                accommodations.get(type).put(o + n, h);
                 return "Added successfully";
             }
             default:
@@ -53,10 +53,11 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      * @param suite The Hotel has suite
      */
     public void editHotel(String owner, String name, int star, int floor, boolean suite) {
-        if (hotels.get(owner + name) != null) {
-            hotels.get(owner + name).setFloors(floor);
-            hotels.get(owner + name).setStars(star);
-            hotels.get(owner + name).setHasSuite(suite);
+        if (accommodations.get("Hotel").get(owner + name) != null) {
+            Hotel h=(Hotel) accommodations.get("Hotel").get(owner + name);
+            h.setFloors(floor);
+            h.setStars(star);
+            h.setHasSuite(suite);
         }
     }
 
@@ -70,11 +71,12 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      * @param elevator The Apartment has elevator
      */
     public void editApartment(String owner, String name, int floor, int space, boolean guard, boolean elevator) {
-        if (apartments.get(owner + name) != null) {
-            apartments.get(owner + name).setSpace(space);
-            apartments.get(owner + name).setElevator(elevator);
-            apartments.get(owner + name).setFloor(floor);
-            apartments.get(owner + name).setGuard(guard);
+        if (accommodations.get("Apartment").get(owner + name) != null) {
+            Apartment a=(Apartment) accommodations.get("Apartment").get(owner + name);
+            a.setSpace(space);
+            a.setElevator(elevator);
+            a.setFloor(floor);
+            a.setGuard(guard);
         }
     }
 
@@ -85,8 +87,8 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      * @param rm    The number of roommates in the Maisonette
      */
     public void editMaisonette(String owner, String name, int rm) {
-        if (maisonettes.get(owner + name) != null) {
-            maisonettes.get(owner + name).setRoommates(rm);
+        if (accommodations.get("Maisonette").get(owner + name) != null) {
+            ((Maisonette)accommodations.get("Maisonette").get(owner + name)).setRoommates(rm);
         }
     }
 
@@ -99,22 +101,8 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      */
     public void updateProperty(String o, String n, String key, String val) {
         String type = this.getType(o, n);
-        switch (type) {
-            case "Hotel":
-                if (hotels.get(o + n) != null) {
-                    hotels.get(o + n).updateProperty(key, val);
-                }
-                break;
-            case "Apartment":
-                if (apartments.get(o + n) != null) {
-                    apartments.get(o + n).updateProperty(key, val);
-                }
-                break;
-            case "Maisonette":
-                if (maisonettes.get(o + n) != null) {
-                    maisonettes.get(o + n).updateProperty(key, val);
-                }
-                break;
+        if (accommodations.get(type).get(o+n)!=null){
+            accommodations.get(type).get(o+n).updateProperty(key,val);
         }
     }
 
@@ -124,18 +112,7 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      * @param name  The name of the accommodation
      */
     public void deleteAccommodation(String owner, String name,String type) {
-        //String type = this.getType(owner, name);
-        switch (type) {
-            case "Hotel":
-                hotels.remove(owner + name);
-                return;
-            case "Apartment":
-                apartments.remove(owner + name);
-                return;
-            case "Maisonette":
-                maisonettes.remove(owner + name);
-                return;
-        }
+        accommodations.get(type).remove(owner+name);
     }
     /**
      * Setter for the name of a specified accommodation
@@ -145,26 +122,11 @@ public class AccommodationManagerProvider extends AccommodationManagerProviderSu
      */
     public void setName(String o,String n,String name) {
         String type = this.getType(o, n);
+        Accommodation a=accommodations.get(type).get(o+n);
+        a.setName(name);
+        accommodations.get(type).remove(o+n);
+        accommodations.get(type).put(o+name,a);
 
-
-        if (type.equals("Hotel")){
-            Hotel p=hotels.get(o+n);
-            p.setName(name);
-            hotels.remove(o+n);
-            hotels.put(o+name,p);
-        }
-        else if (type.equals("Apartment")){
-            Apartment p=apartments.get(o+n);
-            p.setName(name);
-            apartments.remove(o+n);
-            apartments.put(o+name,p);
-        }
-        else {
-            Maisonette p=maisonettes.get(o+n);
-            p.setName(name);
-            maisonettes.remove(o+n);
-            maisonettes.put(o+name,p);
-        }
     }
 
 
