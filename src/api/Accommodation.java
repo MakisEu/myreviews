@@ -18,9 +18,9 @@ public class Accommodation implements Serializable {
      *  ratings      An ArrayList of all the rating of the accommodation
      *  properties   An object that contains the option properties of the accommodation
      *  */
-    private ArrayList<Rating> ratings;
+    private final ArrayList<Rating> ratings;
     protected String name,address,TK,city,description,owner,UID;
-    private Properties properties;
+    private final Properties properties;
 
     /**
      * Normal Constructor:
@@ -137,12 +137,12 @@ public class Accommodation implements Serializable {
      * Prints the ratings of the accommodation
      */
     public String showRatings(){
-        String x="Ratings:";
+        StringBuilder x= new StringBuilder("Ratings:");
         for (Rating t: ratings)
         {
-            x=x+t.Show()+"\n";
+            x.append(t.Show()).append("\n");
         }
-        return x;
+        return x.toString();
     }
     /** Setter for address*/
     public void setName(String i){

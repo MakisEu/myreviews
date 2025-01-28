@@ -1,8 +1,6 @@
 package api;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /** A subclass of AccommodationManagerUser that holds the rating part*/
 public class AccommodationManagerUserSub extends AccommodationManager{
@@ -112,7 +110,7 @@ public class AccommodationManagerUserSub extends AccommodationManager{
                 }
             }
         }
-        return (double)mean/sum;
+        return mean /sum;
 
         }
 

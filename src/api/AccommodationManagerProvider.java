@@ -1,8 +1,5 @@
 package api;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 /** Class AccommodationManagerProvider is a class that provides all the functionalities of a provider*/
 public class AccommodationManagerProvider extends AccommodationManagerProviderSub{
     /**

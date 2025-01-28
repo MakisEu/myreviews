@@ -2,8 +2,6 @@ package api;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Provider {
     //private ArrayList<Accommodation> accommodations;
@@ -11,7 +9,7 @@ public class Provider {
      * owner The owner of an accommodation
      * first_name The first name of a provider
      */
-    private AccommodationManagerProvider amp;
+    private final AccommodationManagerProvider amp;
     String owner,first_name;
 
 
@@ -70,7 +68,7 @@ public class Provider {
      * @param desc The description of the accommodation
      * @param oln The old name of the accommodation
      */
-    public boolean editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
+    public void editAccommodation(String type, String n, String a, String tk, String c, String desc,String oln,String[] pr){
 
         switch (type) {
             case "a": {
@@ -134,7 +132,7 @@ public class Provider {
                 break;
             }
         }
-        return true;
+        //return true;
     }
 
     /**
@@ -199,7 +197,6 @@ public class Provider {
 
     /**
      * Destructor
-     * @throws FileNotFoundException
      */
     public void destructor() throws FileNotFoundException {
         amp.destructor();

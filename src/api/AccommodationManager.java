@@ -3,7 +3,6 @@ package api;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /** Class AccommodationManager is a Base class that controls all accommodations */
 public class AccommodationManager implements Serializable{
@@ -56,13 +55,13 @@ public class AccommodationManager implements Serializable{
      * Shows all accommodations
      */
     public String showAll() {
-        String s="";
+        StringBuilder s= new StringBuilder();
         for (String type:accommodations.keySet()) {
             for (String key : accommodations.get(type).keySet()) {
-                s = s + accommodations.get(type).get(key).show() + "\n";
+                s.append(accommodations.get(type).get(key).show()).append("\n");
             }
         }
-        return s;
+        return s.toString();
     }
 
     /**

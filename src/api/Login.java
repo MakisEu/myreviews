@@ -1,6 +1,4 @@
 package api;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Login {
     /**Variables of the Login class

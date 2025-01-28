@@ -35,31 +35,38 @@ public class AllRegistered implements  Serializable{
      * @param surname  The surname
      * @param type     The type of user
      */
-    public void add_registration(String username,String password,String name,String surname,String type){
+    public String add_registration(String username,String password,String name,String surname,String type){
         Registration reg =new Registration(username,password,name,surname,type);
+        String output="Not initialized";
         if (reg.getUserType().equals("User"))
         {
             if (registered_users.containsKey(reg.getUsername()))
             {
-                System.out.println("This username is already used!Pick another one");
+                output="This username is already used! Pick another one";
+                System.out.println(output);
             }
             else
             {
                 registered_users.put(reg.getUsername(),reg);
+                output="Registration successful";
+                System.out.println(output);
             }
         }
         else if (reg.getUserType().equals("Provider"))
         {
             if (registered_providers.containsKey(reg.getUsername()))
             {
-                System.out.println("This username is already used!Pick another one");
-            }
+                output="This username is already used! Pick another one";
+                System.out.println(output);            }
             else
             {
                 registered_providers.put(reg.getUsername(),reg);
+                output="Registration successful";
+                System.out.println(output);
             }
         }
-        destructor();
+        update_database();
+        return  output;
     }
 
     /**
@@ -68,10 +75,7 @@ public class AllRegistered implements  Serializable{
      * @return true or false
      */
     public boolean contains(String username){
-        if (registered_users.containsKey(username) || registered_providers.containsKey(username)){
-            return true;
-        }
-        else {return false;}
+        return registered_users.containsKey(username) || registered_providers.containsKey(username);
     }
 
     /**
@@ -82,7 +86,8 @@ public class AllRegistered implements  Serializable{
     public Registration getUserRegistration(String key){
         return registered_users.get(key);
     }
-    private void destructor(){
+
+    private void update_database(){
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Database/Accounts.dat"))) {
             oos.writeObject(registered_users);
             oos.writeObject(registered_providers);
@@ -91,6 +96,10 @@ public class AllRegistered implements  Serializable{
             e.printStackTrace();
         }
         //Write the data in a binary file and close it
+    }
+
+    private void destructor(){
+        this.update_database();
     }
 
 }

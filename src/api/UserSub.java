@@ -1,8 +1,6 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
 
 public class UserSub {
     /**
@@ -38,16 +36,10 @@ public class UserSub {
 
         if (city.length()>1){
             temp=amu.findLocation(city);
-            if (current==null){
                 current= (ArrayList<ArrayList<String>>) temp.clone();
-            }
-            else{
-                current.get(0).retainAll(temp.get(0));
-                current.get(1).retainAll(temp.get(1));
-                current.get(2).retainAll(temp.get(2));
-            }
         }
         if(prop[0].length()>2) {
+            System.out.println(prop[0]);
             String[] a1 = new String[prop.length], a2 = new String[prop.length];
             int c=0;
             for (String s: prop){
@@ -87,6 +79,7 @@ public class UserSub {
             }
         }
         ArrayList <String> ar=new ArrayList<>();
+        if (current==null){return null;}
         if (current.get(0)!=null) {
             for (String s : current.get(0)) {
                 ar.add(s + "#Apartment");

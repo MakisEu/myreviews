@@ -100,19 +100,19 @@ public class AccommodationManagerProviderSub extends AccommodationManager{
      * @param owner The owner
      */
     public String showOwned(String owner) {
-        String x = "";
+        StringBuilder x = new StringBuilder();
         for(Map.Entry<String, Accommodation> entry : accommodations.get("Apartment").entrySet()) {
             Apartment value=(Apartment) entry.getValue();
             if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
+                x.append(value.show()).append("\n\n");}}
         for(Map.Entry<String, Accommodation> entry : accommodations.get("Hotel").entrySet()) {
             Hotel value=(Hotel) entry.getValue();
             if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
+                x.append(value.show()).append("\n\n");}}
         for(Map.Entry<String, Accommodation> entry : accommodations.get("Maisonette").entrySet()) {
             Maisonette value=(Maisonette) entry.getValue();
             if (value.getOwner().equals(owner)) {
-                x=x+value.show()+"\n\n";}}
-        return x;
+                x.append(value.show()).append("\n\n");}}
+        return x.toString();
     }
 }

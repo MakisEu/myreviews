@@ -1,10 +1,6 @@
 package api;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-
-import static java.util.Collections.sort;
 
 public class AccommodationManagerUser extends AccommodationManagerUserSub{
 

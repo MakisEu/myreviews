@@ -88,10 +88,10 @@ public class Apartment extends Accommodation{
         String x="Accommodation Type: Apartment"+"\n";
         x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
-        x=x+"Floor:      "+String.valueOf(floor)+"\n";
-        x=x+"Space:      "+String.valueOf(space)+"\n";
-        x=x+"Has Guard:  "+String.valueOf(guard)+"\n";
-        x=x+"Elevator:   "+String.valueOf(elevator)+"\n";
+        x=x+"Floor:      "+ floor +"\n";
+        x=x+"Space:      "+ space +"\n";
+        x=x+"Has Guard:  "+ guard +"\n";
+        x=x+"Elevator:   "+ elevator +"\n";
         x=x+super.showRatings()+"\n";
         return x;
     }

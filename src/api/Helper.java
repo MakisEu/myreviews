@@ -9,7 +9,7 @@ public class Helper {
      *  @param pr The properties-values that will be updated
      *  */
     public  void updateProperties(Accommodation acc,String[] pr){
-        if(pr.length>=1){
+        if(pr.length>=1 && pr[0].contains("-")){
             for (String pro:pr){
                 String[] keyval=pro.split("-");
                 acc.updateProperty(keyval[0],keyval[1]);
@@ -22,10 +22,9 @@ public class Helper {
      *  @param service The Provider that has the accommodation
      *  @param name The name of the accommodation
      *  @param prop The properies-values that will be updated
-     *  @return the accommodation
      *  */
-    public Accommodation AddProperties(String type,Provider service,String name,String[] prop){
-        Accommodation ac = null;
+    public void AddProperties(String type,Provider service,String name,String[] prop){
+        Accommodation ac;
         switch (type) {
             case "a":
                 ac = service.getApartment(name);
@@ -40,7 +39,6 @@ public class Helper {
                 new Helper().updateProperties(ac, prop);
                 break;
         }
-        return ac;
     }
     /**
      * This method gets the title of accommodation from the first letter of the type

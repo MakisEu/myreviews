@@ -1,12 +1,7 @@
 package api;
 
-import gui.AccommodationManagerUserGui;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 
 public class User extends UserSub{
     /**
@@ -38,7 +33,7 @@ public class User extends UserSub{
      * @return true or false depends on if the rating is added successfully or not
      */
     public int AddRating(String on,String rating,float score){
-        int q=0;
+        int q;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
         q=amu.addRating(x[1],x[2],rating,score,username,new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date()),name,type);
@@ -84,7 +79,7 @@ public class User extends UserSub{
      * @return true or false depends on if the rating is edited successfully or not
      */
     public int EditRating(String on,String rating,float score){
-        int q=0;
+        int q;
         String[] x=on.split("#");
         String type=new Helper().getTitle(x[0]);
         q=amu.editRatings(x[1],x[2],rating,score,username,type);

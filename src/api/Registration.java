@@ -1,8 +1,6 @@
 package api;
 
 import java.io.Serializable;
-import java.net.PasswordAuthentication;
-import java.util.ArrayList;
 
 public class Registration implements Serializable {
 
@@ -13,7 +11,11 @@ public class Registration implements Serializable {
      * Surname     The surname of a User/Provider
      * user_type   The user type (User or Provider)
      */
-    private String Username, Password, Name, Surname, user_type;
+    private String Username;
+    private final String Password;
+    private String Name;
+    private final String Surname;
+    private final String user_type;
 
     /**
      * Normal constructor:

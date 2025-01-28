@@ -74,9 +74,9 @@ public class Hotel extends  Accommodation implements Serializable {
         String x="Accommodation Type: Hotel"+"\n";
         x=x+"UID:"+UID+"\n";
         x=x+super.showNR()+"\n";
-        x=x+"Stars:      "+String.valueOf(stars)+"\n";
-        x=x+"floors:     "+String.valueOf(floors)+"\n";
-        x=x+"Has Suite:  "+String.valueOf(hasSuite)+"\n";
+        x=x+"Stars:      "+ stars +"\n";
+        x=x+"floors:     "+ floors +"\n";
+        x=x+"Has Suite:  "+ hasSuite +"\n";
         x=x+super.showRatings()+"\n";
         return x;
     }

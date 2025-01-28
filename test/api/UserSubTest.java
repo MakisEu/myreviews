@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 import static org.junit.Assert.*;
 
-public class UserSubTest {
+public class  UserSubTest {
 
     @Before
     public void setUp() throws Exception {

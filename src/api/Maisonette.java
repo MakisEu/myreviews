@@ -57,7 +57,7 @@ public class Maisonette extends  Accommodation {
         String x="Accommodation Type: Maisonette"+"\n";
         x=x+"UID:"+UID+"\n";
         x=x+super.showNR();
-        x=x+"Roommates:      "+String.valueOf(roommates)+"\n";
+        x=x+"Roommates:      "+ roommates +"\n";
         x=x+super.showRatings()+"\n";
         return x;
     }

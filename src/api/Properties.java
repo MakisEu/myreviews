@@ -9,7 +9,7 @@ public class Properties implements Serializable {
     /**Variables in Properties class:
      * properties     A hashmap that contains all the accommodation's properties
      */
-    private HashMap<String,String> properties;
+    private final HashMap<String,String> properties;
 
     /**
      * Normal Constructor:
@@ -51,12 +51,12 @@ public class Properties implements Serializable {
      * @return A string array with all the properties of the accommodation
      */
     public String show_properties(){
-        String x="|";
+        StringBuilder x= new StringBuilder("|");
         for (Map.Entry<String,String> e:properties.entrySet())
             {
-                x=x+e.getKey()+": "+e.getValue()+"|";
+                x.append(e.getKey()).append(": ").append(e.getValue()).append("|");
             }
-        return x;
+        return x.toString();
     }
 
 

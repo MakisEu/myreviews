@@ -133,7 +133,9 @@ public class AMPGUIEdit_Add extends JPanel implements ActionListener {
         if (e.getActionCommand().equals("Delete")){
             String[] uid=textField_UID.getText().split("#");
             service.deleteAccommodation(uid[2],uid[0]);
-        }
+            JOptionPane.showMessageDialog(this, "The accommodation was deleted.", "Deleted Accommodation", JOptionPane.INFORMATION_MESSAGE);
+
+    }
         if (e.getActionCommand().equals("Edit")){
             String[] uid=textField_UID.getText().split("#");
             Accommodation acc=null;

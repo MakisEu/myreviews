@@ -10,7 +10,10 @@ public class Rating implements Serializable {
      * date    The date that the rating was added
      * small_name    The small name of the user who added the rating
      */
-    private String rating_description,name_of_user,date,small_name;
+    private String rating_description;
+    private final String name_of_user;
+    private String date;
+    private final String small_name;
     private float grade;
 
     /**
